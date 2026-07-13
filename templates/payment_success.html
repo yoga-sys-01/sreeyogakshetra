@@ -1,0 +1,97 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Successful | Sree Yogakshetra</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+</head>
+<body class="success-page-body">
+
+    <div class="success-container">
+        <div class="success-icon-badge">✓</div>
+        <h2>Payment Received Successfully!</h2>
+        <p>Thank you for registering, <strong>{{ user.name }}</strong>.</p>
+        <p>To access your live interactive batch updates and daily schedule links, please accept our terms and join your official batch group below:</p>
+        
+        <div class="action-gate-wrapper">
+            <button id="gateBtn" class="action-trigger-btn" onclick="openModal()">
+                Proceed to Join Batch Group
+            </button>
+            
+            <a id="waBtn" href="{% url 'whatsapp_bridge' user.booking_id %}" class="wa-btn hidden-action">
+                🚀 Join WhatsApp Group Now
+            </a>
+        </div>
+    </div>
+
+    <div id="termsModal" class="modal-overlay">
+        <div class="modal-card">
+            <div class="modal-header">
+                <h3>Terms & Conditions Registration Agreement</h3>
+            </div>
+            <div class="modal-body-scroll">
+                <p class="modal-intro-text">Welcome to Sree Yogakshetra.</p>
+                <p>Please carefully review our official studio guidelines before starting your yoga sessions:</p>
+                <ol class="terms-detailed-list">
+                    <li><strong>Monthly Payment:</strong> Course fees must be paid in advance on or before the 5th of every month to continue your enrollment.</li>
+                    <li><strong>Payment Reminder & Access:</strong> If the fee is not received by the 5th of the month, one payment reminder will be sent on the 1st week of the month. If the payment is still not received by 10th of that month, your access to the online classes will be discontinued, and you will be removed from the session until the pending fee is paid.</li>
+                    <li><strong>No Refunds:</strong> All payments are non-refundable and non-transferable.</li>
+                    <li><strong>Live Classes Only:</strong> All sessions are conducted live. Class recordings will not be provided.</li>
+                    <li><strong>Class Timings:</strong> If a participant misses a class for any reason, the missed session cannot be rescheduled, refunded, or carried forward. Participants are encouraged to join each class on time to make the most of the program, because yoga starts with discipline.</li>
+                    <li><strong>Internet & Practice Space:</strong> Participants are responsible for ensuring a stable internet connection and a safe, clean, and comfortable practice space.</li>
+                    <li><strong>Health Responsibility:</strong> Please inform the instructor before joining if you have any injuries, medical conditions, pregnancy, recent surgeries, or any other health concerns. Practice only within your own comfort and physical limits.</li>
+                    <li><strong>Liability:</strong> The instructor and yoga studio are not responsible for any injuries, discomfort, or health issues arising from improper practice, failure to follow instructions, or undisclosed medical conditions.</li>
+                    <li><strong>Class Access:</strong> Class links are strictly for registered participants and must not be shared with others.</li>
+                    <li><strong>Class Holidays:</strong> We reserve the right to take leave or cancel classes during festivals, public holidays, or unforeseen circumstances. Advance notice will be provided whenever possible.</li>
+                    <li><strong>Agreement:</strong> By participating in our online yoga classes, you confirm that you have read, understood, and agreed to these terms and conditions.</li>
+                </ol> </div>
+            <div class="modal-footer">
+                <label class="agreement-checkbox-container">
+                    <input type="checkbox" id="agreeCheckbox" onchange="toggleConfirmButton()">
+                    <span>I read, understand, and agree to abide by these Terms and Conditions.</span>
+                </label>
+                <button id="confirmBtn" class="modal-confirm-btn" disabled onclick="submitAgreement('{{ user.booking_id }}')">
+                    Confirm & Continue
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openModal() {
+            document.getElementById('termsModal').classList.add('active');
+        }
+
+        function toggleConfirmButton() {
+            const checkbox = document.getElementById('agreeCheckbox');
+            const confirmBtn = document.getElementById('confirmBtn');
+            confirmBtn.disabled = !checkbox.checked;
+        }
+
+        function submitAgreement(bookingId) {
+            fetch(`/api/accept-terms/${bookingId}/`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'terms_accepted') {
+                    document.getElementById('termsModal').classList.remove('active');
+                    document.getElementById('gateBtn').classList.add('hidden-action');
+                    document.getElementById('waBtn').classList.remove('hidden-action');
+                }
+            })
+            .catch(error => {
+                console.error('Error recording agreement status:', error);
+                alert('Something went wrong. Please check your network connection and try again.');
+            });
+        }
+    </script>
+
+</body>
+</html>

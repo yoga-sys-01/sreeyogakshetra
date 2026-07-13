@@ -1,0 +1,282 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sreeyogakshetra | Transforming Lives Through Yoga</title>
+    <!-- Google Fonts for Modern Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..700;1,400..700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Link to external CSS -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+
+   <!-- Header / Navigation -->
+    <header class="navbar">
+        <div class="container nav-container">
+            
+           <div class="logo-brand-wrapper">
+    
+    <a href="/" class="logo-link">
+                    <img src="{% static 'images/logo3.png' %}" alt="Sreeyogakshetra Logo" class="nav-logo">
+                </a>
+    
+    <a href="/" class="brand-text-link">
+        <strong class="brand-text">
+    Sreeyogakshetra
+</strong>
+    </a>
+</div>
+
+            <!-- Mobile/Tablet Dropdown Select Box -->
+            <div class="mobile-nav-select-wrapper">
+                <select onchange="if(this.value) window.location.href=this.value;" class="mobile-nav-dropdown">
+                    <option value="" selected>☰</option>
+                    <option value="/">Home</option>
+                    <option value="/about/">About</option>
+                    <option value="/classes/">Classes</option>
+                    <option value="/gallery/">Gallery</option>
+                    <option value="/contact/">Contact</option>
+                </select>
+            </div>
+
+            <nav class="nav-links">
+                <!-- Desktop Links -->
+                <a href="/" class="active">Home</a>
+                <a href="/about/">About</a>
+                <a href="/classes/">Classes</a>
+                <a href="/gallery/">Gallery</a>
+                <a href="/contact/">Contact</a>
+            </nav>
+            <a href="https://wa.me/+916384351155" class="whatsapp-btn" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="whatsapp-icon">
+                    <path fill="currentColor" d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/>
+                </svg>
+                <span>Chat With Us</span>
+            </a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-overlay"></div>
+        <div class="container hero-content">
+            <h1 class="hero-title">Transforming Lives Through Yoga Since 2012</h1>
+            <p class="hero-subtitle">15+ Years of Teaching Experience &nbsp;|&nbsp; 10,000+ Happy Clients</p>
+            <div class="hero-ctas">
+                <a href="/classes/" class="btn btn-primary">Join Online Class</a>
+                <a href="/contact/" class="btn btn-secondary">Contact Us</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Statistics Section -->
+    <section class="stats-section">
+        <div class="container stats-grid">
+            <div class="stat-card">
+                <h3>15+</h3>
+                <p>Years Experience</p>
+            </div>
+            <div class="stat-card">
+                <h3>10,000+</h3>
+                <p>Happy Clients</p>
+            </div>
+            <div class="stat-card">
+                <h3>Online & Offline</h3>
+                <p>Classes Available</p>
+            </div>
+            <div class="stat-card">
+                <h3>Expert</h3>
+                <p>Instructors</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Preview Section -->
+    <section class="about-preview">
+        <div class="container container-narrow" style="text-align: center; margin-bottom: 40px;">
+            <span class="section-tag">Welcome to Wellness</span>
+            <h2 class="section-title">About Sreeyogakshetra</h2>
+            <p class="about-text" style="font-size: 1.15rem; line-height: 1.8; margin-bottom: 20px;">
+                Sreeyogakshetra is a dedicated yoga and wellness center committed to promoting health, balance, and inner well-being through the timeless practice of yoga. With over 15 years of experience, we offer expert guidance through both offline and online sessions, making yoga accessible to individuals of all ages and fitness levels.
+            </p>
+            <p class="about-text" style="font-size: 1.15rem; line-height: 1.8; margin-bottom: 30px;">
+                Our programs include yoga asanas, pranayama, meditation, stress management, therapeutic yoga, and holistic wellness practices. Whether you prefer learning at our studio or from the comfort of your home, our mission is to help you achieve a healthier body, a calmer mind, and a more fulfilling life.
+            </p>
+            <a href="/about/" class="text-link">Learn more about our journey &rarr;</a>
+        </div>
+        
+        <!-- Interactive Brand Showcase using provided client images -->
+        <div class="container gallery-container">
+    <div class="classes-grid adaptive-gallery">
+        
+        <div class="about-image-card">
+            <img src="{% static 'images/h1.jpeg' %}" alt="Recognition and Award Ceremony" class="about-image">
+            <div class="image-overlay-content">
+                <h3>Yoga Sessions</h3>
+                <p>Bringing our community together for an immersive outdoor morning practice.</p>
+            </div>
+        </div>
+
+        <div class="about-image-card">
+            <img src="{% static 'images/h2.jpeg' %}" alt="Outdoor session practice" class="about-image">
+            <div class="image-overlay-content">
+                <h3>National Yoga Excellence Award</h3>
+                <p>Honored for outstanding contribution to traditional Hatha Yoga education.</p>
+            </div>
+        </div>
+
+        <div class="about-image-card">
+            <img src="{% static 'images/h3.jpeg' %}" alt="Special Events and Seminars" class="about-image">
+            <div class="image-overlay-content">
+                <h3>Advanced Yoga Seminars</h3>
+                <p>Deepening knowledge through focused alignment and philosophy workshops.</p>
+            </div>
+        </div>
+
+    </div>
+</div>
+</section>
+
+
+</section>
+<!-- START OF PREMIUM YOGA FEATURES SECTION -->
+<section class="home-yoga-features-section">
+    <div class="features-layout-container">
+        
+        <!-- LEFT PANEL: TYPOGRAPHY CONTENT -->
+        <div class="features-left-content">
+            <span class="features-subheading">ONLINE GROUP SESSIONS</span>
+            
+            <h2 class="features-main-heading">
+                Affordable Live <br><span class="features-heading-accent">Online Yoga</span>
+            </h2>
+            
+            <p class="features-description-p">
+                Join an interactive, live online group yoga community dedicated to health and wellness. Experience expert guidance and quality instruction anytime, anywhere.
+            </p>
+
+            <!-- Quick Premium Features Pill Grid -->
+            <div class="features-pill-grid">
+                <div class="feature-pill">🧘‍♂️ 100+ Asanas</div>
+                <div class="feature-pill">✨ Therapeutic</div>
+                <div class="feature-pill">🌬️ Pranayama</div>
+                <div class="feature-pill">💰 Budget Pricing</div>
+            </div>
+
+            <a href="/classes/" class="btn btn-primary" style="margin-top: 28px; display: inline-block;">Join Online Class</a>
+        </div>
+<!-- RIGHT PANEL: STAGGERED MASONRY GRID (Matches the structure of Screenshot 2026-07-06 210257.jpg using text & SVGs) -->
+        <div class="features-right-grid">
+            
+            <!-- SUB-COLUMN 1: Stacked naturally -->
+            <div class="cards-column">
+                
+                <!-- CARD 1: WHAT YOU WILL GAIN -->
+                <div class="feature-tile-card">
+                    <div class="tile-icon-wrapper">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="#0c3322" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z"/>
+                            <path d="M12 6v6l4 2"/>
+                        </svg>
+                    </div>
+                    <h3 class="tile-card-title">What you will gain?</h3>
+                    <p class="tile-card-text">Improve flexibility, strength, and posture through guided yoga practice. Learn 100+ asanas, therapeutic yoga, and pranayama.</p>
+                </div>
+
+                <!-- CARD 2: MIND & ENERGY -->
+                <div class="feature-tile-card">
+                    <div class="tile-icon-wrapper">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="#0c3322" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                        </svg>
+                    </div>
+                    <h3 class="tile-card-title">Mind & Energy</h3>
+                    <p class="tile-card-text">Reduce stress, improve mental clarity, build consistency with structured live sessions, and unlock a deeply balanced lifestyle.</p>
+                </div>
+            </div>
+
+            <!-- SUB-COLUMN 2: Visually shifted lower -->
+            <div class="cards-column column-right-offset">
+                
+                <!-- CARD 3: IS THIS RIGHT FOR YOU? -->
+                <div class="feature-tile-card highlight-tile">
+                    <div class="tile-icon-wrapper green-bg-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="#166534" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="20 6 9 17 4 12"/>
+                        </svg>
+                    </div>
+                    <h3 class="tile-card-title">Is this right for you?</h3>
+                    <p class="tile-card-text">If you are ready to attend consistently, own a standard yoga mat with a reliable internet connection, and are above the age of 12—this is perfect for you!</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+    <!-- Classes Preview Section (Online & Offline) -->
+    <section class="classes-preview">
+        <div class="container">
+            <span class="section-tag">Our Offerings</span>
+            <h2 class="section-title central-title">Choose Your Practice Environment</h2>
+            
+            <div class="classes-grid">
+                <!-- Online Card -->
+                <div class="class-card">
+                    <div class="class-image-placeholder online-bg">
+                        <span>Live Global Sessions</span>
+                    </div>
+                    <div class="class-card-content">
+                        <h3>Online Classes</h3>
+                        <ul class="class-features">
+                            <li><span>✓</span> Affordable online yoga classes</li>
+                            <li><span>✓</span> Live instructor guidance</li>
+                            <li><span>✓</span> Flexible batch timings</li>
+                            <li><span>✓</span> Online booking and payment</li>
+                        </ul>
+                        <a href="/classes/" class="btn btn-outline">Explore Online Batches</a>
+                    </div>
+                </div>
+
+                <!-- Offline Card -->
+                <div class="class-card">
+                    <div class="class-image-placeholder offline-bg">
+                        <span>In-Studio Experience</span>
+                    </div>
+                    <div class="class-card-content">
+                        <h3>Offline Classes</h3>
+                        <p class="class-desc">
+                            Immerse yourself in our premium studio experience. Enjoy a peaceful, structured classroom environment designed to deepen your practice with hands-on alignment corrections.
+                        </p>
+                        <ul class="class-features">
+                            <li><span>✓</span> Premium peaceful environment</li>
+                            <li><span>✓</span> Personalized hands-on corrections</li>
+                            <li><span>✓</span> State-of-the-art yoga props</li>
+                        </ul>
+                        <a href="/classes/" class="btn btn-outline">Visit Our Studio</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Sreeyogakshetra. All rights reserved. Designed with mindfulness.</p>
+        </div>
+    </footer>
+
+    <!-- Floating WhatsApp for mobile (fixed bottom-right) -->
+    <a href="https://wa.me/+916384351155" class="whatsapp-floating-trigger" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="wa-float-icon">
+            <path fill="currentColor" d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/>
+        </svg>
+    </a>
+
+</body>
+</html>

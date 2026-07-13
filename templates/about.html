@@ -1,0 +1,497 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About Us | Sreeyogakshetra</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..700;1,400..700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+  </head>
+  <body>
+    <!-- Header / Navigation -->
+    <header class="navbar">
+      <div class="container nav-container">
+        <div class="logo-brand-wrapper">
+          <a href="/" class="logo-link">
+            <img
+              src="{% static 'images/logo3.png' %}"
+              alt="Sree Yogakshetra Logo"
+              class="nav-logo"
+            />
+          </a>
+          <a href="/" class="brand-text-link">
+            <strong class="brand-text">Sreeyogakshetra</strong>
+          </a>
+        </div>
+
+        <!-- Mobile/Tablet Dropdown Select Box -->
+        <div class="mobile-nav-select-wrapper">
+          <select
+            onchange="if (this.value) window.location.href = this.value;"
+            class="mobile-nav-dropdown"
+          >
+            <option value="" selected>☰</option>
+            <option value="/">Home</option>
+            <option value="/about/">About</option>
+            <option value="/classes/">Classes</option>
+            <option value="/gallery/">Gallery</option>
+            <option value="/contact/">Contact</option>
+          </select>
+        </div>
+
+        <nav class="nav-links">
+          <!-- Desktop Links -->
+          <a href="/">Home</a>
+          <a href="/about/" class="active">About</a>
+          <a href="/classes/">Classes</a>
+          <a href="/gallery/">Gallery</a>
+          <a href="/contact/">Contact</a>
+        </nav>
+
+        <a
+          href="https://wa.me/+916384351155"
+          class="whatsapp-btn"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Chat on WhatsApp"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 448 512"
+            class="whatsapp-icon"
+          >
+            <path
+              fill="currentColor"
+              d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"
+            />
+          </svg>
+          <span>Chat With Us</span>
+        </a>
+      </div>
+    </header>
+
+    <section class="page-banner">
+      <div class="banner-overlay"></div>
+      <div class="container banner-content">
+        <span class="section-tag style-light">Our Journey</span>
+        <h1 class="banner-title">About Sreeyogakshetra</h1>
+      </div>
+    </section>
+
+    <section class="about-core-section">
+      <div class="container">
+        <div class="about-main-grid">
+          <div class="about-core-text">
+            <h2 class="section-title">Nurturing Balance & Inner Well-Being</h2>
+            <p class="lead-text">
+              Sreeyogakshetra is a dedicated yoga and wellness center committed
+              to promoting health, balance, and inner well-being through the
+              timeless practice of yoga.
+            </p>
+            <p class="body-text">
+              With over 15 years of experience, we offer expert guidance through
+              both offline and online sessions, making yoga accessible to
+              individuals of all ages and fitness levels. We believe that yoga
+              is not just an exercise system, but a pathway to holistic
+              structural stability and internal peace.
+            </p>
+          </div>
+          <div class="about-core-visual" style="position: relative">
+            <img
+              src="{% static 'images/a1.png' %}"
+              alt="Yoga Session Visual Accent"
+              style="
+                width: 100%;
+                height: auto;
+                border-radius: 24px;
+                display: block;
+                object-fit: cover;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+              "
+            />
+            <div
+              class="visual-accent-box"
+              style="
+                position: absolute;
+                bottom: -20px;
+                right: -20px;
+                left: auto;
+                width: max-content;
+                margin-top: 0;
+              "
+            >
+              <span class="experience-badge">15+ Years of Guidance</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="team-section">
+      <div class="container">
+        <span class="section-tag">Leadership</span>
+        <h2 class="section-title central-title" style="margin-bottom: 35px">
+          Meet Our Team
+        </h2>
+
+        <div class="team-container">
+          <div class="team-card">
+            <div class="team-img-wrapper">
+              <img
+                src="{% static 'images/h1.jpeg' %}"
+                alt="Dr. Sreeja - Founder & Director"
+              />
+            </div>
+            <div class="team-info">
+              <span class="section-tag">Founder & Director</span>
+              <h3>Dr. Sreeja</h3>
+              <p class="team-text">
+                Dr. Sreeja is the founder and director of SreeYogakshetra, a
+                leading yoga studio established in 2012. With extensive
+                expertise in hatha yoga, vinyasa yoga, prenatal (pregnancy)
+                yoga, and kids yoga, she has dedicated her career to promoting
+                holistic health and well-being through authentic yogic
+                practices. Her commitment to excellence and contribution to the
+                field of yoga have been recognized with the prestigious Bharat
+                Gaurav Ratna Award. Through SreeYogakshetra, Dr. Sreeja has
+                empowered thousands of individuals to achieve physical, mental,
+                and emotional wellness, making the institution one of the most
+                respected yoga centers in Salem.
+              </p>
+            </div>
+          </div>
+
+          <div class="team-card reverse">
+            <div class="team-info">
+              <span class="section-tag">Director & Instructor</span>
+              <h3>Agastthya, B.A.</h3>
+              <p class="team-text">
+                Agastthya, B.A., is the director of SreeYogakshetra and a
+                certified yoga instructor with over 18 years of dedicated yoga
+                practice and more than 2 years of teaching experience. He
+                specializes in hatha yoga, vinyasa yoga, pranayama, and kids
+                yoga, helping individuals of all ages improve their physical,
+                mental, and emotional well-being. In addition to his expertise
+                in traditional yoga disciplines, Agastthya is also a certified
+                aerial yoga instructor. As the director of SreeYogakshetra, he
+                is committed to promoting holistic wellness and delivering
+                high-quality yoga education through personalized instruction,
+                corporate wellness programs, and community outreach initiatives.
+              </p>
+            </div>
+            <div class="team-img-wrapper">
+              <img
+                src="{% static 'images/h3.jpeg' %}"
+                alt="Agastthya - Director"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="services-highlight-section">
+      <div class="container">
+        <div class="services-highlight-grid">
+          <div class="side-services-stack">
+            <div class="mini-service-card">
+              <span class="card-badge">At Our Studio</span>
+              <h2>Studio Offerings</h2>
+              <p class="tag-text-list">
+                Regular Hatha Yoga | Hip Opening | Vinyasa | Meditation | Deep
+                Relaxation | Pranayama | Kids Yoga | Pregnancy Yoga | Tai Chi
+              </p>
+            </div>
+
+            <div class="mini-service-card">
+              <span class="card-badge">Corporate</span>
+              <h2>Wellness & Well-Being</h2>
+              <ul class="mini-bullet-list">
+                <li>Combats work stress & employee burnout</li>
+                <li>Relieves sedentary neck & back pain</li>
+                <li>Boosts focus, energy, and productivity</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="featured-online-card">
+            <div class="promo-banner">Most Popular</div>
+            <span class="featured-sub">Live From Anywhere</span>
+            <h2>Affordable Online Group Yoga Classes</h2>
+
+            <p class="featured-description">
+              Join our live online group yoga classes and become part of a
+              supportive global community dedicated to health and wellness.
+              Perfect for all experience levels, from complete beginners to
+              advanced practitioners.
+            </p>
+
+            <div
+              class="feature-highlights-box"
+              style="
+                display: flex;
+                justify-content: space-around;
+                align-items: center;
+                gap: 20px;
+                background: rgba(255, 255, 255, 0.05);
+                padding: 24px;
+                border-radius: 16px;
+                border: 1px solid rgba(255, 255, 255, 0.1);
+                margin-top: 24px;
+                flex-wrap: wrap;
+              "
+            >
+              <!-- Item 1 -->
+              <div
+                class="highlight-item"
+                style="
+                  display: flex;
+                  flex-direction: column;
+                  align-items: center;
+                  text-align: center;
+                  flex: 1;
+                  min-width: 100px;
+                "
+              >
+                <strong
+                  style="
+                    font-size: 1.8rem;
+                    color: #ffffff;
+                    font-weight: 700;
+                    font-family: &quot;Plus Jakarta Sans&quot;, sans-serif;
+                  "
+                  >100+</strong
+                >
+                <span
+                  style="
+                    font-size: 0.85rem;
+                    color: #a3c7b4;
+                    text-transform: uppercase;
+                    letter-spacing: 1px;
+                    font-weight: 600;
+                    margin-top: 4px;
+                  "
+                  >Yoga Asanas</span
+                >
+              </div>
+
+              <div
+                style="
+                  width: 1px;
+                  height: 40px;
+                  background: rgba(255, 255, 255, 0.15);
+                "
+              ></div>
+
+              <!-- Item 2 -->
+              <div
+                class="highlight-item"
+                style="
+                  display: flex;
+                  flex-direction: column;
+                  align-items: center;
+                  text-align: center;
+                  flex: 1;
+                  min-width: 100px;
+                "
+              >
+                <strong
+                  style="
+                    font-size: 1.8rem;
+                    color: #ffffff;
+                    font-weight: 700;
+                    font-family: &quot;Plus Jakarta Sans&quot;, sans-serif;
+                  "
+                  >Live</strong
+                >
+                <span
+                  style="
+                    font-size: 0.85rem;
+                    color: #a3c7b4;
+                    text-transform: uppercase;
+                    letter-spacing: 1px;
+                    font-weight: 600;
+                    margin-top: 4px;
+                  "
+                  >Expert Guidance</span
+                >
+              </div>
+
+              <div
+                style="
+                  width: 1px;
+                  height: 40px;
+                  background: rgba(255, 255, 255, 0.15);
+                "
+              ></div>
+
+              <!-- Item 3 -->
+              <div
+                class="highlight-item"
+                style="
+                  display: flex;
+                  flex-direction: column;
+                  align-items: center;
+                  text-align: center;
+                  flex: 1;
+                  min-width: 100px;
+                "
+              >
+                <strong
+                  style="
+                    font-size: 1.8rem;
+                    color: #ffca28;
+                    font-weight: 700;
+                    font-family: &quot;Plus Jakarta Sans&quot;, sans-serif;
+                  "
+                  >★</strong
+                >
+                <span
+                  style="
+                    font-size: 0.85rem;
+                    color: #a3c7b4;
+                    text-transform: uppercase;
+                    letter-spacing: 1px;
+                    font-weight: 600;
+                    margin-top: 4px;
+                  "
+                  >Budget Friendly</span
+                >
+              </div>
+            </div>
+
+            <div class="featured-tag-cloud">
+              <span>Therapeutic Yoga</span>
+              <span>Hip-Opening Practices</span>
+              <span>Pranayama</span>
+              <span>Flexibility & Strength</span>
+            </div>
+
+            <a href="/classes/" class="featured-cta-btn">View Class Schedule</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="programs-section">
+      <div class="container">
+        <span class="section-tag">Curriculum</span>
+        <h2 class="section-title central-title">Our Programs Include</h2>
+
+        <div class="programs-grid">
+          <div class="program-item">
+            <div class="program-icon">🧘‍♂️</div>
+            <h3>Yoga Asanas</h3>
+            <p>
+              Physical postures designed to align, strengthen, and cultivate
+              body-mind presence.
+            </p>
+          </div>
+          <div class="program-item">
+            <div class="program-icon">💨</div>
+            <h3>Pranayama</h3>
+            <p>
+              Sustained breathing practices that regulate energy and establish
+              nervous system control.
+            </p>
+          </div>
+          <div class="program-item">
+            <div class="program-icon">✨</div>
+            <h3>Meditation</h3>
+            <p>
+              Techniques aimed at stilling conscious thought to discover
+              fundamental quietude.
+            </p>
+          </div>
+          <div class="program-item">
+            <div class="program-icon">🌿</div>
+            <h3>Stress Management</h3>
+            <p>
+              Targeted adjustments explicitly structured to mitigate stress and
+              sensory overload.
+            </p>
+          </div>
+          <div class="program-item">
+            <div class="program-icon">🩺</div>
+            <h3>Therapeutic Yoga</h3>
+            <p>
+              Modified physical variations adapted for targeted physical
+              recovery and support.
+            </p>
+          </div>
+          <div class="program-item">
+            <div class="program-icon">☀️</div>
+            <h3>Holistic Wellness Practices</h3>
+            <p>
+              Integrated habit frameworks bringing conscious structural balance
+              to everyday life.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="mv-section">
+      <div class="container mv-grid">
+        <div class="mv-card mission-card">
+          <div class="mv-tag">Our Mission</div>
+          <h3>Cultivating Balance</h3>
+          <p>
+            To help individuals achieve physical wellness, mental peace, and a
+            balanced lifestyle through authentic yoga practices.
+          </p>
+        </div>
+        <div class="mv-card vision-card">
+          <div class="mv-tag">Our Vision</div>
+          <h3>Universal Access</h3>
+          <p>
+            To make yoga accessible and beneficial for everyone, erasing
+            barriers of age, skill, and location.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-ribbon">
+      <div class="container ribbon-flex">
+        <h2>Ready to experience inner balance?</h2>
+        <a href="/classes/" class="btn btn-secondary">Explore Live Batches</a>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="container">
+        <p>
+          &copy; 2026 Sreeyogakshetra. All rights reserved. Designed with
+          mindfulness.
+        </p>
+      </div>
+    </footer>
+
+    <!-- Floating WhatsApp for mobile -->
+    <a
+      href="https://wa.me/+916384351155"
+      class="whatsapp-floating-trigger"
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Chat on WhatsApp"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 448 512"
+        class="wa-float-icon"
+      >
+        <path
+          fill="currentColor"
+          d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"
+        />
+      </svg>
+    </a>
+  </body>
+</html>

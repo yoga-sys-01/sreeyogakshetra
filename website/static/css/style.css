@@ -1,0 +1,3516 @@
+:root {
+    --primary-color: #0D3E26;       /* Dark Green */
+    --secondary-color: #FFFFFF;     /* White */
+    --accent-color: #4CAF50;        /* Light Green Accent */
+    --accent-light: #E8F5E9;        /* Soft Light Green Background */
+    --text-dark: #2C3E35;
+    --text-light: #708A7E;
+    --font-heading: 'Playfair Display', serif;
+    --font-body: 'Plus Jakarta Sans', sans-serif;
+    --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    --border-radius: 24px;          /* Premium rounded corners */
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* --- LOGO INTEGRATION FIXES --- */
+
+.logo-brand {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.logo-brand:hover {
+    transform: scale(1.05) translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    opacity: 1;
+}
+
+/* --- FIXED WHATSAPP CTA STYLE --- */
+
+.whatsapp-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background-color: #25D366;  /* Official WhatsApp Green */
+    color: #FFFFFF !important;  /* Force text color to white */
+    padding: 12px 24px;
+    border-radius: 50px;        /* Clean rounded capsule shape */
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-decoration: none !important; /* Removes default link underline */
+    box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+    transition: var(--transition);
+}
+
+.whatsapp-btn:hover {
+    background-color: #20ba5a;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(37, 211, 102, 0.4);
+    color: #FFFFFF !important;
+}
+
+/* Fixes the icon size and color stretching */
+.whatsapp-icon {
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+/* Explicitly force the SVG path inside to inherit the white text color */
+.whatsapp-icon path {
+    fill: #FFFFFF !important;
+}
+
+/* Ensure the button elements line up vertically */
+.whatsapp-btn span {
+    color: #FFFFFF !important;
+    display: inline-block;
+    line-height: 1;
+}
+
+/* Responsive adjustment for smaller mobile viewports */
+@media(max-width: 480px) {
+    .nav-logo {
+        height: 50px;       /* Sleeker profile on smaller screens */
+    }
+}
+
+/* Responsive: Navbar WhatsApp button */
+@media(max-width: 992px) {
+    .whatsapp-btn {
+        padding: 10px 16px !important;
+        gap: 6px !important;
+        font-size: 0.85rem !important;
+    }
+    .whatsapp-icon {
+        width: 18px !important;
+        height: 18px !important;
+    }
+}
+
+@media(max-width: 576px) {
+    .whatsapp-btn span {
+        display: none !important;
+    }
+    .whatsapp-btn {
+        padding: 10px !important;
+        border-radius: 50% !important;
+        width: 44px !important;
+        height: 44px !important;
+    }
+    .whatsapp-icon {
+        width: 22px !important;
+        height: 22px !important;
+    }
+} 
+
+body {
+    font-family: var(--font-body);
+    color: var(--text-dark);
+    background-color: #FBFDFB;
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* --- REUSABLE UTILITIES --- */
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+.container-narrow {
+    max-width: 800px;
+    text-align: center;
+}
+.section-tag {
+    display: inline-block;
+    color: var(--accent-color);
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 12px;
+}
+.section-title {
+    font-family: var(--font-heading);
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin-bottom: 24px;
+}
+.central-title {
+    text-align: center;
+    margin-bottom: 48px;
+}
+
+/* --- BUTTONS --- */
+.btn {
+    display: inline-block;
+    padding: 14px 28px;
+    border-radius: 50px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: var(--transition);
+    font-size: 0.95rem;
+    cursor: pointer;
+}
+.btn-primary {
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+    border: 1px solid var(--primary-color);
+}
+.btn-primary:hover {
+    background-color: var(--accent-color);
+    border-color: var(--accent-color);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(76, 175, 80, 0.2);
+}
+.btn-secondary {
+    background-color: transparent;
+    color: var(--secondary-color);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(5px);
+}
+.btn-secondary:hover {
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
+    transform: translateY(-2px);
+}
+.btn-outline {
+    background-color: transparent;
+    color: var(--primary-color);
+    border: 1px solid var(--primary-color);
+    text-align: center;
+}
+.btn-outline:hover {
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+}
+
+/* --- NAVBAR --- */
+.navbar {
+    position: sticky;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 10000;
+    padding: 24px 0;
+    display: block;
+    visibility: visible;
+    background-color: #1b4332;
+}
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.logo {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--secondary-color);
+    text-decoration: none;
+}
+.logo span {
+    font-weight: 400;
+    opacity: 0.9;
+}
+.logo-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+}
+.nav-logo {
+    height: 60px;
+    width: auto;
+    object-fit: contain;
+    background-color: #1b4332;
+}
+.brand-name {
+    font-family: var(--font-heading);
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #ffffff;
+    letter-spacing: 0.3px;
+    line-height: 1.2;
+    text-shadow: 0 1px 4px rgba(0,0,0,0.3);
+    white-space: nowrap;
+}
+.nav-links a {
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    margin: 0 20px;
+    font-weight: 500;
+    transition: var(--transition);
+    font-size: 0.95rem;
+}
+.nav-links a:hover, .nav-links a.active {
+    color: var(--secondary-color);
+    text-shadow: 0 0 10px rgba(255,255,255,0.5);
+}
+
+/* --- HERO SECTION --- */
+.hero-section {
+    position: relative;
+    height: 100vh;
+    min-height: 650px;
+    /* Premium dark, nature-themed placeholder background simulating a calm yoga vibe */
+    background: url('../images/hero-bg.jpg') no-repeat center center/cover;
+    display: flex;
+    align-items: center;
+    color: var(--secondary-color);
+}
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(13, 62, 38, 0.8), rgba(13, 62, 38, 0.6));
+    z-index: 1;
+}
+.hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 850px;
+    animation: fadeIn 1s ease-out;
+}
+.hero-title {
+    font-family: var(--font-heading);
+    font-size: 3.5rem;
+    line-height: 1.2;
+    margin-bottom: 20px;
+}
+.hero-subtitle {
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 40px;
+    letter-spacing: 0.5px;
+}
+.hero-ctas .btn {
+    margin-right: 15px;
+}
+
+/* --- STATISTICS SECTION --- */
+.stats-section {
+    position: relative;
+    margin-top: -60px;
+    z-index: 3;
+    padding-bottom: 60px;
+}
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 24px;
+}
+.stat-card {
+    background-color: var(--secondary-color);
+    padding: 35px 30px;
+    border-radius: var(--border-radius);
+    box-shadow: 0 15px 45px rgba(13, 62, 38, 0.06);
+    text-align: center;
+    transition: var(--transition);
+    border: 1px solid rgba(13, 62, 38, 0.03);
+}
+.stat-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 50px rgba(13, 62, 38, 0.1);
+}
+.stat-card h3 {
+    font-family: var(--font-heading);
+    font-size: 2.2rem;
+    color: var(--primary-color);
+    margin-bottom: 8px;
+}
+.stat-card p {
+    color: var(--text-light);
+    font-weight: 500;
+    font-size: 0.95rem;
+}
+
+/* --- ABOUT PREVIEW --- */
+.about-preview {
+    padding: 100px 0;
+    background-color: var(--accent-light);
+    border-radius: var(--border-radius);
+    width: 95%;
+    margin: 0 auto;
+}
+.about-text {
+    font-family: var(--font-heading);
+    font-size: 1.6rem;
+    font-style: italic;
+    color: var(--primary-color);
+    line-height: 1.5;
+    margin-bottom: 30px;
+}
+.text-link {
+    color: var(--accent-color);
+    text-decoration: none;
+    font-weight: 600;
+    transition: var(--transition);
+}
+.text-link:hover {
+    letter-spacing: 1px;
+}
+
+/* --- CLASSES PREVIEW --- */
+.classes-preview {
+    padding: 120px 0;
+}
+.classes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+    gap: 40px;
+}
+.class-card {
+    background-color: var(--secondary-color);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.02);
+    border: 1px solid rgba(13, 62, 38, 0.05);
+    display: flex;
+    flex-direction: column;
+    transition: var(--transition);
+}
+.class-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(13, 62, 38, 0.08);
+}
+.class-image-placeholder {
+    height: 240px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--secondary-color);
+    font-family: var(--font-heading);
+    font-size: 1.4rem;
+}
+.online-bg {
+    background: linear-gradient(135deg, #165636, #2E8B57);
+}
+.offline-bg {
+    background: linear-gradient(135deg, #0A2E1B, #1C5235);
+}
+.class-card-content {
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+.class-card-content h3 {
+    font-family: var(--font-heading);
+    font-size: 1.8rem;
+    color: var(--primary-color);
+    margin-bottom: 16px;
+}
+.class-desc {
+    color: var(--text-light);
+    margin-bottom: 24px;
+}
+.class-features {
+    list-style: none;
+    margin-bottom: 35px;
+}
+.class-features li {
+    margin-bottom: 12px;
+    font-weight: 500;
+    color: var(--text-dark);
+    display: flex;
+    align-items: center;
+}
+.class-features li span {
+    color: var(--accent-color);
+    margin-right: 12px;
+    font-weight: bold;
+}
+.class-card-content .btn {
+    margin-top: auto;
+}
+
+/* --- FOOTER --- */
+.footer {
+    background-color: var(--primary-color);
+    color: rgba(255,255,255,0.7);
+    padding: 40px 0;
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+/* --- ANIMATIONS & RESPONSIVENESS --- */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@media(max-width: 992px) {
+    .hero-title { font-size: 2.8rem; }
+    .nav-links, .nav-cta { display: none; } /* Add a mobile menu toggle if required later */
+    .classes-grid { grid-template-columns: 1fr; }
+}
+
+
+/* --- EXTENSIONS FOR ABOUT PAGE --- */
+
+/* Inner Page Navbar Adjustments */
+.inner-page-navbar {
+    position: relative;
+    background-color: var(--primary-color);
+    padding: 20px 0;
+}
+
+/* Page Banner Section */
+.page-banner {
+    position: relative;
+    padding: 100px 0;
+    background: linear-gradient(135deg, #092E1B, #1C5235);
+    color: var(--secondary-color);
+    text-align: center;
+}
+.banner-title {
+    font-family: var(--font-heading);
+    font-size: 3rem;
+    font-weight: 700;
+    margin-top: 10px;
+}
+.section-tag.style-light {
+    color: var(--secondary-color);
+    opacity: 0.8;
+}
+
+/* About Core Section Layout */
+.about-core-section {
+    padding: 120px 0;
+    background-color: #FBFDFB;
+}
+.about-main-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 60px;
+    align-items: center;
+}
+.lead-text {
+    font-family: var(--font-heading);
+    font-size: 1.4rem;
+    color: var(--primary-color);
+    line-height: 1.5;
+    margin-bottom: 24px;
+}
+.body-text {
+    color: var(--text-dark);
+    font-size: 1.05rem;
+    opacity: 0.9;
+}
+.about-core-visual {
+    height: 400px;
+    border-radius: var(--border-radius);
+    position: relative;
+}
+.visual-accent-box {
+    position: absolute;
+    bottom: -20px;
+    left: -20px;
+    background-color: var(--primary-color);
+    padding: 24px;
+    border-radius: 16px;
+    box-shadow: 0 15px 35px rgba(13, 62, 38, 0.15);
+}
+.experience-badge {
+    color: var(--secondary-color);
+    font-family: var(--font-heading);
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+/* Programs Grid Styling */
+.programs-section {
+    padding: 120px 0;
+    background-color: var(--accent-light);
+    border-radius: var(--border-radius);
+    width: 95%;
+    margin: 0 auto;
+}
+.programs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 30px;
+}
+.program-item {
+    background-color: var(--secondary-color);
+    padding: 40px;
+    border-radius: var(--border-radius);
+    border: 1px solid rgba(13, 62, 38, 0.02);
+    transition: var(--transition);
+}
+.program-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(13, 62, 38, 0.06);
+}
+.program-icon {
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+.program-item h3 {
+    font-family: var(--font-heading);
+    font-size: 1.4rem;
+    color: var(--primary-color);
+    margin-bottom: 12px;
+}
+.program-item p {
+    color: var(--text-light);
+    font-size: 0.95rem;
+}
+
+/* Mission & Vision Section Styling */
+.mv-section {
+    padding: 120px 0;
+}
+.mv-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+}
+.mv-card {
+    padding: 50px;
+    border-radius: var(--border-radius);
+    transition: var(--transition);
+}
+.mission-card {
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+}
+.vision-card {
+    background-color: var(--secondary-color);
+    border: 2px solid var(--accent-light);
+    color: var(--text-dark);
+}
+.mv-tag {
+    display: inline-block;
+    padding: 6px 16px;
+    border-radius: 50px;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    margin-bottom: 24px;
+}
+.mission-card .mv-tag {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--secondary-color);
+}
+.vision-card .mv-tag {
+    background-color: var(--accent-light);
+    color: var(--accent-color);
+}
+.mv-card h3 {
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    margin-bottom: 16px;
+}
+.mission-card p {
+    color: rgba(255, 255, 255, 0.8);
+}
+.vision-card p {
+    color: var(--text-light);
+}
+
+/* CTA Ribbon Styling */
+.cta-ribbon {
+    background-color: var(--accent-color);
+    padding: 60px 0;
+    color: var(--secondary-color);
+}
+.ribbon-flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.ribbon-flex h2 {
+    font-family: var(--font-heading);
+    font-size: 2rem;
+}
+
+
+
+
+
+
+/* ==========================================================================
+   ABOUT PAGE - TEAM SECTION
+   ========================================================================== */
+
+.team-section {
+    padding: 50px 0;
+    background-color: #ffffff;
+}
+
+.team-container {
+    display: flex;
+    flex-direction: column;
+    gap: 45px;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.team-card {
+    display: grid;
+    grid-template-columns: 1fr 1.8fr;
+    gap: 40px;
+    align-items: center;
+}
+
+.team-card.reverse {
+    grid-template-columns: 1.8fr 1fr;
+}
+
+.team-img-wrapper {
+    width: 100%;
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+    background-color: #f4f7f5;
+}
+
+.team-img-wrapper img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+}
+
+.team-info h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem;
+    color: #1b4332;
+    margin-top: 5px;
+    margin-bottom: 12px;
+}
+
+.team-text {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: #2d4a3e;
+    font-weight: 500;
+    text-align: justify;
+}
+
+/* ==========================================================================
+   ABOUT PAGE - BANNER & CORE
+   ========================================================================== */
+
+.banner-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.2);
+}
+
+.banner-content {
+    position: relative;
+    z-index: 1;
+}
+
+.about-core-text {
+    flex: 1;
+}
+
+/* ==========================================================================
+   HOME YOGA FEATURES SECTION - MOBILE SCREEN BOUNDARY FIX
+   ========================================================================== */
+
+/* 1. Add safe spacing inside the container so content never touches the edges */
+.features-layout-container {
+    width: 100% !important;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-left: 20px !important;  /* Creates the necessary gap on the left edge */
+    padding-right: 20px !important; /* Creates the necessary gap on the right edge */
+    box-sizing: border-box !important;
+}
+
+/* 2. Responsive adjustments for mobile viewports */
+@media (max-width: 768px) {
+    .home-yoga-features-section {
+        padding: 40px 0 !important; /* Drops excessive section vertical spacing gaps */
+    }
+
+    .features-left-content {
+        width: 100% !important;
+        padding: 0 !important;
+        box-sizing: border-box !important;
+    }
+
+    /* Prevents the massive heading from clipping or breaking uncomfortably */
+    .features-main-heading {
+        font-size: 2.2rem !important; 
+        line-height: 1.2 !important;
+        margin-top: 15px !important;
+        margin-bottom: 15px !important;
+        word-wrap: break-word !important;
+    }
+
+    /* Cleans up paragraph padding and text rendering */
+    .features-description-p {
+        font-size: 1rem !important;
+        line-height: 1.6 !important;
+        text-align: left !important;
+        margin-bottom: 20px !important;
+    }
+
+    /* Ensures the pill badges wrap smoothly and stay within the safe margins */
+    .features-pill-grid {
+        display: flex !important;
+        flex-wrap: wrap !important;
+        gap: 10px !important;
+        width: 100% !important;
+    }
+}
+
+
+/* ==========================================================================
+   GAP CORRECTION: HOME FEATURES TO CLASSES PREVIEW
+   ========================================================================== */
+
+/* 1. Tighten structural spacing definitions for both sections */
+.home-yoga-features-section {
+    padding-bottom: 20px !important; /* Drops the lower layout space down */
+}
+
+.classes-preview {
+    padding-top: 20px !important;    /* Tightens the upper clearance boundary */
+}
+
+/* 2. Clear out margins/breaks causing phantom gaps inside containers */
+.features-left-content br {
+    display: none !important; /* Removes structural line breaks forcing layout drops */
+}
+
+/* 3. Handle the masonry column offset on smaller screens to prevent container distortion */
+@media (max-width: 992px) {
+    .features-right-grid {
+        margin-bottom: 0 !important;
+        padding-bottom: 0 !important;
+    }
+    
+    .cards-column.column-right-offset {
+        transform: none !important;  /* Disables desktop layout pushes causing mobile gaps */
+        margin-top: 0 !important;
+    }
+    
+    .home-yoga-features-section {
+        padding-bottom: 10px !important;
+    }
+
+    .classes-preview {
+        padding-top: 10px !important;
+    }
+}
+
+
+
+
+
+/* ==========================================================================
+   ABOUT PAGE - CORPORATE SECTION
+   ========================================================================== */
+
+.corporate-section {
+    padding: 50px 0;
+    background-color: #f4f7f5;
+    border-top: 1px solid #e1e8e4;
+}
+
+.corporate-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 40px;
+    align-items: start;
+}
+
+.corp-left h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.2rem;
+    color: #1b4332;
+    font-weight: 700;
+    text-transform: uppercase;
+    line-height: 1.1;
+    margin-bottom: 20px;
+}
+
+.corp-box-title {
+    background-color: #244d1f;
+    color: #ffffff;
+    padding: 12px 22px;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 1.15rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    display: inline-block;
+    margin-bottom: 20px;
+    border-radius: 4px;
+}
+
+.corp-desc-list {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    list-style: none;
+    padding: 0;
+    margin: 0 0 20px 0;
+}
+
+.corp-desc-list li {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: #1b4332;
+    margin-bottom: 12px;
+    position: relative;
+    padding-left: 20px;
+}
+
+.corp-desc-list li::before {
+    content: "-";
+    position: absolute;
+    left: 0;
+    color: #244d1f;
+}
+
+.corp-footer-text {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 1.05rem;
+    line-height: 1.6;
+    color: #244d1f;
+    font-weight: 600;
+}
+
+.program-tag-box {
+    background-color: #244d1f;
+    color: #ffffff;
+    padding: 22px;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 1.05rem;
+    font-weight: 600;
+    line-height: 1.6;
+    border-radius: 4px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.04);
+}
+
+/* ==========================================================================
+   COMMON BODY BACKGROUND FOR CLASSES, GALLERY, CONTACT PAGES
+   ========================================================================== */
+
+.yoga-page-bg {
+    background-color: #f4f7f5;
+}
+
+/* ==========================================================================
+   CLASSES PAGE - PRICING META
+   ========================================================================== */
+
+.pricing-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+/* Responsive Overrides */
+@media(max-width: 992px) {
+    .about-main-grid, .mv-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+    .about-core-visual {
+        height: 300px;
+    }
+    .ribbon-flex {
+        flex-direction: column;
+        text-align: center;
+        gap: 24px;
+    }
+}
+/* Add these lines inside your existing @media(max-width: 992px) block */
+@media(max-width: 992px) {
+    /* ... your existing overrides ... */
+
+    .page-banner {
+        padding: 60px 20px; /* Reduces massive vertical gaps and stops text touching screen edges */
+    }
+
+    .banner-title {
+        font-size: 2rem; /* Drops font size so long names fit comfortably */
+        line-height: 1.2;
+        word-wrap: break-word; /* Emergency failsafe to prevent horizontal scrolling */
+    }
+}
+
+/* Extra safety fine-tuning for ultra-small phones */
+@media(max-width: 480px) {
+    .banner-title {
+        font-size: 1.75rem; 
+    }
+}
+
+
+/* ==========================================================================
+   TEAM SECTION & PROFILE CARD RESPONSIVE FIXES
+   ========================================================================== */
+
+/* 1. Base Setup for Desktop Layout */
+.team-container {
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    padding: 20px 0;
+}
+
+.team-card {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+}
+
+.team-img-wrapper {
+    flex: 0 0 300px; /* Gives a clear width to image container on desktop */
+    max-width: 300px;
+}
+
+.team-img-wrapper img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 8px;
+    display: block;
+}
+
+.team-info {
+    flex: 1;
+}
+
+/* 2. Responsive Breakpoint for Mobile and Tablets */
+@media (max-width: 768px) {
+    /* Force cards to stack vertically on mobile screens */
+    .team-card, 
+    .team-card.reverse {
+        display: flex !important;
+        flex-direction: column !important; /* Stack image and text in a vertical row */
+        gap: 20px !important;
+        padding: 20px 15px !important;
+        text-align: left !important;
+    }
+
+    /* Force the image wrapper to take up a large, healthy portrait size */
+    .team-img-wrapper {
+        flex: none !important;
+        width: 100% !important;
+        max-width: 280px !important; /* Prevents the image from filling the entire screen width raw */
+        margin: 0 auto !important;   /* Centers image perfectly */
+    }
+
+    .team-img-wrapper img {
+        width: 100% !important;
+        height: 280px !important;    /* Creates a beautiful square aspect ratio box */
+        object-fit: cover !important; /* Prevents portrait faces from compressing or twisting */
+    }
+
+    /* Completely cleans up the giant spacing gaps between text characters */
+    .team-text {
+        text-align: left !important;   /* Disables unnatural justified word wrapping */
+        word-spacing: normal !important;
+        letter-spacing: normal !important;
+        font-size: 0.95rem !important;
+        line-height: 1.6 !important;
+    }
+    
+    .team-info h3 {
+        font-size: 1.6rem !important;
+        margin-top: 5px !important;
+        margin-bottom: 12px !important;
+    }
+}
+
+
+
+/* ==========================================================================
+   TEAM SECTION - MOBILE ORDER & GAP CORRECTIONS
+   ========================================================================== */
+
+@media (max-width: 768px) {
+    /* 1. Tighten up the giant section vertical gaps across the entire page */
+    .team-section,
+    .corporate-section,
+    section {
+        padding: 30px 0 !important; /* Drops excessive padding down to tight, mobile-friendly margins */
+    }
+
+    .team-container {
+        gap: 24px !important; /* Reduces large structural spacing between individual profile containers */
+        padding: 10px 16px !important;
+    }
+
+    /* 2. Base mobile stack layout for the standard team card */
+    .team-card {
+        display: flex !important;
+        flex-direction: column !important; /* Stacks image on top, text details underneath */
+        gap: 16px !important;
+        padding: 16px !important;
+        margin-bottom: 0 !important;
+    }
+
+    /* 3. FIX: Forces Agastthya's image wrapper to reverse order on mobile, appearing BEFORE the title text */
+    .team-card.reverse {
+        display: flex !important;
+        flex-direction: column-reverse !important; /* Reverses container flow so image drops on top of text */
+        gap: 16px !important;
+    }
+
+    /* 4. Enforce solid layout bounds on image wrappers to clean up alignment rendering */
+    .team-img-wrapper {
+        flex: none !important;
+        width: 100% !important;
+        max-width: 300px !important; /* Prevents portrait boundaries from warping screen margins */
+        margin: 0 auto !important;   /* Clean horizontal centering */
+    }
+
+    .team-img-wrapper img {
+        width: 100% !important;
+        height: 280px !important;    /* Forces a solid, prominent frame size on mobile screens */
+        object-fit: cover !important; /* Stops profile portrait distortions */
+        display: block !important;
+        border-radius: 12px !important;
+    }
+
+    /* 5. Clean up wide tracking/justification gaps across typography rendering */
+    .team-text {
+        text-align: left !important;
+        word-spacing: normal !important;
+        letter-spacing: normal !important;
+        margin: 0 !important;
+        padding-top: 8px !important;
+    }
+}
+
+
+
+
+
+/* ==========================================================================
+   CLASSES PAGE & PAYMENT SUCCESS PAGE
+   ========================================================================== */
+.class-page-wrapper {
+    padding: 30px 0;
+}
+
+.class-layout-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.class-intro-header {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 50px auto;
+}
+
+.class-intro-header h1 {
+    font-size: 2.5rem;
+    color: #0c3322;
+    font-weight: 700;
+    margin-bottom: 16px;
+    letter-spacing: -0.5px;
+}
+
+.class-intro-header p {
+    font-size: 1.1rem;
+    color: #64748b;
+}
+
+/* ==========================================================================
+   4. PROGRAMS GRID & CARD ARCHITECTURE
+   ========================================================================== */
+.programs-grid-wrapper {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+    gap: 40px;
+    margin-bottom: 80px;
+    align-items: start;
+}
+
+.yoga-course-card {
+    background-color: #ffffff;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
+    border: 1px solid #e2e8f0;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+/* Card Image Banner */
+.yoga-card-banner {
+    position: relative;
+    height: 240px;
+    overflow: hidden;
+}
+
+.banner-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.yoga-course-card:hover .banner-image {
+    transform: scale(1.03);
+}
+
+.status-tag {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    padding: 6px 14px;
+    border-radius: 50px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #ffffff;
+    backdrop-filter: blur(4px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.online-tag { background-color: rgba(12, 51, 34, 0.9); }
+.offline-tag { background-color: rgba(22, 62, 92, 0.9); }
+
+/* Card Body Context */
+.yoga-card-body {
+    padding: 28px;
+    flex-grow: 1;
+}
+
+.program-title-text {
+    font-size: 1.75rem;
+    color: #0c3322;
+    font-weight: 700;
+    margin-bottom: 12px;
+}
+
+/* Meta Badges */
+.yoga-meta-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 24px;
+}
+
+.badge {
+    background-color: #f1f5f9;
+    color: #475569;
+    font-size: 0.8rem;
+    font-weight: 600;
+    padding: 6px 12px;
+    border-radius: 6px;
+    border: 1px solid #e2e8f0;
+}
+
+/* Feature Checklists */
+.features-checklist-box h3,
+.batch-timings-box h3 {
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #64748b;
+    font-weight: 700;
+    margin-bottom: 14px;
+}
+
+.checklist-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    margin-bottom: 24px;
+}
+
+.single-col-list {
+    grid-template-columns: 1fr;
+}
+
+.check-item {
+    font-size: 0.9rem;
+    color: #334155;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.highlight-item {
+    font-weight: 600;
+    color: #0c3322;
+    grid-column: span 2;
+}
+.single-col-list .highlight-item {
+    grid-column: span 1;
+}
+
+/* Batch Schedule System */
+.batch-schedule-rows {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.schedule-row {
+    background-color: #f8fafc;
+    border-radius: 8px;
+    padding: 12px 16px;
+    border-left: 4px solid #cbd5e1;
+} /* Added the missing closing bracket here! */
+
+.schedule-row:has(.evening-chip) {
+    border-left-color: #94a3b8;
+}
+
+.group-title {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #475569;
+    margin-bottom: 8px;
+}
+
+.time-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.time-chips span {
+    background-color: #ffffff;
+    border: 1px solid #e2e8f0;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #1e293b;
+}
+
+/* Important Prerequisites Banner Boxes */
+.prerequisites-box {
+    background-color: #fef3c7;
+    border: 1px solid #fde68a;
+    border-radius: 8px;
+    padding: 14px;
+    margin-bottom: 24px;
+}
+
+.prerequisites-box .box-title {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #92400e;
+    display: block;
+    margin-bottom: 2px;
+}
+
+.prerequisites-box p {
+    font-size: 0.85rem;
+    color: #78350f;
+}
+
+.info-blue-box {
+    background-color: #ecfdf5;
+    border-color: #a7f3d0;
+}
+
+.info-blue-box .box-title { color: #065f46; }
+.info-blue-box p { color: #047857; }
+
+/* Pricing Footer Layout */
+.yoga-card-pricing-footer {
+    border-top: 1px solid #e2e8f0;
+    padding-top: 20px;
+    margin-top: auto;
+}
+
+.fee-label {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: #64748b;
+    letter-spacing: 0.5px;
+}
+
+.price-line {
+    display: flex;
+    align-items: baseline;
+    gap: 4px;
+}
+
+.price-value {
+    font-size: 2rem;
+    font-weight: 800;
+    color: #0c3322;
+}
+
+.price-period {
+    font-size: 0.95rem;
+    color: #64748b;
+    font-weight: 500;
+}
+
+/* Primary Booking Interactive Action Button */
+.book-now-trigger-btn {
+    width: 100%;
+    background-color: #0c3322;
+    color: #ffffff;
+    border: none;
+    padding: 16px;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+    box-shadow: 0 4px 12px rgba(12, 51, 34, 0.15);
+}
+
+.book-now-trigger-btn:hover {
+    background-color: #124730;
+}
+
+.book-now-trigger-btn:active {
+    transform: scale(0.99);
+}
+
+/* ==========================================================================
+   PREMIUM ASYMMETRICAL TESTIMONIALS SECTION WITH ACTIVE SCROLL
+   ========================================================================== */
+.testimonials-section {
+    background-color: #fafdfb; 
+    padding: 90px 0; /* Left/Right padding handled by container mask now */
+    border-top: 1px solid #eef4f1;
+    overflow: hidden;
+}
+
+.testimonials-header {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto 60px auto;
+    padding: 0 24px;
+}
+
+.testimonials-badge {
+    display: inline-block;
+    background: rgba(12, 51, 34, 0.06);
+    color: #0c3322;
+    padding: 6px 16px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    border-radius: 50px;
+    margin-bottom: 14px;
+    letter-spacing: 1px;
+}
+
+.testimonials-header h2 {
+    font-size: 2.5rem;
+    color: #0c3322;
+    font-weight: 800;
+    margin: 0;
+    letter-spacing: -0.5px;
+}
+
+.header-divider {
+    width: 50px;
+    height: 3px;
+    background: #0c3322;
+    margin: 16px auto;
+    border-radius: 2px;
+    opacity: 0.7;
+}
+
+.testimonials-header p {
+    color: #55675c;
+    font-size: 1.05rem;
+    margin: 0;
+}
+
+/* --- THE ACTIVE SCROLL TRACK ENGINE --- */
+.testimonials-marquee-wrapper {
+    overflow: hidden;
+    width: 100%;
+    position: relative;
+    padding: 20px 0;
+}
+
+/* Ambient gradient fades on the left and right edges to look high-end */
+.testimonials-marquee-wrapper::before,
+.testimonials-marquee-wrapper::after {
+    background: linear-gradient(to right, #fafdfb 0%, rgba(250, 253, 251, 0) 100%);
+    content: "";
+    height: 100%;
+    position: absolute;
+    width: 150px;
+    z-index: 5;
+    pointer-events: none;
+}
+.testimonials-marquee-wrapper::before { left: 0; top: 0; }
+.testimonials-marquee-wrapper::after { right: 0; top: 0; transform: rotate(180deg); }
+
+.testimonials-track {
+    display: flex;
+    width: max-content;
+    gap: 30px;
+    /* 30s controls the scroll speed. Increase for slower, decrease for faster */
+    animation: marqueeTimeline 30s linear infinite;
+}
+
+/* Pause the scrolling timeline when a practitioner hovers over a review */
+.testimonials-track:hover {
+    animation-play-state: paused;
+}
+
+/* Card item structural properties */
+.testimonial-card {
+    background: #ffffff;
+    padding: 40px 32px;
+    border-radius: 24px;
+    border: 2px solid #0c3322; 
+    box-shadow: 0 10px 30px rgba(12, 51, 34, 0.04);
+    position: relative;
+    z-index: 1;
+    width: 360px; /* Locked explicit width guarantees safe structural wrap during movement */
+    flex-shrink: 0;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Hover effect applied equally to all frames */
+.testimonial-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(12, 51, 34, 0.08);
+}
+
+/* Cleaned up the redundant featured card rule since they are now unified */
+.testimonial-card.featured-card {
+    background: #ffffff;
+}
+
+.card-quote-bg {
+    position: absolute;
+    top: -10px;
+    left: 24px;
+    font-size: 8rem;
+    color: #0c3322;
+    opacity: 0.04;
+    font-family: Georgia, serif;
+    pointer-events: none;
+    z-index: -1;
+}
+
+/* Standard Highlight Border Stylings */
+.testimonial-card.featured-card {
+    border: 2px solid #0c3322;
+}
+
+.testimonial-stars {
+    color: #dfa119;
+    font-size: 1rem;
+    margin-bottom: 20px;
+    letter-spacing: 2px;
+}
+
+.testimonial-text {
+    font-size: 1rem;
+    color: #2d3b32;
+    line-height: 1.65;
+    margin: 0 0 28px 0;
+    font-weight: 400;
+}
+
+.author-profile-box {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    border-top: 1px dashed #e8f1ec;
+    padding-top: 20px;
+}
+
+.author-avatar {
+    width: 44px;
+    height: 44px;
+    background: #0c3322;
+    color: #ffffff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+}
+
+.author-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.testimonial-author {
+    margin: 0 0 4px 0;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #0c3322;
+}
+
+.testimonial-meta {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.batch-tag {
+    font-size: 0.78rem;
+    color: #55675c;
+}
+
+.verified-check {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #25a26a;
+    background: rgba(37, 162, 106, 0.08);
+    padding: 2px 8px;
+    border-radius: 4px;
+    white-space: nowrap;
+}
+
+/* Infinite Hardware-Accelerated Marquee Keyframe */
+@keyframes marqueeTimeline {
+    0% {
+        transform: translate3d(0, 0, 0);
+    }
+    100% {
+        /* Translates exactly half the length of total duplicated items for perfect loop */
+        transform: translate3d(calc(-50% - 15px), 0, 0); 
+    }
+}
+
+/* ==========================================================================
+   RESPONSIVE DESIGN BREAKPOINTS
+   ========================================================================== */
+@media (max-width: 480px) {
+    .testimonials-section {
+        padding: 60px 0;
+    }
+    
+    .testimonials-header h2 {
+        font-size: 2rem;
+    }
+    
+    .testimonial-card {
+        width: 300px; /* Slightly narrower cards on small phone screens */
+        padding: 32px 20px;
+    }
+}
+/* ==========================================================================
+   6. BOOKING INTERACTION REGISTRATION MODAL
+   ========================================================================== */
+.booking-modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(15, 23, 42, 0.6);
+    backdrop-filter: blur(4px);
+    z-index: 2000;
+    justify-content: center;
+    align-items: center;
+    animation: fadeIn 0.2s ease-out;
+}
+
+.booking-modal-card {
+    background-color: #ffffff;
+    width: 100%;
+    max-width: 500px;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    animation: slideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.modal-header-bar {
+    background-color: #0c3322;
+    color: #ffffff;
+    padding: 18px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-header-bar h3 {
+    font-size: 1.15rem;
+    font-weight: 600;
+}
+
+.modal-close-trigger {
+    background: none;
+    border: none;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 1.75rem;
+    cursor: pointer;
+    line-height: 1;
+    transition: color 0.15s ease;
+}
+
+.modal-close-trigger:hover {
+    color: #ffffff;
+}
+
+/* Modal Form Input Nodes */
+.form-input-field {
+    width: 100%;
+    padding: 12px 14px;
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 0.95rem;
+    color: #1e293b;
+    outline: none;
+    transition: border-color 0.15s ease;
+}
+
+.form-input-field:focus {
+    border-color: #0c3322;
+}
+
+.batch-pay-select {
+    width: 100%;
+    padding: 12px 14px;
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 0.95rem;
+    color: #1e293b;
+    outline: none;
+    background-color: #ffffff;
+    cursor: pointer;
+    transition: border-color 0.15s ease;
+}
+
+.batch-pay-select:focus {
+    border-color: #0c3322;
+}
+
+/* Razorpay Button Containers & Hooks */
+.razorpay-container {
+    margin-top: 20px;
+}
+
+.select-prompt-btn {
+    text-align: center;
+    background-color: #f1f5f9;
+    color: #64748b;
+    padding: 14px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    border: 2px dashed #cbd5e1;
+}
+
+/* Targeting automated script injected Razorpay Button */
+#razorpay-injection-area .razorpay-payment-button {
+    width: 100% !important;
+    background-color: #16a34a !important;
+    color: #ffffff !important;
+    border: none !important;
+    padding: 14px 20px !important;
+    font-size: 1rem !important;
+    font-weight: 700 !important;
+    border-radius: 8px !important;
+    cursor: pointer !important;
+    box-shadow: 0 4px 12px rgba(22, 163, 74, 0.2) !important;
+    transition: background-color 0.2s ease !important;
+}
+
+#razorpay-injection-area .razorpay-payment-button:hover {
+    background-color: #15803d !important;
+}
+
+/* ==========================================================================
+   7. ANIMATIONS & RESPONSIVE BREAKPOINTS
+   ========================================================================== */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideUp {
+    from { transform: translateY(20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+    .programs-grid-wrapper {
+        grid-template-columns: 1fr;
+        max-width: 650px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+@media (max-width: 768px) {
+    .nav-links {
+        display: none;
+    }
+    .class-intro-header h1 {
+        font-size: 2rem;
+    }
+    .checklist-grid {
+        grid-template-columns: 1fr;
+    }
+    .highlight-item {
+        grid-column: span 1;
+    }
+    .booking-modal-card {
+        width: calc(100% - 32px);
+    }
+}
+
+
+
+
+
+
+.success-container {
+            max-width: 600px;
+            margin: 60px auto;
+            text-align: center;
+            padding: 40px 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            border-radius: 12px;
+            background: #ffffff;
+        }
+        .wa-btn {
+            display: inline-block;
+            background-color: #25D366; /* WhatsApp Green */
+            color: white;
+            padding: 14px 28px;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 8px;
+            margin-top: 20px;
+            transition: background 0.3s ease;
+        }
+        .wa-btn:hover {
+            background-color: #128C7E;
+        }
+
+
+
+
+
+/* --- PREMIUM RESPONSIVE PHOTO GALLERY SYSTEM --- */
+
+.gallery-page-container {
+    padding: 60px 16px 100px 16px;
+}
+
+.gallery-intro-header {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 40px auto;
+}
+.gallery-intro-header h1 {
+    font-size: 2.2rem;
+    color: #0c3322;
+    font-weight: 700;
+    margin-bottom: 12px;
+}
+.gallery-intro-header p {
+    font-size: 1rem;
+    color: #4a5951;
+    line-height: 1.6;
+}
+
+/* Premium Filter Layout Strip style */
+.gallery-filter-menu {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 40px;
+    padding: 4px;
+}
+.filter-btn {
+    background: #ffffff;
+    color: #4a5951;
+    border: 1px solid #e2e8f0;
+    padding: 10px 22px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+.filter-btn:hover, .filter-btn.active {
+    background: #0c3322;
+    color: #ffffff;
+    border-color: #0c3322;
+    box-shadow: 0 4px 12px rgba(12, 51, 34, 0.15);
+}
+
+/* Core Multi-Column Structural Grid Engine Layout */
+.gallery-responsive-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 24px;
+}
+
+/* Individual Picture Card Component Wrappers styling options */
+.gallery-card-item {
+    background-color: #ffffff;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
+    border: 1px solid #e6ebe7;
+    transition: transform 0.25s ease, opacity 0.25s ease;
+}
+
+.gallery-image-frame {
+    position: relative;
+    width: 100%;
+    height: 280px; /* Locks cards into highly structured aspect metrics square frame profiles */
+    overflow: hidden;
+}
+.gallery-image-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Reveal Sliding Dark Glassmorphic Card Description Content Box Panel Overlay on Hover state */
+.gallery-card-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to top, rgba(12, 51, 34, 0.95) 20%, rgba(12, 51, 34, 0.4) 100%);
+    padding: 24px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 2;
+}
+
+.overlay-category-tag {
+    align-self: flex-start;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(4px);
+    color: #ffffff;
+    padding: 4px 10px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    letter-spacing: 0.5px;
+}
+.overlay-title {
+    color: #ffffff;
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin: 0 0 6px 0;
+    line-height: 1.3;
+}
+.overlay-desc {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.85rem;
+    margin: 0;
+    line-height: 1.4;
+}
+
+/* Interactive Event Triggers */
+.gallery-card-item:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 24px rgba(12, 51, 34, 0.08);
+}
+.gallery-card-item:hover .gallery-image-frame img {
+    transform: scale(1.06);
+}
+.gallery-card-item:hover .gallery-card-overlay {
+    opacity: 1;
+}
+
+/* Empty fallback element box metrics text align style options template rules */
+.empty-gallery-state {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 60px 20px;
+    color: #718096;
+    background: #ffffff;
+    border-radius: 12px;
+    border: 1px dashed #cbd5e1;
+}
+
+/* Fluid responsive breakdown layouts scaling updates */
+@media (max-width: 600px) {
+    .gallery-responsive-grid {
+        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+        gap: 16px;
+    }
+    .gallery-filter-menu {
+        gap: 8px;
+    }
+    .filter-btn {
+        padding: 8px 16px;
+        font-size: 0.85rem;
+    }
+}
+
+
+
+
+
+
+
+/* ==========================================================================
+   CONTACT PAGE AND FLOATING ELEMENT STYLES (DESKTOP & BASE)
+   ========================================================================== */
+
+.contact-page-wrapper {
+    padding: 60px 16px;
+}
+
+.contact-grid-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    align-items: start;
+}
+
+/* Left Panel Identity Items */
+.contact-info-panel .section-badge {
+    display: inline-block;
+    background: rgba(12, 51, 34, 0.08);
+    color: #0c3322;
+    padding: 6px 14px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    border-radius: 50px;
+    margin-bottom: 16px;
+    letter-spacing: 0.5px;
+}
+
+.contact-info-panel h1 {
+    font-size: 2.4rem;
+    color: #0c3322;
+    font-weight: 700;
+    margin-bottom: 16px;
+}
+
+.panel-desc {
+    font-size: 1rem;
+    color: #4a5951;
+    line-height: 1.6;
+    margin-bottom: 32px;
+}
+
+/* Info Detail Components */
+.info-details-list {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.info-card-item {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+}
+
+.icon-circle {
+    width: 46px;
+    height: 46px;
+    background: #0c3322;
+    color: #ffffff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.info-text label {
+    display: block;
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: #718096;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+    letter-spacing: 0.5px;
+}
+
+.info-text a {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #0c3322;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.info-text a:hover {
+    color: #1a5c3f;
+}
+
+.info-text p {
+    font-size: 1rem;
+    color: #2d3748;
+    line-height: 1.5;
+    margin: 0;
+}
+
+/* Right Panel - Instagram Card Base Layout */
+.contact-form-panel {
+    background-color: #f7fbf9;
+    border-radius: 16px;
+    padding: 40px;
+    border: 1px solid #e2ece8;
+}
+
+.instagram-follow-card {
+    background: #ffffff;
+    border: 1px solid #e2ece8;
+    border-radius: 20px;
+    padding: 32px 24px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(12, 51, 34, 0.04);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 24px;
+}
+
+.insta-icon-wrapper {
+    background: rgba(220, 39, 67, 0.05);
+    padding: 14px;
+    border-radius: 50%;
+    display: inline-flex;
+    margin-bottom: 16px;
+}
+
+.instagram-handle {
+    margin: 0 0 8px 0 !important;
+    font-size: 1.35rem !important;
+    font-weight: 700 !important;
+    color: #0c3322 !important;
+    letter-spacing: -0.3px;
+}
+
+.instagram-caption {
+    margin: 0 0 24px 0 !important;
+    color: #55675c !important;
+    font-size: 0.95rem !important;
+    line-height: 1.5;
+    max-width: 280px;
+}
+
+.instagram-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+    color: #ffffff !important;
+    font-weight: 600 !important;
+    font-size: 1rem !important;
+    text-decoration: none !important;
+    padding: 12px 32px;
+    border-radius: 50px;
+    width: 100%;
+    max-width: 260px;
+    box-shadow: 0 4px 15px rgba(220, 39, 67, 0.25);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.instagram-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(220, 39, 67, 0.35);
+}
+
+/* Google Maps Element block container layout */
+.maps-embed-container {
+    max-width: 1100px;
+    margin: 60px auto 20px auto;
+}
+
+.maps-embed-container h3 {
+    font-size: 1.3rem;
+    color: #0c3322;
+    margin-bottom: 20px;
+    font-weight: 700;
+}
+
+.map-frame {
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid #cbd5e1;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
+}
+
+.map-frame iframe {
+    display: block;
+}
+
+/* --- WHATSAPP FLOATING LAUNCHER COMPONENT --- */
+.whatsapp-floating-trigger {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 60px;
+    height: 60px;
+    background-color: #25d366;
+    color: #ffffff !important;
+    border-radius: 50%;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 16px rgba(37, 211, 102, 0.3);
+    z-index: 9999;
+    transition: transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.wa-float-icon {
+    width: 32px;
+    height: 32px;
+}
+
+.whatsapp-floating-trigger:hover {
+    transform: scale(1.1);
+}
+
+
+/* ==========================================================================
+   MOBILE VIEWPORT PATCHES FOR CONTACT PAGE
+   ========================================================================== */
+@media (max-width: 768px) {
+    /* Prevent parent components from expanding past device viewport edges */
+    .contact-page-wrapper {
+        padding: 40px 12px;
+        overflow-x: hidden;
+    }
+
+    .contact-grid-container {
+        grid-template-columns: 1fr;
+        gap: 36px;
+    }
+
+    /* Fix the structural text bleeding from long emails */
+    .info-text a {
+        font-size: 0.98rem; 
+        word-break: break-all; 
+        display: block;
+    }
+    
+    .info-text p {
+        font-size: 0.92rem;
+        line-height: 1.5;
+    }
+
+    /* Style and structure the form panel wrapper neatly on mobile */
+    .contact-form-panel {
+        background-color: #f7fbf9;
+        border-radius: 16px;
+        padding: 24px 20px;
+        border: 1px solid #e2ece8;
+    }
+    
+    .contact-form-panel h2 {
+        font-size: 1.5rem;
+        margin-bottom: 8px;
+    }
+    
+    .form-subtitle {
+        font-size: 0.9rem;
+        margin-bottom: 20px;
+    }
+
+    /* Optimized Mobile Instagram Component Layout Rules */
+    .instagram-follow-card {
+        padding: 24px 16px;
+        margin-bottom: 20px; /* Generates breathing room above bottom view items */
+    }
+
+    .instagram-handle {
+        font-size: 1.15rem !important;
+    }
+
+    .instagram-btn {
+        font-size: 0.95rem !important;
+        padding: 11px 24px;
+        max-width: 100%; /* Spans naturally on compact mobile views */
+    }
+
+    /* Fix Google Map overflow rules */
+    .maps-embed-container {
+        margin: 40px auto 10px auto;
+        padding: 0 4px;
+        margin-bottom: 80px; /* Safely clears space for the floating WhatsApp button */
+    }
+    
+    .maps-embed-container h3 {
+        font-size: 1.15rem;
+        margin-bottom: 12px;
+    }
+    
+    .map-frame {
+        height: 320px; 
+    }
+    
+    .map-frame iframe {
+        height: 100% !important;
+    }
+}
+
+
+
+
+/* ==========================================================================
+   DROPDOWN NAVIGATION (MOBILE & TABLET RESPONSIVE OVERHAUL)
+   ========================================================================== */
+
+/* By default, hide the mobile dropdown menu interface context rules on wide desktop displays */
+.mobile-nav-select-wrapper {
+    display: none;
+}
+
+/* TARGET BOTH TABLETS AND PHONES (Up to 992px Screen Viewports Width) */
+@media (max-width: 992px) {
+    /* 1. Ensure the navbar header remains a solid structural block layout container */
+    .brand-header {
+        position: relative !important;
+        background: #0c3322 !important; /* Premium brand solid deep green context block */
+        width: 100% !important;
+        box-sizing: border-box !important;
+        padding: 12px 16px !important;
+        z-index: 9999 !important; /* Explicit layer stacking priority over hero assets */
+    }
+
+    /* 2. Re-arrange row components laterally */
+    .nav-container {
+        display: flex !important;
+        flex-direction: row !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        padding: 0 0 0 4px !important;
+        gap: 6px;
+    }
+
+    /* Keep the logo image from swelling up out of bounds */
+    .nav-logo {
+        height: 44px !important;
+        width: auto !important;
+    }
+
+    /* Hide nav-links entirely on mobile (desktop links + old dropdown location) */
+    .nav-links {
+        display: none !important;
+    }
+
+    /* 3. Reveal and Style the Mobile Dropdown Elements Selection UI Box (push right) */
+    .mobile-nav-select-wrapper {
+        display: block !important;
+        margin-left: auto !important;
+    }
+
+    .mobile-nav-dropdown {
+        background-color: rgba(255, 255, 255, 0.12) !important;
+        color: #ffffff !important;
+        border: 1px solid rgba(255, 255, 255, 0.25) !important;
+        padding: 10px 28px 10px 14px !important;
+        font-size: 0.9rem !important;
+        font-weight: 600 !important;
+        font-family: inherit !important;
+        border-radius: 8px !important;
+        cursor: pointer !important;
+        outline: none !important;
+        appearance: none !important; /* Removes default browser arrows for a modern uniform aesthetic */
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='white' viewBox='0 0 24 24'><path d='M7 10l5 5 5-5z'/></svg>") !important;
+        background-repeat: no-repeat !important;
+        background-position: right 10px center !important;
+    }
+
+    /* Light fallback options styling layer for cross-device visibility consistency */
+    .mobile-nav-dropdown option {
+        background-color: #0c3322 !important;
+        color: #ffffff !important;
+        font-weight: 500;
+    }
+
+    /* 4. Hide navbar WhatsApp button on mobile (floating one takes over) */
+    .navbar .whatsapp-btn {
+        display: none !important;
+    }
+
+    /* 5. Show floating WhatsApp fixed at bottom-right for easy thumb access */
+    .whatsapp-floating-trigger {
+        display: flex !important;
+    }
+
+    /* 6. Keep the WhatsApp Button cleanly integrated inside the primary row context alignment */
+    .whatsapp-nav-btn {
+        padding: 8px 14px !important;
+        font-size: 0.8rem !important;
+        border-radius: 20px !important;
+        white-space: nowrap !important;
+        display: inline-flex !important;
+        align-items: center !important;
+    }
+}
+
+/* ==========================================================================
+   MOBILE RESPONSIVE OVERRIDES - Sree Yogakshetra
+   ========================================================================== */
+
+/* --- Logo & Brand wrapper (replaces inline min-width:300px) --- */
+.logo-brand-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+
+
+.logo-link {
+    display: inline-block !important;
+    text-decoration: none !important;
+}
+
+/* --- About image cards (replaces inline height:350px) --- */
+.about-image-card {
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.about-image {
+    width: 100%;
+    height: 350px;
+    object-fit: cover;
+    display: block;
+}
+
+/* =============================================
+   TABLET (max-width: 992px)
+   ============================================= */
+@media (max-width: 992px) {
+    .hero-title {
+        font-size: 2.5rem !important;
+    }
+    .hero-subtitle {
+        font-size: 1.05rem !important;
+    }
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 16px !important;
+    }
+    .stat-card {
+        padding: 28px 20px !important;
+    }
+    .stat-card h3 {
+        font-size: 1.8rem !important;
+    }
+    .about-preview {
+        padding: 60px 0 !important;
+    }
+    .section-title {
+        font-size: 2rem !important;
+    }
+    .classes-preview {
+        padding: 80px 0 !important;
+    }
+    .classes-grid {
+        grid-template-columns: 1fr !important;
+        gap: 30px !important;
+    }
+    .about-image {
+        height: 280px !important;
+    }
+}
+
+/* =============================================
+   SMALL TABLET (max-width: 768px)
+   ============================================= */
+@media (max-width: 768px) {
+    .hero-section {
+        min-height: 500px !important;
+        height: 90vh !important;
+    }
+    .hero-title {
+        font-size: 2rem !important;
+    }
+    .hero-subtitle {
+        font-size: 0.95rem !important;
+        margin-bottom: 30px !important;
+    }
+    .hero-ctas .btn {
+        margin-right: 10px !important;
+        padding: 12px 22px !important;
+        font-size: 0.9rem !important;
+    }
+    .stats-section {
+        margin-top: -40px !important;
+        padding-bottom: 40px !important;
+    }
+    .stat-card {
+        padding: 24px 16px !important;
+    }
+    .stat-card h3 {
+        font-size: 1.5rem !important;
+    }
+    .about-preview {
+        padding: 40px 0 !important;
+        width: 100% !important;
+        border-radius: 16px !important;
+    }
+    .section-title {
+        font-size: 1.75rem !important;
+    }
+    .about-text {
+        font-size: 1rem !important;
+    }
+    .about-image {
+        height: 220px !important;
+    }
+    .classes-preview {
+        padding: 60px 0 !important;
+    }
+    .class-card-content {
+        padding: 28px !important;
+    }
+    .class-card-content h3 {
+        font-size: 1.5rem !important;
+    }
+    .class-image-placeholder {
+        height: 200px !important;
+    }
+    
+    .nav-logo {
+        height: 48px !important;
+    }
+    .nav-container {
+        padding-left: 8px !important;
+    }
+    .mobile-nav-dropdown {
+        padding: 9px 28px 9px 12px !important;
+        font-size: 0.88rem !important;
+    }
+    .whatsapp-floating-trigger {
+        width: 56px !important;
+        height: 56px !important;
+        bottom: 24px !important;
+        right: 24px !important;
+    }
+    .footer {
+        padding: 30px 0 !important;
+        font-size: 0.85rem !important;
+    }
+}
+
+/* =============================================
+   PHONE (max-width: 576px)
+   ============================================= */
+@media (max-width: 576px) {
+    .navbar {
+        padding: 12px 0 !important;
+    }
+    .nav-container {
+        padding-left: 6px !important;
+    }
+    .logo-brand-wrapper {
+        gap: 8px !important;
+    }
+    .nav-logo {
+        height: 38px !important;
+        width: auto !important;
+    }
+   
+    .mobile-nav-dropdown {
+        padding: 8px 26px 8px 10px !important;
+        font-size: 0.85rem !important;
+    }
+    .hero-section {
+        min-height: 420px !important;
+        height: 85vh !important;
+    }
+    .hero-title {
+        font-size: 1.6rem !important;
+        margin-bottom: 14px !important;
+    }
+    .hero-subtitle {
+        font-size: 0.85rem !important;
+        margin-bottom: 24px !important;
+    }
+    .hero-ctas .btn {
+        display: block !important;
+        width: 100% !important;
+        margin-right: 0 !important;
+        margin-bottom: 10px !important;
+        text-align: center !important;
+    }
+    .stats-grid {
+        gap: 12px !important;
+    }
+    .stat-card {
+        padding: 18px 12px !important;
+        border-radius: 16px !important;
+    }
+    .stat-card h3 {
+        font-size: 1.3rem !important;
+    }
+    .stat-card p {
+        font-size: 0.8rem !important;
+    }
+    .about-preview {
+        padding: 30px 0 !important;
+    }
+    .about-text {
+        font-size: 0.95rem !important;
+        line-height: 1.6 !important;
+    }
+    .about-image {
+        height: 180px !important;
+    }
+    .classes-grid {
+        gap: 24px !important;
+    }
+    .classes-preview {
+        padding: 40px 0 !important;
+    }
+    .class-card-content {
+        padding: 24px !important;
+    }
+    .class-card-content h3 {
+        font-size: 1.3rem !important;
+    }
+    .class-image-placeholder {
+        height: 180px !important;
+        font-size: 1.2rem !important;
+    }
+    .class-features li {
+        font-size: 0.9rem !important;
+    }
+    .container {
+        width: 92% !important;
+    }
+    .whatsapp-floating-trigger {
+        width: 54px !important;
+        height: 54px !important;
+        bottom: 20px !important;
+        right: 20px !important;
+    }
+    .wa-float-icon {
+        width: 28px !important;
+        height: 28px !important;
+    }
+}
+
+/* =============================================
+   SMALL PHONE (max-width: 400px)
+   ============================================= */
+@media (max-width: 400px) {
+    .nav-container {
+        padding-left: 4px !important;
+        gap: 4px !important;
+    }
+    .nav-logo {
+        height: 32px !important;
+    }
+    .hero-title {
+        font-size: 1.35rem !important;
+    }
+    .mobile-nav-dropdown {
+        font-size: 0.78rem !important;
+        padding: 6px 22px 6px 8px !important;
+    }
+    .whatsapp-floating-trigger {
+        width: 48px !important;
+        height: 48px !important;
+        bottom: 16px !important;
+        right: 16px !important;
+    }
+    .wa-float-icon {
+        width: 24px !important;
+        height: 24px !important;
+    }
+}
+
+
+
+
+/* Section Base */
+.services-highlight-section {
+    padding: 80px 0;
+    background-color: #f4f7f5;
+}
+
+/* 2-Column Split: 40% Side Stack, 60% Giant Spotlight Card */
+.services-highlight-grid {
+    display: grid;
+    grid-template-columns: 4fr 6fr;
+    gap: 40px;
+    align-items: stretch;
+}
+
+/* Left Stack Alignment */
+.side-services-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    justify-content: space-between;
+}
+
+/* Left Side Smaller White Cards */
+.mini-service-card {
+    background: #ffffff;
+    padding: 35px;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.02);
+    border: 1px solid rgba(0, 0, 0, 0.03);
+}
+
+.card-badge {
+    display: inline-block;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #2d6a4f;
+    background: rgba(45, 106, 79, 0.1);
+    padding: 4px 12px;
+    border-radius: 50px;
+    margin-bottom: 15px;
+}
+
+.mini-service-card h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    color: #1b4332;
+    margin: 0 0 15px 0;
+}
+
+.tag-text-list {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    color: #495057;
+    line-height: 1.7;
+    font-size: 0.95rem;
+}
+
+.mini-bullet-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.mini-bullet-list li {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.95rem;
+    color: #495057;
+    position: relative;
+    padding-left: 20px;
+    margin-bottom: 10px;
+}
+
+.mini-bullet-list li::before {
+    content: "•";
+    color: #2d6a4f;
+    font-weight: bold;
+    position: absolute;
+    left: 0;
+}
+
+/* ==========================================================================
+   THE HERO SPOTLIGHT CARD (ONLINE CLASSES)
+   ========================================================================== */
+.featured-online-card {
+    background: #1b4332; /* Rich dark green backdrop to jump off the page */
+    color: #ffffff;
+    padding: 50px 40px;
+    border-radius: 24px;
+    position: relative;
+    box-shadow: 0 20px 40px rgba(27, 67, 50, 0.15);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Elegant Ribbon/Banner */
+.promo-banner {
+    position: absolute;
+    top: 25px;
+    right: -35px;
+    background: #d8f3dc;
+    color: #1b4332;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    padding: 6px 40px;
+    transform: rotate(45deg);
+    letter-spacing: 1px;
+}
+
+.featured-sub {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #b7e4c7;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+}
+
+.featured-online-card h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.4rem;
+    font-weight: 700;
+    line-height: 1.2;
+    margin: 0 0 20px 0;
+    color: #ffffff;
+}
+
+.featured-description {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 1.05rem;
+    line-height: 1.6;
+    color: #d8f3dc;
+    margin-bottom: 30px;
+}
+
+/* Counter / Metric Boxes */
+.feature-highlights-box {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 20px;
+    border-radius: 12px;
+    margin-bottom: 30px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.highlight-item {
+    text-align: center;
+}
+
+.highlight-item strong {
+    display: block;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    color: #ffffff;
+    margin-bottom: 4px;
+}
+
+.highlight-item span {
+    display: block;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.8rem;
+    color: #b7e4c7;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+/* Inner Pills/Tags */
+.featured-tag-cloud {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 35px;
+}
+
+.featured-tag-cloud span {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    background: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+    padding: 6px 14px;
+    border-radius: 50px;
+}
+
+/* Premium Call To Action Button */
+.featured-cta-btn {
+    display: block;
+    text-align: center;
+    background: #ffffff;
+    color: #1b4332;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 700;
+    font-size: 1.05rem;
+    padding: 16px 32px;
+    border-radius: 12px;
+    text-decoration: none;
+    margin-top: auto; /* Locks to bottom edge securely */
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.featured-cta-btn:hover {
+    transform: translateY(-3px);
+    background: #d8f3dc;
+}
+
+/* Responsive Scaling for Tablets and Mobiles */
+@media (max-width: 992px) {
+    .services-highlight-grid {
+        grid-template-columns: 1fr; /* Stacks vertically, bringing the highlighted card cleanly to top/bottom */
+        gap: 30px;
+    }
+    .featured-online-card {
+        padding: 40px 25px;
+    }
+    .featured-online-card h2 {
+        font-size: 1.9rem;
+    }
+}
+
+
+
+
+/* --- CANCEL LOGO RADIUS COMPLETELY --- */
+.logo-link,
+.logo-brand,
+.nav-logo {
+    border-radius: 0% !important;      /* Explicitly breaks and removes the circle shape */
+    clip-path: none !important;        /* Prevents any mask clipping shapes */
+    -webkit-border-radius: 0 !important;
+    
+    /* Optional: Ensure the logo image maintains its aspect ratio perfectly */
+    object-fit: contain !important;
+}
+
+
+
+
+/* Gallery Container Setup */
+/* Gallery Container Setup  in home page*/
+.gallery-container {
+    margin-top: 50px;
+    padding: 0 15px;
+}
+
+/* 
+   THE FIX: Change "align-items: start" to "stretch".
+   This forces all 3 cards in the grid row to have identical heights.
+*/
+.adaptive-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    align-items: stretch; /* Forces all cards to match the tallest one */
+}
+
+/* Image Card Container Wrapper */
+.about-image-card {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    border-radius: 16px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+    
+    /* Flex configuration to handle inner image stretching */
+    display: flex;
+    flex-direction: column;
+}
+
+/* Image behavior inside the stretched cards */
+.about-image-card .about-image {
+    width: 100% !important;
+    height: 100% !important;        /* Let it take up the full card height */
+    flex-grow: 1;
+    display: block;
+    object-fit: cover !important;    /* Autofills the desktop gap cleanly without stretching out of proportion */
+}
+
+/* The Text Overlay */
+.image-overlay-content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 40px 20px 20px 20px; /* Deeper top padding for better text contrast */
+    box-sizing: border-box;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.5) 60%, rgba(0, 0, 0, 0) 100%);
+    color: #ffffff;
+    text-align: left;
+    z-index: 2; /* Ensures text stays above background images */
+}
+
+.image-overlay-content h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin: 0 0 6px 0;
+    color: #ffffff;
+}
+
+.image-overlay-content p {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.88rem;
+    font-weight: 400;
+    line-height: 1.4;
+    margin: 0;
+    color: #e9f5ed;
+}
+
+/* ==========================================================================
+   RESPONSIVE MOBILE OVERRIDE
+   ========================================================================== */
+@media (max-width: 768px) {
+    /* On mobile, stack them and let their natural uncropped height dictate layout */
+    .adaptive-gallery {
+        grid-template-columns: 1fr;
+        align-items: start;
+    }
+    
+    .about-image-card .about-image {
+        height: auto !important;     /* Restores original, uncropped dimensions on mobile screens */
+        object-fit: contain !important;
+    }
+}
+
+
+
+
+/* about online class in home page */
+/* Premium Yoga Features Section Container */
+.home-yoga-features-section {
+    padding: 60px 20px 20px 20px; /* Greatly reduced bottom padding */
+    background-color: #fcfdfd;
+    overflow: hidden;
+}
+
+/* Layout Core Wrapper - CHANGED TO GRID TO CLOSE GHOST HEIGHT GAPS */
+.features-layout-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 350px 1fr; /* Rigid column widths */
+    gap: 40px;
+    align-items: start; /* Prevents stretching to the bottom boundary */
+}
+
+/* Left Typography Column */
+.features-left-content {
+    padding-top: 10px;
+}
+
+.features-subheading {
+    font-size: 0.8rem;
+    letter-spacing: 1.5px;
+    color: #166534;
+    font-weight: 700;
+    display: inline-block;
+    margin-bottom: 10px;
+    background: #e8f5e9;
+    padding: 4px 12px;
+    border-radius: 50px;
+}
+
+.features-main-heading {
+    font-size: 2.2rem;
+    color: #0c3322;
+    line-height: 1.2;
+    font-weight: 800;
+    margin-bottom: 12px;
+}
+
+.features-heading-accent {
+    color: #166534;
+}
+
+.features-description-p {
+    font-size: 0.95rem;
+    color: #475569;
+    line-height: 1.5;
+    margin-bottom: 16px;
+}
+
+/* Premium Features Micro Pill Elements */
+.features-pill-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.feature-pill {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    padding: 5px 10px;
+    border-radius: 8px;
+    font-size: 0.8rem;
+    color: #0c3322;
+    font-weight: 600;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.01);
+}
+
+/* Right Side Parent Container */
+.features-right-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    align-items: start;
+}
+
+/* Internal Card Stacking Columns */
+.cards-column {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Staggered offset configuration */
+.column-right-offset {
+    margin-top: 40px;
+}
+
+/* Text Feature Tile Styling */
+.feature-tile-card {
+    background: #ffffff;
+    border: 1px solid #f1f5f9;
+    padding: 24px;
+    border-radius: 16px;
+    box-shadow: 0 8px 25px rgba(12,51,34,0.02);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.feature-tile-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(12,51,34,0.05);
+}
+
+.highlight-tile {
+    background: #fafdfb;
+    border: 1px solid #e2f0e7;
+}
+
+/* Icon Containers */
+.tile-icon-wrapper {
+    width: 48px;
+    height: 48px;
+    background: #f4f7f5;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 14px;
+}
+
+.green-bg-icon {
+    background: #e8f5e9;
+}
+
+/* Typography Inside Feature Tiles */
+.tile-card-title {
+    font-size: 1.15rem;
+    color: #0c3322;
+    font-weight: 700;
+    margin: 0 0 8px 0;
+}
+
+.tile-card-text {
+    font-size: 0.88rem;
+    color: #64748b;
+    line-height: 1.4;
+    margin: 0;
+}
+
+/* Responsive breakdowns for Mobile Screens */
+@media (max-width: 850px) {
+    .features-layout-container {
+        grid-template-columns: 1fr; /* Stacks layout on small screens */
+        gap: 24px;
+    }
+    .features-right-grid {
+        grid-template-columns: 1fr;
+    }
+    .column-right-offset {
+        margin-top: 0; /* Clear offset so bottom section stays close on mobile */
+    }
+    .home-yoga-features-section {
+        padding: 40px 16px 20px 16px;
+    }
+}
+
+/* Remove the aggressive negative margins on the following section */
+.home-yoga-features-section + section,
+.home-yoga-features-section + div {
+    margin-top: 0 !important;
+    padding-top: 60px !important; /* Gives "OUR OFFERINGS" comfortable breathing room */
+}
+
+/* Add an intentional, clean spacing cushion below the features section */
+.home-yoga-features-section {
+    padding-bottom: 10px !important; 
+    margin-bottom: 0 !important;
+}
+
+/* Neutralize the extreme container pull-up from earlier */
+.features-right-grid {
+    margin-bottom: 0 !important; 
+}
+
+/* Clean manual downward displacement for the right card column */
+.column-right-offset {
+    transform: translateY(35px); /* Adjust this pixel number up or down to position it exactly where you want it */
+}
+
+/* Responsive breakdown for Mobile Screens */
+@media (max-width: 850px) {
+    .column-right-offset {
+        transform: translateY(0); /* Resets the nudge on mobile when the cards stack vertically */
+    }
+}
+
+
+
+
+
+ /* Google Reviews Pill Badge */
+.google-badge-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background-color: #ffffff;
+    border: 1px solid #e2e8f0;
+    padding: 10px 20px;
+    border-radius: 50px;
+    text-decoration: none;
+    color: #334155;
+    font-size: 0.95rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    transition: all 0.2s ease;
+    margin-top: 15px;
+}
+
+.google-badge-link:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    border-color: #cbd5e1;
+}
+
+.google-g-icon {
+    display: flex;
+    align-items: center;
+}
+
+.badge-text strong {
+    color: #1e293b;
+}
+      
+
+
+/* ==========================================================================
+   NAVIGATION BRAND TEXT FIX
+   ========================================================================== */
+
+/* The outer link wrapper */
+.brand-text-link {
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none !important;
+    padding: 5px 0;
+}
+
+/* The actual text styling */
+.brand-text {
+    font-family: var(--font-heading);
+    font-size: 1.65rem !important; /* Noticeably upscaled size */
+    font-weight: 800 !important;    /* Thick, premium weight */
+    color: #ffffff !important;      /* Sharp contrast against the dark background */
+    letter-spacing: -0.5px;         /* Modern, clean kerning */
+    white-space: nowrap;            /* Prevents name from breaking onto two lines */
+    transition: color 0.2s ease;
+}
+
+/* Subtle hover effect */
+.brand-text-link:hover .brand-text {
+    color: #e8f5e9 !important;      /* Soft tint shift on hover */
+}
+
+/* ==========================================================================
+   MOBILE RESPONSIVENESS
+   ========================================================================== */
+@media (max-width: 768px) {
+    .brand-text {
+        font-size: 1.20rem !important; /* Slightly scales down on mobile to fit the screen */
+    }
+}
+
+
+
+
+
+ /* payment success Page & Core Component Base Style Tuning */
+.success-page-body {
+    background-color: #f8fafc;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+.success-container {
+    max-width: 550px;
+    margin: 60px auto;
+    background: #ffffff;
+    padding: 40px 30px;
+    border-radius: 24px;
+    box-shadow: 0 15px 35px rgba(12, 51, 34, 0.04);
+    text-align: center;
+}
+.success-icon-badge {
+    font-size: 60px; 
+    color: #22c55e;
+    margin-bottom: 16px;
+}
+.action-gate-wrapper {
+    margin-top: 30px;
+}
+
+/* Premium Button Architecture */
+.action-trigger-btn {
+    background: #0c3322;
+    color: #ffffff;
+    border: none;
+    padding: 16px 32px;
+    font-size: 1rem;
+    font-weight: 700;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 8px 20px rgba(12, 51, 34, 0.15);
+    transition: all 0.25s ease;
+}
+.action-trigger-btn:hover {
+    background: #144d34;
+    transform: translateY(-2px);
+}
+.wa-btn {
+    display: inline-block;
+    background: #25d366;
+    color: #ffffff;
+    text-decoration: none;
+    padding: 16px 32px;
+    font-size: 1.05rem;
+    font-weight: 700;
+    border-radius: 50px;
+    box-shadow: 0 8px 25px rgba(37, 211, 102, 0.25);
+    transition: all 0.25s ease;
+}
+.wa-btn:hover {
+    background: #20ba56;
+    transform: translateY(-2px);
+}
+.hidden-action {
+    display: none !important;
+}
+
+/* Popup Overlay Background Architecture */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(12, 51, 34, 0.6);
+    backdrop-filter: blur(4px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    z-index: 9999;
+    transition: opacity 0.3s ease;
+    padding: 15px;
+    box-sizing: border-box;
+}
+.modal-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* Modal Inner Frame Card Dashboard Style */
+.modal-card {
+    background: #ffffff;
+    width: 100%;
+    max-width: 650px;
+    max-height: 85vh;
+    border-radius: 24px;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    animation: modalSlide 0.3s ease-out forwards;
+}
+@keyframes modalSlide {
+    from { transform: translateY(20px); }
+    to { transform: translateY(0); }
+}
+
+.modal-header {
+    background: #f7faf8;
+    padding: 24px;
+    border-bottom: 1px solid #eef4f1;
+}
+.modal-header h3 {
+    margin: 0;
+    color: #0c3322;
+    font-size: 1.3rem;
+    font-weight: 700;
+}
+
+/* Dynamic Content Inner Scrolling Engine */
+.modal-body-scroll {
+    padding: 24px;
+    overflow-y: auto;
+    font-size: 0.98rem;
+    line-height: 1.6;
+    color: #334155;
+}
+.modal-intro-text, .modal-sub-intro {
+    font-weight: 600;
+    color: #0c3322;
+}
+.terms-detailed-list {
+    margin: 16px 0;
+    padding-left: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+.terms-detailed-list li {
+    list-style-type: decimal;
+}
+.terms-detailed-list strong {
+    color: #0c3322;
+}
+
+/* Interactive Footer Control Settings */
+.modal-footer {
+    padding: 24px;
+    background: #f7faf8;
+    border-top: 1px solid #eef4f1;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+.agreement-checkbox-container {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    cursor: pointer;
+    font-size: 0.92rem;
+    color: #1e293b;
+    font-weight: 500;
+}
+.agreement-checkbox-container input {
+    margin-top: 3px;
+    cursor: pointer;
+}
+.modal-confirm-btn {
+    background: #0c3322;
+    color: #ffffff;
+    border: none;
+    padding: 14px 28px;
+    font-size: 1rem;
+    font-weight: 700;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+.modal-confirm-btn:disabled {
+    background: #cbd5e1;
+    color: #64748b;
+    cursor: not-allowed;
+}
+
+/* Responsive Adaptive Mobile Overrides */
+@media(max-width: 576px) {
+    .success-container {
+        margin: 20px 12px;
+        padding: 30px 20px;
+    }
+    .modal-header h3 {
+        font-size: 1.15rem;
+    }
+    .modal-card {
+        max-height: 90vh;
+    }
+}
+
+
+/* ==========================================================================
+   CUSTOM SCROLLBAR & CURSOR STYLES
+   ========================================================================== */
+
+/* --- Custom Scrollbar (WebKit & Blink browsers) --- */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f0f5f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #4CAF50, #0D3E26);
+    border-radius: 10px;
+    border: 2px solid #f0f5f1;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, #45a049, #0b3320);
+}
+
+/* Firefox scrollbar */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: #4CAF50 #f0f5f1;
+}
+
+/* --- Attractive Custom Cursor --- */
+body {
+    cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='28' height='28' viewBox='0 0 28 28'><circle cx='14' cy='14' r='12' fill='%230D3E26' opacity='0.85'/><circle cx='14' cy='14' r='5' fill='%234CAF50'/></svg>") 14 14, auto;
+}
+
+a, button, .btn, .filter-btn, .book-now-trigger-btn,
+.nav-links a, .whatsapp-btn, .modal-close-trigger {
+    cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='28' height='28' viewBox='0 0 28 28'><circle cx='14' cy='14' r='12' fill='%234CAF50' opacity='0.85'/><circle cx='14' cy='14' r='5' fill='%23ffffff'/></svg>") 14 14, pointer;
+}
+
+

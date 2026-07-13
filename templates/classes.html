@@ -1,0 +1,1230 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Yoga Programs | Sree Yogakshetra</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+  </head>
+  <body class="yoga-page-bg">
+    <!-- Header / Navigation -->
+    <header class="navbar">
+      <div class="container nav-container">
+        <div class="logo-brand-wrapper">
+          <a href="/" class="logo-link">
+            <img
+              src="{% static 'images/logo3.png' %}"
+              alt="Sreeyogakshetra Logo"
+              class="nav-logo"
+            />
+          </a>
+
+          <a href="/" class="brand-text-link">
+            <strong class="brand-text"> Sreeyogakshetra </strong>
+          </a>
+        </div>
+
+        <!-- Mobile/Tablet Dropdown Select Box -->
+        <div class="mobile-nav-select-wrapper">
+          <select
+            onchange="if (this.value) window.location.href = this.value;"
+            class="mobile-nav-dropdown"
+          >
+            <option value="" selected>☰</option>
+            <option value="/">Home</option>
+            <option value="/about/">About</option>
+            <option value="/classes/">Classes</option>
+            <option value="/gallery/">Gallery</option>
+            <option value="/contact/">Contact</option>
+          </select>
+        </div>
+
+        <nav class="nav-links">
+          <!-- Desktop Links -->
+          <a href="/">Home</a>
+          <a href="/about/">About</a>
+          <a href="/classes/" class="active">Classes</a>
+          <a href="/gallery/">Gallery</a>
+          <a href="/contact/">Contact</a>
+        </nav>
+        <a
+          href="https://wa.me/+916384351155"
+          class="whatsapp-btn"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Chat on WhatsApp"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 448 512"
+            class="whatsapp-icon"
+          >
+            <path
+              fill="currentColor"
+              d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"
+            />
+          </svg>
+          <span>Chat With Us</span>
+        </a>
+      </div>
+    </header>
+
+    <main class="class-page-wrapper">
+      <div class="class-layout-container">
+        <!-- START OF EDITED PART: STYLISH CLASS INTRO HEADER -->
+
+        <div
+          class="class-intro-header"
+          style="
+            max-width: 1200px;
+            margin: 0 auto 40px auto;
+            padding: 10px 12px 40px 12px;
+            font-family: &quot;Plus Jakarta Sans&quot;, sans-serif;
+            box-sizing: border-box;
+          "
+        >
+          <!-- Premium Badge & Heading Layout -->
+          <div style="text-align: center; margin-bottom: 24px">
+            <span
+              style="
+                display: inline-block;
+                background: rgba(37, 162, 106, 0.1);
+                color: #25a26a;
+                padding: 6px 14px;
+                font-size: 0.8rem;
+                font-weight: 700;
+                text-transform: uppercase;
+                border-radius: 50px;
+                letter-spacing: 0.5px;
+                margin-bottom: 10px;
+              "
+            >
+              Transformative Group Journeys
+            </span>
+            <h1
+              style="
+                font-size: 2.2rem;
+                color: #0c3322;
+                font-weight: 800;
+                margin: 0;
+                letter-spacing: -0.5px;
+                line-height: 1.2;
+              "
+            >
+              Our Yoga Programs
+            </h1>
+            <div
+              style="
+                width: 50px;
+                height: 4px;
+                background: #25a26a;
+                margin: 12px auto;
+                border-radius: 2px;
+              "
+            ></div>
+          </div>
+
+          <!-- Immersive Styled Introduction Card -->
+          <div
+            style="
+              background: linear-gradient(135deg, #0c3322 0%, #164d35 100%);
+              padding: 24px 20px;
+              border-radius: 20px;
+              box-shadow: 0 15px 35px rgba(12, 51, 34, 0.12);
+              margin-bottom: 32px;
+              position: relative;
+              overflow: hidden;
+              box-sizing: border-box;
+            "
+          >
+            <p
+              style="
+                font-size: 1.05rem;
+                color: #eaf5ef;
+                max-width: 900px;
+                margin: 0 auto;
+                line-height: 1.65;
+                text-align: center;
+                font-weight: 400;
+                position: relative;
+                z-index: 2;
+              "
+            >
+              Join our affordable
+              <span style="color: #6ee7b7; font-weight: 700"
+                >live online group yoga classes</span
+              >
+              and become part of a supportive community dedicated to health and
+              wellness. Our group sessions are suitable for all levels,
+              including 100+ yoga asanas, therapeutic yoga, hip-opening
+              practices, pranayama, flexibility, and strength-building
+              techniques. With expert guidance and budget-friendly pricing, you
+              can enjoy the benefits of yoga anytime, anywhere.
+            </p>
+          </div>
+
+          <!-- Premium Interactive Google Reviews Pill Badge -->
+          <div style="text-align: center; margin-bottom: 36px">
+            <a
+              href="https://www.google.com/search?q=sreeyogakshetra+...#lrd=0x3babf0443588261b:0xe80b473b2bcca391,1,,,,"
+              target="_blank"
+              rel="noopener noreferrer"
+              style="
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                gap: 8px;
+                background: #ffffff;
+                border: 2px solid #0c3322;
+                padding: 8px 20px;
+                border-radius: 50px;
+                text-decoration: none;
+                box-shadow: 0 6px 15px rgba(12, 51, 34, 0.04);
+                max-width: 100%;
+                box-sizing: border-box;
+              "
+            >
+              <span style="display: flex; align-items: center; flex-shrink: 0">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 48 48"
+                  width="16"
+                  height="16"
+                >
+                  <path
+                    fill="#EA4335"
+                    d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"
+                  />
+                  <path
+                    fill="#4285F4"
+                    d="M46.5 24c0-1.61-.15-3.16-.42-4.69H24v8.87h12.66c-.55 2.92-2.19 5.39-4.67 7.05l7.27 5.64C43.5 36.31 46.5 30.73 46.5 24z"
+                  />
+                  <path
+                    fill="#FBBC05"
+                    d="M10.54 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.98-6.19z"
+                  />
+                  <path
+                    fill="#34A853"
+                    d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.27-5.64c-2.11 1.42-4.81 2.3-8.62 2.3-6.26 0-11.57-4.22-13.46-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"
+                  />
+                </svg>
+              </span>
+              <span
+                style="
+                  color: #0c3322;
+                  font-size: 0.88rem;
+                  font-weight: 600;
+                  white-space: nowrap;
+                "
+                ><strong style="color: #dfa119">★ 5.0</strong> · Verified Google
+                Reviews</span
+              >
+            </a>
+          </div>
+
+          <!-- Dual Dashboard Component Grid Layout (FIXED FOR MOBILE VIEW) -->
+          <div
+            style="
+              display: grid;
+              grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+              gap: 24px;
+              text-align: left;
+              width: 100%;
+              box-sizing: border-box;
+            "
+          >
+            <!-- BLOCK 1: What You Will Gain Block -->
+            <div
+              style="
+                background-color: #f7faf8;
+                border: 2px solid #0c3322;
+                padding: 20px;
+                border-radius: 20px;
+                box-shadow: 0 12px 30px rgba(12, 51, 34, 0.04);
+                box-sizing: border-box;
+              "
+            >
+              <div
+                style="
+                  display: inline-flex;
+                  align-items: center;
+                  gap: 10px;
+                  background: #0c3322;
+                  color: #ffffff;
+                  padding: 6px 14px;
+                  border-radius: 50px;
+                  font-weight: 700;
+                  font-size: 0.8rem;
+                  margin-bottom: 20px;
+                  text-transform: uppercase;
+                  letter-spacing: 0.5px;
+                "
+              >
+                ✨ <span>What you will gain?</span>
+              </div>
+
+              <div style="display: flex; flex-direction: column; gap: 12px">
+                <!-- Row 1 -->
+                <div
+                  style="
+                    display: flex;
+                    gap: 12px;
+                    background: #ffffff;
+                    padding: 14px;
+                    border-radius: 14px;
+                    border: 1px solid #eef4f1;
+                    box-sizing: border-box;
+                  "
+                >
+                  <div
+                    style="
+                      width: 28px;
+                      height: 28px;
+                      background: rgba(37, 162, 106, 0.1);
+                      color: #25a26a;
+                      border-radius: 50%;
+                      display: flex;
+                      align-items: center;
+                      justify-content: center;
+                      font-size: 0.85rem;
+                      font-weight: bold;
+                      flex-shrink: 0;
+                    "
+                  >
+                    ✓
+                  </div>
+                  <div
+                    style="
+                      color: #2d3b32;
+                      font-size: 0.98rem;
+                      line-height: 1.45;
+                      font-weight: 500;
+                    "
+                  >
+                    Improve flexibility, strength, and posture natively.
+                  </div>
+                </div>
+                <!-- Row 2 -->
+                <div
+                  style="
+                    display: flex;
+                    gap: 12px;
+                    background: #ffffff;
+                    padding: 14px;
+                    border-radius: 14px;
+                    border: 1px solid #eef4f1;
+                    box-sizing: border-box;
+                  "
+                >
+                  <div
+                    style="
+                      width: 28px;
+                      height: 28px;
+                      background: rgba(37, 162, 106, 0.1);
+                      color: #25a26a;
+                      border-radius: 50%;
+                      display: flex;
+                      align-items: center;
+                      justify-content: center;
+                      font-size: 0.85rem;
+                      font-weight: bold;
+                      flex-shrink: 0;
+                    "
+                  >
+                    ✓
+                  </div>
+                  <div
+                    style="
+                      color: #2d3b32;
+                      font-size: 0.98rem;
+                      line-height: 1.45;
+                      font-weight: 500;
+                    "
+                  >
+                    Learn 100+ asanas, therapeutic sequences, and pranayama
+                    alignment.
+                  </div>
+                </div>
+                <!-- Row 3 -->
+                <div
+                  style="
+                    display: flex;
+                    gap: 12px;
+                    background: #ffffff;
+                    padding: 14px;
+                    border-radius: 14px;
+                    border: 1px solid #eef4f1;
+                    box-sizing: border-box;
+                  "
+                >
+                  <div
+                    style="
+                      width: 28px;
+                      height: 28px;
+                      background: rgba(37, 162, 106, 0.1);
+                      color: #25a26a;
+                      border-radius: 50%;
+                      display: flex;
+                      align-items: center;
+                      justify-content: center;
+                      font-size: 0.85rem;
+                      font-weight: bold;
+                      flex-shrink: 0;
+                    "
+                  >
+                    ✓
+                  </div>
+                  <div
+                    style="
+                      color: #2d3b32;
+                      font-size: 0.98rem;
+                      line-height: 1.45;
+                      font-weight: 500;
+                    "
+                  >
+                    Reduce stress, improve mental clarity, and build long-term
+                    consistency.
+                  </div>
+                </div>
+                <!-- Row 4 -->
+                <div
+                  style="
+                    display: flex;
+                    gap: 12px;
+                    background: #ffffff;
+                    padding: 14px;
+                    border-radius: 14px;
+                    border: 1px solid #eef4f1;
+                    box-sizing: border-box;
+                  "
+                >
+                  <div
+                    style="
+                      width: 28px;
+                      height: 28px;
+                      background: rgba(37, 162, 106, 0.1);
+                      color: #25a26a;
+                      border-radius: 50%;
+                      display: flex;
+                      align-items: center;
+                      justify-content: center;
+                      font-size: 0.85rem;
+                      font-weight: bold;
+                      flex-shrink: 0;
+                    "
+                  >
+                    ✓
+                  </div>
+                  <div
+                    style="
+                      color: #2d3b32;
+                      font-size: 0.98rem;
+                      line-height: 1.45;
+                      font-weight: 500;
+                    "
+                  >
+                    Experience increased structural energy, better balance, and
+                    mobility.
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- BLOCK 2: Is This Right For You Block -->
+            <div
+              style="
+                background-color: #f0fdf4;
+                border: 2px solid #166534;
+                padding: 20px;
+                border-radius: 20px;
+                box-shadow: 0 12px 30px rgba(22, 101, 52, 0.04);
+                box-sizing: border-box;
+              "
+            >
+              <div
+                style="
+                  display: inline-flex;
+                  align-items: center;
+                  gap: 10px;
+                  background: #166534;
+                  color: #ffffff;
+                  padding: 6px 14px;
+                  border-radius: 50px;
+                  font-weight: 700;
+                  font-size: 0.8rem;
+                  margin-bottom: 20px;
+                  text-transform: uppercase;
+                  letter-spacing: 0.5px;
+                "
+              >
+                ✅ <span>Is this course right for you?</span>
+              </div>
+
+              <div style="display: flex; flex-direction: column; gap: 12px">
+                <!-- Row 1 -->
+                <div
+                  style="
+                    display: flex;
+                    gap: 12px;
+                    background: #ffffff;
+                    padding: 14px;
+                    border-radius: 14px;
+                    border: 1px solid #dcfce7;
+                    box-sizing: border-box;
+                  "
+                >
+                  <div
+                    style="
+                      width: 28px;
+                      height: 28px;
+                      background: rgba(22, 101, 52, 0.1);
+                      color: #166534;
+                      border-radius: 50%;
+                      display: flex;
+                      align-items: center;
+                      justify-content: center;
+                      font-size: 0.85rem;
+                      font-weight: bold;
+                      flex-shrink: 0;
+                    "
+                  >
+                    👍
+                  </div>
+                  <div
+                    style="
+                      color: #14532d;
+                      font-size: 0.98rem;
+                      line-height: 1.45;
+                      font-weight: 500;
+                    "
+                  >
+                    Ready to choose a convenient batch time and attend
+                    consistently.
+                  </div>
+                </div>
+                <!-- Row 2 -->
+                <div
+                  style="
+                    display: flex;
+                    gap: 12px;
+                    background: #ffffff;
+                    padding: 14px;
+                    border-radius: 14px;
+                    border: 1px solid #dcfce7;
+                    box-sizing: border-box;
+                  "
+                >
+                  <div
+                    style="
+                      width: 28px;
+                      height: 28px;
+                      background: rgba(22, 101, 52, 0.1);
+                      color: #166534;
+                      border-radius: 50%;
+                      display: flex;
+                      align-items: center;
+                      justify-content: center;
+                      font-size: 0.85rem;
+                      font-weight: bold;
+                      flex-shrink: 0;
+                    "
+                  >
+                    👍
+                  </div>
+                  <div
+                    style="
+                      color: #14532d;
+                      font-size: 0.98rem;
+                      line-height: 1.45;
+                      font-weight: 500;
+                    "
+                  >
+                    Equipped with a basic yoga mat and a stable internet
+                    connection.
+                  </div>
+                </div>
+                <!-- Row 3 -->
+                <div
+                  style="
+                    display: flex;
+                    gap: 12px;
+                    background: #ffffff;
+                    padding: 14px;
+                    border-radius: 14px;
+                    border: 1px solid #dcfce7;
+                    box-sizing: border-box;
+                  "
+                >
+                  <div
+                    style="
+                      width: 28px;
+                      height: 28px;
+                      background: rgba(22, 101, 52, 0.1);
+                      color: #166534;
+                      border-radius: 50%;
+                      display: flex;
+                      align-items: center;
+                      justify-content: center;
+                      font-size: 0.85rem;
+                      font-weight: bold;
+                      flex-shrink: 0;
+                    "
+                  >
+                    👍
+                  </div>
+                  <div
+                    style="
+                      color: #14532d;
+                      font-size: 0.98rem;
+                      line-height: 1.45;
+                      font-weight: 500;
+                    "
+                  >
+                    Practitioners aged 12 and above are fully welcome to join.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- END OF EDITED PART -->
+        <div class="programs-grid-wrapper">
+          <div class="yoga-course-card">
+            <div class="yoga-card-banner">
+              <img
+                src="{% static 'images/g11.jpeg' %}"
+                alt="Online Yoga Session"
+                class="banner-image"
+              />
+              <span class="status-tag online-tag"
+                >💻 Interactive Live Sessions</span
+              >
+            </div>
+
+            <div class="yoga-card-body">
+              <h2 class="program-title-text">Online Yoga Classes</h2>
+
+              <div class="yoga-meta-badges">
+                <span class="badge">📅 Monthly Renewal</span>
+                <span class="badge">🗣️ English & Regional</span>
+              </div>
+
+              <div class="features-checklist-box">
+                <h3>What You Will Learn & Experience</h3>
+                <div class="checklist-grid">
+                  <div class="check-item">⭐ 100+ Yoga Asanas</div>
+                  <div class="check-item">⭐ Therapeutic Yoga</div>
+                  <div class="check-item">⭐ Hip Opening Practices</div>
+                  <div class="check-item">⭐ Pranayama Training</div>
+                  <div class="check-item">⭐ Flexibility Improvement</div>
+                  <div class="check-item">⭐ Stress Management</div>
+                  <div class="check-item highlight-item">
+                    ⭐ Live Instructor Guidance
+                  </div>
+                </div>
+              </div>
+
+              <div class="batch-timings-box">
+                <h3>Class Batch Timings</h3>
+                <div class="batch-schedule-rows">
+                  <div class="schedule-row">
+                    <span class="group-title">Morning Sessions</span>
+                    <div class="time-chips">
+                      <span>6:00 AM – 7:00 AM</span>
+                      <span>7:15 AM – 8:15 AM</span>
+                      <span>8:30 AM – 9:30 AM</span>
+                    </div>
+                  </div>
+                  <div class="schedule-row">
+                    <span class="group-title">Evening Session</span>
+                    <div class="time-chips">
+                      <span class="evening-chip">6:30 PM – 7:30 PM</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="prerequisites-box">
+                <span class="box-title">Important Prerequisites:</span>
+                <p>
+                  Age above 12 • Personal Yoga Mat • Stable Internet Connection
+                </p>
+              </div>
+
+              <div class="yoga-card-pricing-footer">
+                <div class="pricing-meta">
+                  <span class="fee-label">Course Fee</span>
+                  <div class="price-line">
+                    <span class="price-value">₹1,500</span>
+                    <span class="price-period">/ month</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div style="padding: 0 28px 24px 28px">
+              <button class="book-now-trigger-btn" onclick="openBookingModal()">
+                Book Now & Secure Slot
+              </button>
+            </div>
+          </div>
+
+          <div class="yoga-course-card">
+            <div class="yoga-card-banner">
+              <img
+                src="{% static 'images/g16.jpeg' %}"
+                alt="Offline Yoga Studio"
+                class="banner-image"
+              />
+              <span class="status-tag offline-tag">🧘‍♂️ Studio Environment</span>
+            </div>
+
+            <div class="yoga-card-body">
+              <h2 class="program-title-text">Offline Studio Classes</h2>
+
+              <div class="yoga-meta-badges">
+                <span class="badge">🏛️ On-Site Training</span>
+                <span class="badge">🤝 Face-to-Face</span>
+              </div>
+
+              <div class="features-checklist-box">
+                <h3>Key Program Benefits</h3>
+                <div class="checklist-grid single-col-list">
+                  <div class="check-item">🌿 Direct Instructor Support</div>
+                  <div class="check-item">🌿 Correct Posture Guidance</div>
+                  <div class="check-item">🌿 Premium Studio Environment</div>
+                  <div class="check-item highlight-item">
+                    🌿 Personalized Attention & Adjustments
+                  </div>
+                </div>
+              </div>
+
+              <div class="batch-timings-box">
+                <h3>Class Batch Timings</h3>
+                <div class="batch-schedule-rows">
+                  <div class="schedule-row">
+                    <span class="group-title">Morning Sessions</span>
+                    <div class="time-chips">
+                      <span>6:00 AM – 7:00 AM</span>
+                      <span>7:30 AM – 8:30 AM</span>
+                      <span>10:30 AM – 11:30 AM</span>
+                    </div>
+                  </div>
+                  <div class="schedule-row">
+                    <span class="group-title">Evening Session</span>
+                    <div class="time-chips">
+                      <span class="evening-chip">5:00 PM – 6:00 PM</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="prerequisites-box info-blue-box">
+                <span class="box-title">Studio Protocol:</span>
+                <p>
+                  Arrive 5 mins prior • Carry regular personal gear • All skill
+                  sets welcome
+                </p>
+              </div>
+
+              <div class="yoga-card-pricing-footer">
+                <div class="pricing-meta">
+                  <span class="fee-label">Studio Member Fee</span>
+                  <div class="price-line">
+                    <span class="price-value">₹3,500</span>
+                    <span class="price-period">/ month</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div
+              style="
+                background-color: #f1f5f9;
+                border-top: 1px solid #e2e8f0;
+                padding: 20px 28px;
+                display: flex;
+                flex-direction: column;
+                gap: 8px;
+              "
+            >
+              <span
+                style="
+                  font-size: 0.78rem;
+                  text-transform: uppercase;
+                  letter-spacing: 0.8px;
+                  font-weight: 700;
+                  color: #475569;
+                "
+                >To Join or Visit the Studio:</span
+              >
+              <div
+                style="
+                  display: flex;
+                  flex-wrap: wrap;
+                  gap: 16px;
+                  justify-content: space-between;
+                  align-items: center;
+                "
+              >
+                <div style="font-size: 0.95rem; color: #1e293b">
+                  📞 Call:
+                  <a
+                    href="tel:+916384351155"
+                    style="
+                      color: #0c3322;
+                      font-weight: 700;
+                      text-decoration: none;
+                    "
+                    >+91 6384351155</a
+                  >
+                </div>
+                <div style="font-size: 0.95rem; color: #1e293b">
+                  📍
+                  <a
+                    href="/contact/"
+                    style="
+                      color: #163e5c;
+                      font-weight: 600;
+                      text-decoration: underline;
+                    "
+                    >View Studio Map & Address</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- REPLACED LINE: Zeroed out top margin and padding to crush the gap -->
+        <section class="testimonials-section">
+          <div class="testimonials-header">
+            <span class="testimonials-badge">Practitioner Journal</span>
+            <h2>What Our Practitioners Say</h2>
+            <div class="header-divider"></div>
+            <p>Real experiences from the Sreeyogakshetra community members.</p>
+          </div>
+
+          <div class="testimonials-marquee-wrapper">
+            <div class="testimonials-track">
+              <div class="testimonial-card featured-card">
+                <div class="card-quote-bg">“</div>
+                <div class="testimonial-stars">★★★★★</div>
+                <p class="testimonial-text">
+                  "Sreeja mam is one of the best yoga teachers in Salem. Her
+                  dedication to the practice is impeccable. Yoga had an amazing
+                  impact on my work stress."
+                </p>
+                <div class="author-profile-box">
+                  <div class="author-avatar">RS</div>
+                  <div class="author-info">
+                    <h4 class="testimonial-author">Roshini S</h4>
+                    <div class="testimonial-meta">
+                      <span class="batch-tag">Morning Batch</span>
+                      <span class="verified-check">✓ Verified Review</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="testimonial-card featured-card">
+                <div class="card-quote-bg">“</div>
+                <div class="testimonial-stars">★★★★★</div>
+                <p class="testimonial-text">
+                  "Completely loved the session of Agastthya sir. The way he
+                  explains every posture along with benefits truly inspires us.
+                  A perfect blend of physical and mental wellness."
+                </p>
+                <div class="author-profile-box">
+                  <div class="author-avatar">M</div>
+                  <div class="author-info">
+                    <h4 class="testimonial-author">Monisha</h4>
+                    <div class="testimonial-meta">
+                      <span class="batch-tag">Active Practitioner</span>
+                      <span class="verified-check">✓ Verified Review</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="testimonial-card featured-card">
+                <div class="card-quote-bg">“</div>
+                <div class="testimonial-stars">★★★★★</div>
+                <p class="testimonial-text">
+                  "I would give this yoga studio 10 stars if I could! I love the
+                  classes! Sreeja mam has helped me so much and I have learned a
+                  lot."
+                </p>
+                <div class="author-profile-box">
+                  <div class="author-avatar">SR</div>
+                  <div class="author-info">
+                    <h4 class="testimonial-author">Sindhuja Ravindran</h4>
+                    <div class="testimonial-meta">
+                      <span class="batch-tag">Local Guide</span>
+                      <span class="verified-check">✓ Verified Review</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="testimonial-card">
+                <div class="card-quote-bg">“</div>
+                <div class="testimonial-stars">★★★★★</div>
+                <p class="testimonial-text">
+                  "Sreeja mam is one of the best yoga teachers in Salem. Her
+                  dedication to the practice is impeccable. Yoga had an amazing
+                  impact on my work stress."
+                </p>
+                <div class="author-profile-box">
+                  <div class="author-avatar">RS</div>
+                  <div class="author-info">
+                    <h4 class="testimonial-author">Roshini S</h4>
+                    <div class="testimonial-meta">
+                      <span class="batch-tag">Morning Batch</span>
+                      <span class="verified-check">✓ Verified Review</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="testimonial-card featured-card">
+                <div class="card-quote-bg">“</div>
+                <div class="testimonial-stars">★★★★★</div>
+                <p class="testimonial-text">
+                  "Completely loved the session of Agastthya sir. The way he
+                  explains every posture along with benefits truly inspires us.
+                  A perfect blend of physical and mental wellness."
+                </p>
+                <div class="author-profile-box">
+                  <div class="author-avatar">M</div>
+                  <div class="author-info">
+                    <h4 class="testimonial-author">Monisha</h4>
+                    <div class="testimonial-meta">
+                      <span class="batch-tag">Active Practitioner</span>
+                      <span class="verified-check">✓ Verified Review</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="testimonial-card">
+                <div class="card-quote-bg">“</div>
+                <div class="testimonial-stars">★★★★★</div>
+                <p class="testimonial-text">
+                  "I would give this yoga studio 10 stars if I could! I love the
+                  classes! Sreeja mam has helped me so much and I have learned a
+                  lot."
+                </p>
+                <div class="author-profile-box">
+                  <div class="author-avatar">SR</div>
+                  <div class="author-info">
+                    <h4 class="testimonial-author">Sindhuja Ravindran</h4>
+                    <div class="testimonial-meta">
+                      <span class="batch-tag">Local Guide</span>
+                      <span class="verified-check">✓ Verified Review</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <div id="bookingModal" class="booking-modal-overlay">
+      <div class="booking-modal-card">
+        <div class="modal-header-bar">
+          <h3>Registration Details</h3>
+          <button class="modal-close-trigger" onclick="closeBookingModal()">
+            &times;
+          </button>
+        </div>
+
+        <div id="onlineRegistrationForm" style="padding: 24px">
+          <div style="margin-bottom: 12px">
+            <label
+              style="
+                display: block;
+                font-size: 0.85rem;
+                font-weight: 700;
+                color: #475569;
+                margin-bottom: 4px;
+              "
+              >YOUR NAME:</label
+            >
+            <input
+              type="text"
+              id="custName"
+              required
+              placeholder="Enter full name"
+              class="form-input-field"
+            />
+          </div>
+
+          <div style="margin-bottom: 12px">
+            <label
+              style="
+                display: block;
+                font-size: 0.85rem;
+                font-weight: 700;
+                color: #475569;
+                margin-bottom: 4px;
+              "
+              >MOBILE NUMBER:</label
+            >
+            <input
+              type="tel"
+              id="custPhone"
+              required
+              placeholder="Enter 10-digit number"
+              pattern="[0-9]{10}"
+              class="form-input-field"
+            />
+          </div>
+
+          <div style="margin-bottom: 12px">
+            <label
+              style="
+                display: block;
+                font-size: 0.85rem;
+                font-weight: 700;
+                color: #475569;
+                margin-bottom: 4px;
+              "
+              >EMAIL ADDRESS:</label
+            >
+            <input
+              type="email"
+              id="custEmail"
+              required
+              placeholder="name@example.com"
+              class="form-input-field"
+            />
+          </div>
+
+          <div style="margin-bottom: 15px">
+            <label
+              for="online-batch-select"
+              style="
+                display: block;
+                font-size: 0.85rem;
+                font-weight: 700;
+                color: #475569;
+                margin-bottom: 6px;
+              "
+              >SELECT YOUR PREFERRED TIME SLOT:</label
+            >
+            <select
+              id="online-batch-select"
+              class="form-control"
+              onchange="updatePaymentButton(this.value)"
+              style="
+                width: 100%;
+                padding: 10px;
+                font-size: 1rem;
+                border-radius: 6px;
+                border: 1px solid #cbd5e1;
+                background-color: #ffffff;
+                color: #1e293b;
+                box-sizing: border-box;
+                cursor: pointer;
+              "
+            >
+              <option value="" disabled selected>-- Choose a Batch --</option>
+              <option value="morning-600">Morning Batch - 6:00 AM</option>
+              <option value="morning-715">Morning Batch - 7:15 AM</option>
+              <option value="morning-830">Morning Batch - 8:30 AM</option>
+              <option value="evening-630">Evening Batch - 6:30 PM</option>
+            </select>
+          </div>
+          <div class="razorpay-container">
+            <div id="rzp-prompt" class="select-prompt-btn">
+              Please choose a batch above to generate payment link
+            </div>
+            <div id="razorpay-injection-area"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      function openBookingModal() {
+        document.getElementById("bookingModal").style.display = "flex";
+        document.getElementById("custName").value = "";
+        document.getElementById("custPhone").value = "";
+        document.getElementById("custEmail").value = "";
+        document.getElementById("online-batch-select").value = "";
+        updatePaymentButton("");
+      }
+
+      function closeBookingModal() {
+        document.getElementById("bookingModal").style.display = "none";
+        document.getElementById("razorpay-injection-area").innerHTML = "";
+      }
+
+      window.onclick = function (event) {
+        const modal = document.getElementById("bookingModal");
+        if (event.target === modal) {
+          closeBookingModal();
+        }
+      };
+
+      async function updatePaymentButton(selectedValue) {
+        const injectionArea = document.getElementById(
+          "razorpay-injection-area",
+        );
+        const promptBox = document.getElementById("rzp-prompt");
+
+        // Clear prior dynamic nodes
+        injectionArea.innerHTML = "";
+
+        if (!selectedValue) {
+          if (promptBox) promptBox.style.display = "block";
+          return;
+        }
+
+        const nameInput = document.getElementById("custName").value.trim();
+        const phoneInput = document.getElementById("custPhone").value.trim();
+        const emailInput = document.getElementById("custEmail").value.trim();
+
+        if (nameInput === "" || phoneInput === "" || emailInput === "") {
+          alert("Please fill out all details before selecting a time slot.");
+          resetSelection(promptBox);
+          return;
+        }
+
+        const phoneRegex = /^[0-9]{10}$/;
+        if (!phoneRegex.test(phoneInput)) {
+          alert("Please enter a valid 10-digit mobile number.");
+          resetSelection(promptBox);
+          return;
+        }
+
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(emailInput)) {
+          alert("Please enter a valid email address.");
+          resetSelection(promptBox);
+          return;
+        }
+
+        if (promptBox) promptBox.style.display = "none";
+
+        // --- STEP 1: LOG PENDING ROW TO DATABASE IMMEDIATELY ON SELECTION ---
+        try {
+          const response = await fetch("/api/save-registration/", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              name: nameInput,
+              phone: phoneInput,
+              email: emailInput,
+              batch: selectedValue,
+              agreed_to_terms: true,
+            }),
+          });
+          const data = await response.json();
+          if (data.status === "success") {
+            console.log(
+              "Pending entry logged to database. ID:",
+              data.booking_id,
+            );
+            sessionStorage.setItem("pending_booking_id", data.booking_id);
+          }
+        } catch (err) {
+          console.error("Error logging database entry:", err);
+        }
+
+        // --- STEP 2: RENDER GENERATED RAZORPAY BUTTON ---
+        const buttonIdMap = {
+          "morning-600": "pl_TBqXQNS9mxiVTS",
+          "morning-715": "pl_TBqbVql6uiPDHT",
+          "morning-830": "pl_TBqclIEJfyspXY",
+          "evening-630": "pl_TBqeVNGcb50rxX",
+        };
+
+        const buttonId = buttonIdMap[selectedValue];
+
+        if (buttonId) {
+          const container = document.createElement("div");
+
+          const dbForm = document.createElement("form");
+          dbForm.id = "hiddenDataForm";
+          dbForm.action = "YOUR_FORMSPREE_ENDPOINT_OR_SHEETDB_URL";
+          dbForm.method = "POST";
+          dbForm.style.display = "none";
+
+          const today = new Date();
+          const expiry = new Date();
+          expiry.setDate(today.getDate() + 30);
+
+          dbForm.innerHTML = `
+                <input type="text" name="Name" value="${nameInput}">
+                <input type="text" name="Phone" value="${phoneInput}">
+                <input type="email" name="Email" value="${emailInput}">
+                <input type="text" name="Batch" value="${selectedValue}">
+                <input type="text" name="RegistrationDate" value="${today.toDateString()}">
+                <input type="text" name="ExpiryDate" value="${expiry.toDateString()}">
+                <input type="checkbox" name="agreed_to_terms" checked value="true">
+                <input type="text" name="Status" value="Clicked Pay (Check Razorpay Dashboard)">
+            `;
+
+          const rzpForm = document.createElement("form");
+          const rzpScript = document.createElement("script");
+          rzpScript.src = "https://checkout.razorpay.com/v1/payment-button.js";
+          rzpScript.setAttribute("data-payment_button_id", buttonId);
+          rzpScript.async = true;
+
+          rzpForm.appendChild(rzpScript);
+          container.appendChild(dbForm);
+          container.appendChild(rzpForm);
+          injectionArea.appendChild(container);
+        } else {
+          injectionArea.innerHTML =
+            '<p style="color: #cbd5e1; background-color: #64748b; font-size: 0.95rem; text-align: center; padding: 14px; border-radius: 6px;">Button code not configured for this batch selection yet.</p>';
+        }
+      }
+
+      function resetSelection(promptBox) {
+        document.getElementById("online-batch-select").value = "";
+        if (promptBox) promptBox.style.display = "block";
+      }
+    </script>
+
+    <footer class="footer">
+      <div class="container">
+        <p>
+          &copy; 2026 Sreeyogakshetra. All rights reserved. Designed with
+          mindfulness.
+        </p>
+      </div>
+    </footer>
+
+    <!-- Floating WhatsApp for mobile -->
+    <a
+      href="https://wa.me/+916384351155"
+      class="whatsapp-floating-trigger"
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Chat on WhatsApp"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 448 512"
+        class="wa-float-icon"
+      >
+        <path
+          fill="currentColor"
+          d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"
+        />
+      </svg>
+    </a>
+  </body>
+</html>
