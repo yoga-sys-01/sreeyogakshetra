@@ -20,6 +20,7 @@ from django.conf import settings             # <-- ADD THIS LINE
 from django.conf.urls.static import static
 from . import views
 from programs import views as program_views
+from django.views.generic import TemplateView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -39,6 +40,14 @@ urlpatterns = [
 
     # Add this line alongside your other paths:
     path('api/accept-terms/<str:booking_id>/', program_views.accept_terms_api, name='accept_terms_api'),
+
+
+    path(
+        "robots.txt",
+        TemplateView.as_view(
+            template_name="robots.txt", content_type="text/plain"
+        ),
+    ),
 
 ]
 

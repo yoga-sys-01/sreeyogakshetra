@@ -85,57 +85,181 @@
     </section>
 
     <section class="about-core-section">
-      <div class="container">
-        <div class="about-main-grid">
-          <div class="about-core-text">
-            <h2 class="section-title">Nurturing Balance & Inner Well-Being</h2>
-            <p class="lead-text">
-              Sreeyogakshetra is a dedicated yoga and wellness center committed
-              to promoting health, balance, and inner well-being through the
-              timeless practice of yoga.
-            </p>
-            <p class="body-text">
-              With over 15 years of experience, we offer expert guidance through
-              both offline and online sessions, making yoga accessible to
-              individuals of all ages and fitness levels. We believe that yoga
-              is not just an exercise system, but a pathway to holistic
-              structural stability and internal peace.
-            </p>
-          </div>
-          <div class="about-core-visual" style="position: relative">
-            <img
-              src="{% static 'images/a1.png' %}"
-              alt="Yoga Session Visual Accent"
-              style="
-                width: 100%;
-                height: auto;
-                border-radius: 24px;
-                display: block;
-                object-fit: cover;
-                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
-              "
-            />
-            <div
-              class="visual-accent-box"
-              style="
-                position: absolute;
-                bottom: -20px;
-                right: -20px;
-                left: auto;
-                width: max-content;
-                margin-top: 0;
-              "
-            >
-              <span class="experience-badge">15+ Years of Guidance</span>
-            </div>
-          </div>
-        </div>
+  <div class="about-container">
+    
+    <!-- Header Tag & Title -->
+    <div class="about-header">
+      <span class="about-tag">WHO WE ARE</span>
+      <h2 class="about-title">
+        Nurturing Balance &amp Inner Well-Being <br>
+        
+      </h2>
+    </div>
+
+    <!-- Text Body -->
+    <div class="about-content">
+      <p class="about-lead">
+        Sreeyogakshetra is a dedicated yoga and wellness center committed to promoting health, balance, and inner well-being through the timeless practice of yoga.
+      </p>
+      <p class="about-body">
+        With over 15 years of experience, we offer expert guidance through both offline and online sessions, making yoga accessible to individuals of all ages and fitness levels. We believe that yoga is not just an exercise system, but a pathway to holistic structural stability and internal peace.
+      </p>
+    </div>
+
+    <!-- Integrated Minimal Stats Banner -->
+    <div class="about-stats-strip">
+      <div class="stat-item">
+        <span class="stat-num">15+</span>
+        <span class="stat-text">Years Experience</span>
       </div>
-    </section>
+      
+      <div class="stat-divider"></div>
+      
+      <div class="stat-item">
+        <span class="stat-num">10K+</span>
+        <span class="stat-text">Practitioners</span>
+      </div>
+      
+      <div class="stat-divider"></div>
+      
+      <div class="stat-item">
+        <span class="stat-num">100%</span>
+        <span class="stat-text">Holistic Approach</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+<style>
+  /* Base responsive styles for mobile */
+  .about-core-section {
+    padding: 40px 16px;
+    background-color: #fcfdfc;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    box-sizing: border-box;
+    overflow: hidden; /* Prevents edge spilling */
+    padding-bottom: 10px !important;
+  }
+  .about-container {
+    max-width: 950px;
+    width: 100%;
+    text-align: center;
+    padding: 0 16px; /* Side padding for the whole block */
+  }
+  .about-header {
+    margin-bottom: 20px;
+  }
+  .about-tag {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #0d7a52;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    display: inline-block;
+    margin-bottom: 8px;
+  }
+  .about-title {
+    /* Auto-scales between 1.8rem on mobile and 3rem on desktop */
+    font-size: clamp(1.8rem, 5vw, 3rem);
+    font-weight: 800;
+    color: #0c3322;
+    line-height: 1.2;
+    margin: 0;
+  }
+  .about-content {
+    text-align: left;
+    max-width: 850px;
+    margin: 0 auto 28px auto;
+    padding: 0 8px; /* FIX: Prevents text from touching screen edges */
+  }
+  .about-lead {
+    font-size: clamp(1rem, 2.5vw, 1.25rem);
+    color: #1e293b;
+    font-weight: 500;
+    line-height: 1.6;
+    margin-bottom: 12px;
+  }
+  .about-body {
+    font-size: clamp(0.9rem, 2vw, 1.08rem);
+    color: #64748b;
+    line-height: 1.65;
+    margin: 0;
+  }
+  /* Stats Strip */
+  .about-stats-strip {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background-color: #f0fdf4;
+    border: 1px solid #dcfce7;
+    padding: 16px 8px;
+    border-radius: 16px;
+    margin-top: 20px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  .stat-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+    padding: 0 4px;
+  }
+  .stat-num {
+    font-size: clamp(1.3rem, 4vw, 2.1rem);
+    font-weight: 800;
+    color: #0c3322;
+    line-height: 1;
+  }
+  .stat-text {
+    font-size: clamp(0.7rem, 2vw, 0.9rem);
+    color: #0d7a52;
+    font-weight: 600;
+    margin-top: 4px;
+    text-align: center;
+  }
+  .stat-divider {
+    width: 1px;
+    height: 28px;
+    background-color: #bbf7d0;
+  }
+
+  /* Desktop Adjustments */
+  @media (min-width: 768px) {
+    .about-core-section {
+      padding: 70px 20px;
+    }
+    .about-header {
+      margin-bottom: 30px;
+    }
+    .about-content {
+      margin-bottom: 40px;
+    }
+    .about-stats-strip {
+      padding: 24px 20px;
+    }
+    .stat-divider {
+      height: 36px;
+    }
+  }
+
+  .team-section {
+  padding-top: 20px !important;
+  margin-top: 0 !important;
+}
+
+/* 3. Tighten title top margin inside Team section */
+.team-section .section-title {
+  margin-top: 0 !important;
+}
+</style>
 
     <section class="team-section">
       <div class="container">
         <span class="section-tag"></span>
+        <br>
         <h2 class="section-title central-title" style="margin-bottom: 35px">
           Meet Our Team
         </h2>
@@ -152,14 +276,14 @@
               <span class="section-tag">Founder & Director</span>
               <h3>Dr. Sreeja</h3>
               <p class="team-text">
-                Dr. Sreeja is the founder and director of SreeYogakshetra, a
+                Dr. Sreeja is the founder and director of Sreeyogakshetra, a
                 leading yoga studio established in 2012. With extensive
                 expertise in hatha yoga, vinyasa yoga, prenatal (pregnancy)
                 yoga, and kids yoga, she has dedicated her career to promoting
                 holistic health and well-being through authentic yogic
                 practices. Her commitment to excellence and contribution to the
                 field of yoga have been recognized with the prestigious Bharat
-                Gaurav Ratna Award. Through SreeYogakshetra, Dr. Sreeja has
+                Gaurav Ratna Award. Through Sreeyogakshetra, Dr. Sreeja has
                 empowered thousands of individuals to achieve physical, mental,
                 and emotional wellness, making the institution one of the most
                 respected yoga centers in Salem.
@@ -170,16 +294,16 @@
           <div class="team-card reverse">
             <div class="team-info">
               <span class="section-tag">Director & Instructor</span>
-              <h3>Agastthya, B.A.</h3>
+              <h3>Mr. Agastthya</h3>
               <p class="team-text">
-                Agastthya, B.A., is the director of SreeYogakshetra and a
+                Mr. Agastthya is the director of Sreeyogakshetra and a
                 certified yoga instructor with over 18 years of dedicated yoga
                 practice and more than 2 years of teaching experience. He
                 specializes in hatha yoga, vinyasa yoga, pranayama, and kids
                 yoga, helping individuals of all ages improve their physical,
                 mental, and emotional well-being. In addition to his expertise
                 in traditional yoga disciplines, Agastthya is also a certified
-                aerial yoga instructor. As the director of SreeYogakshetra, he
+                aerial yoga instructor. As the director of Sreeyogakshetra, he
                 is committed to promoting holistic wellness and delivering
                 high-quality yoga education through personalized instruction,
                 corporate wellness programs, and community outreach initiatives.
@@ -187,7 +311,7 @@
             </div>
             <div class="team-img-wrapper">
               <img
-                src="{% static 'images/h3.jpeg' %}"
+                src="{% static 'images/a2.jpeg' %}"
                 alt="Agastthya - Director"
               />
             </div>

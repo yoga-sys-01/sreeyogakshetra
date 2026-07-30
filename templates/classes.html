@@ -229,6 +229,285 @@
             </a>
           </div>
 
+          <div class="programs-grid-wrapper">
+            <div class="yoga-course-card">
+              <div class="yoga-card-banner">
+                <img
+                  src="{% static 'images/g11.jpeg' %}"
+                  alt="Online Yoga Session"
+                  class="banner-image"
+                />
+                <span class="status-tag online-tag"
+                  >💻 Interactive Live Sessions</span
+                >
+              </div>
+
+              <div class="yoga-card-body">
+                <h2 class="program-title-text" style="font-size: clamp(1.45rem, 5.8vw, 2rem); white-space: nowrap; text-align: center; margin-bottom: 12px; color: #0c3322; font-weight: 800;">
+  Online Yoga Classes
+</h2>
+
+                <div class="yoga-meta-badges">
+                  <span class="badge">🗓️ Monday to Friday</span>
+                  <span class="badge">📅 Monthly Renewal</span>
+                  <span class="badge">📢 Admissions Open 1st Week of Month</span>
+                  <span class="badge">🗣️ English &amp; Regional</span>
+                </div>
+
+                <div class="features-checklist-box">
+                  <h3>What You Will Learn & Experience</h3>
+                  <div class="checklist-grid">
+                    <div class="check-item">⭐ 100+ Yoga Asanas</div>
+                    <div class="check-item">⭐ Therapeutic Yoga</div>
+                    <div class="check-item">⭐ Hip Opening Practices</div>
+                    <div class="check-item">⭐ Pranayama Training</div>
+                    <div class="check-item">⭐ Flexibility Improvement</div>
+                    <div class="check-item">⭐ Stress Management</div>
+                    <div class="check-item highlight-item">
+                      ⭐ Live Instructor Guidance
+                    </div>
+                  </div>
+                </div>
+
+                <div class="batch-timings-box">
+                  <h3>Class Batch Timings</h3>
+                  <div class="batch-schedule-rows">
+                    <div class="schedule-row">
+                      <span class="group-title">Morning Sessions</span>
+                      <div class="time-chips">
+                        <span>6:00 AM – 7:00 AM</span>
+                        <span>7:15 AM – 8:15 AM</span>
+                        <span>8:30 AM – 9:30 AM</span>
+                      </div>
+                    </div>
+                    <div class="schedule-row">
+                      <span class="group-title">Evening Session</span>
+                      <div class="time-chips">
+                        <span class="evening-chip">6:30 PM – 7:30 PM</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="prerequisites-box">
+                  <span class="box-title">Important Prerequisites:</span>
+                  <p>
+                    Age above 12 • Personal Yoga Mat • Stable Internet
+                    Connection
+                  </p>
+                </div>
+
+                <div class="yoga-card-pricing-footer">
+                  <div class="pricing-meta">
+                    <span class="fee-label">Course Fee</span>
+                    <br />
+                    <div
+                      class="pricing-container"
+                      style="display: flex; flex-direction: column; gap: 4px"
+                    >
+                      <!-- Line 1: Main Price & Period -->
+                      <div
+                        class="price-main"
+                        style="display: flex; align-items: baseline; gap: 6px"
+                      >
+                        <span
+                          class="price-value"
+                          style="
+                            font-size: 2.25rem;
+                            font-weight: 800;
+                            color: #0c3322;
+                            line-height: 1;
+                          "
+                          >₹1,500</span
+                        >
+                        <span
+                          class="price-period"
+                          style="
+                            font-size: 0.95rem;
+                            font-weight: 600;
+                            color: #64748b;
+                          "
+                          >/ month</span
+                        >
+                      </div>
+
+                      <!-- Line 2: Strikethrough Price & Light Mint Badge -->
+                      <div
+                        class="price-savings"
+                        style="display: flex; align-items: center; gap: 8px"
+                      >
+                        <del
+                          class="original-price"
+                          style="
+                            font-size: 1rem;
+                            color: #94a3b8;
+                            text-decoration: line-through;
+                            text-decoration-color: #f87171;
+                            font-weight: 500;
+                          "
+                          >₹2,500</del
+                        >
+                        <span
+                          class="discount-badge"
+                          style="
+                            background-color: #e6f7f0 !important;
+                            color: #0d7a52 !important;
+                            border: none !important;
+                            font-size: 0.72rem !important;
+                            font-weight: 700 !important;
+                            padding: 4px 10px !important;
+                            border-radius: 20px !important;
+                            letter-spacing: 0.04em !important;
+                            display: inline-block !important;
+                            line-height: 1.2 !important;
+                          "
+                          >SAVE 40%</span
+                        >
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div style="padding: 0 28px 24px 28px">
+                <button
+                  class="book-now-trigger-btn"
+                  onclick="openBookingModal()"
+                >
+                  Book Now & Secure Slot
+                </button>
+              </div>
+            </div>
+
+            <div class="yoga-course-card">
+              <div class="yoga-card-banner">
+                <img
+                  src="{% static 'images/g16.jpeg' %}"
+                  alt="Offline Yoga Studio"
+                  class="banner-image"
+                />
+                <span class="status-tag offline-tag"
+                  >🧘‍♂️ Studio Environment</span
+                >
+              </div>
+
+              <div class="yoga-card-body">
+                <h2 class="program-title-text">Offline Studio Classes</h2>
+
+                <div class="yoga-meta-badges">
+                  <span class="badge">🏛️ On-Site Training</span>
+                  <span class="badge">🤝 Face-to-Face</span>
+                </div>
+
+                <div class="features-checklist-box">
+                  <h3>Key Program Benefits</h3>
+                  <div class="checklist-grid single-col-list">
+                    <div class="check-item">🌿 Direct Instructor Support</div>
+                    <div class="check-item">🌿 Correct Posture Guidance</div>
+                    <div class="check-item">🌿 Premium Studio Environment</div>
+                    <div class="check-item highlight-item">
+                      🌿 Personalized Attention & Adjustments
+                    </div>
+                  </div>
+                </div>
+
+                <div class="batch-timings-box">
+                  <h3>Class Batch Timings</h3>
+                  <div class="batch-schedule-rows">
+                    <div class="schedule-row">
+                      <span class="group-title">Morning Sessions</span>
+                      <div class="time-chips">
+                        <span>6:00 AM – 7:00 AM</span>
+                        <span>7:30 AM – 8:30 AM</span>
+                        <span>10:30 AM – 11:30 AM</span>
+                      </div>
+                    </div>
+                    <div class="schedule-row">
+                      <span class="group-title">Evening Session</span>
+                      <div class="time-chips">
+                        <span class="evening-chip">5:00 PM – 6:00 PM</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="prerequisites-box info-blue-box">
+                  <span class="box-title">Studio Protocol:</span>
+                  <p>
+                    Arrive 5 mins prior • Carry regular personal gear • All
+                    skill sets welcome
+                  </p>
+                </div>
+
+                <div class="yoga-card-pricing-footer">
+                  <div class="pricing-meta">
+                    <span class="fee-label">Studio Member Fee</span>
+                    <div class="price-line">
+                      <span class="price-value">₹3,500</span>
+                      <span class="price-period">/ month</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div
+                style="
+                  background-color: #f1f5f9;
+                  border-top: 1px solid #e2e8f0;
+                  padding: 20px 28px;
+                  display: flex;
+                  flex-direction: column;
+                  gap: 8px;
+                "
+              >
+                <span
+                  style="
+                    font-size: 0.78rem;
+                    text-transform: uppercase;
+                    letter-spacing: 0.8px;
+                    font-weight: 700;
+                    color: #475569;
+                  "
+                  >To Join or Visit the Studio:</span
+                >
+                <div
+                  style="
+                    display: flex;
+                    flex-wrap: wrap;
+                    gap: 16px;
+                    justify-content: space-between;
+                    align-items: center;
+                  "
+                >
+                  <div style="font-size: 0.95rem; color: #1e293b">
+                    📞 Call:
+                    <a
+                      href="tel:+916384351155"
+                      style="
+                        color: #0c3322;
+                        font-weight: 700;
+                        text-decoration: none;
+                      "
+                      >+91 6384351155</a
+                    >
+                  </div>
+                  <div style="font-size: 0.95rem; color: #1e293b">
+                    📍
+                    <a
+                      href="/contact/"
+                      style="
+                        color: #163e5c;
+                        font-weight: 600;
+                        text-decoration: underline;
+                      "
+                      >View Studio Map & Address</a
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
           <!-- Dual Dashboard Component Grid Layout (FIXED FOR MOBILE VIEW) -->
           <div
             style="
@@ -595,213 +874,6 @@
           </div>
         </div>
         <!-- END OF EDITED PART -->
-        <div class="programs-grid-wrapper">
-          <div class="yoga-course-card">
-            <div class="yoga-card-banner">
-              <img
-                src="{% static 'images/g11.jpeg' %}"
-                alt="Online Yoga Session"
-                class="banner-image"
-              />
-              <span class="status-tag online-tag"
-                >💻 Interactive Live Sessions</span
-              >
-            </div>
-
-            <div class="yoga-card-body">
-              <h2 class="program-title-text">Online Yoga Classes</h2>
-
-              <div class="yoga-meta-badges">
-                <span class="badge">📅 Monthly Renewal</span>
-                <span class="badge">🗣️ English & Regional</span>
-              </div>
-
-              <div class="features-checklist-box">
-                <h3>What You Will Learn & Experience</h3>
-                <div class="checklist-grid">
-                  <div class="check-item">⭐ 100+ Yoga Asanas</div>
-                  <div class="check-item">⭐ Therapeutic Yoga</div>
-                  <div class="check-item">⭐ Hip Opening Practices</div>
-                  <div class="check-item">⭐ Pranayama Training</div>
-                  <div class="check-item">⭐ Flexibility Improvement</div>
-                  <div class="check-item">⭐ Stress Management</div>
-                  <div class="check-item highlight-item">
-                    ⭐ Live Instructor Guidance
-                  </div>
-                </div>
-              </div>
-
-              <div class="batch-timings-box">
-                <h3>Class Batch Timings</h3>
-                <div class="batch-schedule-rows">
-                  <div class="schedule-row">
-                    <span class="group-title">Morning Sessions</span>
-                    <div class="time-chips">
-                      <span>6:00 AM – 7:00 AM</span>
-                      <span>7:15 AM – 8:15 AM</span>
-                      <span>8:30 AM – 9:30 AM</span>
-                    </div>
-                  </div>
-                  <div class="schedule-row">
-                    <span class="group-title">Evening Session</span>
-                    <div class="time-chips">
-                      <span class="evening-chip">6:30 PM – 7:30 PM</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="prerequisites-box">
-                <span class="box-title">Important Prerequisites:</span>
-                <p>
-                  Age above 12 • Personal Yoga Mat • Stable Internet Connection
-                </p>
-              </div>
-
-              <div class="yoga-card-pricing-footer">
-                <div class="pricing-meta">
-                  <span class="fee-label">Course Fee</span>
-                  <div class="price-line">
-                    <span class="price-value">₹1,500</span>
-                    <span class="price-period">/ month</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div style="padding: 0 28px 24px 28px">
-              <button class="book-now-trigger-btn" onclick="openBookingModal()">
-                Book Now & Secure Slot
-              </button>
-            </div>
-          </div>
-
-          <div class="yoga-course-card">
-            <div class="yoga-card-banner">
-              <img
-                src="{% static 'images/g16.jpeg' %}"
-                alt="Offline Yoga Studio"
-                class="banner-image"
-              />
-              <span class="status-tag offline-tag">🧘‍♂️ Studio Environment</span>
-            </div>
-
-            <div class="yoga-card-body">
-              <h2 class="program-title-text">Offline Studio Classes</h2>
-
-              <div class="yoga-meta-badges">
-                <span class="badge">🏛️ On-Site Training</span>
-                <span class="badge">🤝 Face-to-Face</span>
-              </div>
-
-              <div class="features-checklist-box">
-                <h3>Key Program Benefits</h3>
-                <div class="checklist-grid single-col-list">
-                  <div class="check-item">🌿 Direct Instructor Support</div>
-                  <div class="check-item">🌿 Correct Posture Guidance</div>
-                  <div class="check-item">🌿 Premium Studio Environment</div>
-                  <div class="check-item highlight-item">
-                    🌿 Personalized Attention & Adjustments
-                  </div>
-                </div>
-              </div>
-
-              <div class="batch-timings-box">
-                <h3>Class Batch Timings</h3>
-                <div class="batch-schedule-rows">
-                  <div class="schedule-row">
-                    <span class="group-title">Morning Sessions</span>
-                    <div class="time-chips">
-                      <span>6:00 AM – 7:00 AM</span>
-                      <span>7:30 AM – 8:30 AM</span>
-                      <span>10:30 AM – 11:30 AM</span>
-                    </div>
-                  </div>
-                  <div class="schedule-row">
-                    <span class="group-title">Evening Session</span>
-                    <div class="time-chips">
-                      <span class="evening-chip">5:00 PM – 6:00 PM</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="prerequisites-box info-blue-box">
-                <span class="box-title">Studio Protocol:</span>
-                <p>
-                  Arrive 5 mins prior • Carry regular personal gear • All skill
-                  sets welcome
-                </p>
-              </div>
-
-              <div class="yoga-card-pricing-footer">
-                <div class="pricing-meta">
-                  <span class="fee-label">Studio Member Fee</span>
-                  <div class="price-line">
-                    <span class="price-value">₹3,500</span>
-                    <span class="price-period">/ month</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div
-              style="
-                background-color: #f1f5f9;
-                border-top: 1px solid #e2e8f0;
-                padding: 20px 28px;
-                display: flex;
-                flex-direction: column;
-                gap: 8px;
-              "
-            >
-              <span
-                style="
-                  font-size: 0.78rem;
-                  text-transform: uppercase;
-                  letter-spacing: 0.8px;
-                  font-weight: 700;
-                  color: #475569;
-                "
-                >To Join or Visit the Studio:</span
-              >
-              <div
-                style="
-                  display: flex;
-                  flex-wrap: wrap;
-                  gap: 16px;
-                  justify-content: space-between;
-                  align-items: center;
-                "
-              >
-                <div style="font-size: 0.95rem; color: #1e293b">
-                  📞 Call:
-                  <a
-                    href="tel:+916384351155"
-                    style="
-                      color: #0c3322;
-                      font-weight: 700;
-                      text-decoration: none;
-                    "
-                    >+91 6384351155</a
-                  >
-                </div>
-                <div style="font-size: 0.95rem; color: #1e293b">
-                  📍
-                  <a
-                    href="/contact/"
-                    style="
-                      color: #163e5c;
-                      font-weight: 600;
-                      text-decoration: underline;
-                    "
-                    >View Studio Map & Address</a
-                  >
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
 
         <!-- REPLACED LINE: Zeroed out top margin and padding to crush the gap -->
         <section class="testimonials-section">
