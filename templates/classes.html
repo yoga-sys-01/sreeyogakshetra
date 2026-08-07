@@ -1190,6 +1190,8 @@
 
         if (promptBox) promptBox.style.display = "none";
 
+        let bookingId = null;
+
         // --- STEP 1: LOG PENDING ROW TO DATABASE IMMEDIATELY ON SELECTION ---
         try {
           const response = await fetch("/api/save-registration/", {
@@ -1205,6 +1207,7 @@
           });
           const data = await response.json();
           if (data.status === "success") {
+            bookingId = data.booking_id;
             console.log(
               "Pending entry logged to database. ID:",
               data.booking_id,
@@ -1215,54 +1218,64 @@
           console.error("Error logging database entry:", err);
         }
 
-        // --- STEP 2: RENDER GENERATED RAZORPAY BUTTON ---
+        // --- STEP 2: RENDER PER-BATCH RAZORPAY PAYMENT BUTTON ---
         const buttonIdMap = {
           "morning-600": "pl_TBqXQNS9mxiVTS",
           "morning-715": "pl_TBqbVql6uiPDHT",
           "morning-830": "pl_TBqclIEJfyspXY",
           "evening-630": "pl_TBqeVNGcb50rxX",
         };
-
         const buttonId = buttonIdMap[selectedValue];
 
-        if (buttonId) {
-          const container = document.createElement("div");
-
-          const dbForm = document.createElement("form");
-          dbForm.id = "hiddenDataForm";
-          dbForm.action = "YOUR_FORMSPREE_ENDPOINT_OR_SHEETDB_URL";
-          dbForm.method = "POST";
-          dbForm.style.display = "none";
-
-          const today = new Date();
-          const expiry = new Date();
-          expiry.setDate(today.getDate() + 30);
-
-          dbForm.innerHTML = `
-                <input type="text" name="Name" value="${nameInput}">
-                <input type="text" name="Phone" value="${phoneInput}">
-                <input type="email" name="Email" value="${emailInput}">
-                <input type="text" name="Batch" value="${selectedValue}">
-                <input type="text" name="RegistrationDate" value="${today.toDateString()}">
-                <input type="text" name="ExpiryDate" value="${expiry.toDateString()}">
-                <input type="checkbox" name="agreed_to_terms" checked value="true">
-                <input type="text" name="Status" value="Clicked Pay (Check Razorpay Dashboard)">
-            `;
-
-          const rzpForm = document.createElement("form");
-          const rzpScript = document.createElement("script");
-          rzpScript.src = "https://checkout.razorpay.com/v1/payment-button.js";
-          rzpScript.setAttribute("data-payment_button_id", buttonId);
-          rzpScript.async = true;
-
-          rzpForm.appendChild(rzpScript);
-          container.appendChild(dbForm);
-          container.appendChild(rzpForm);
-          injectionArea.appendChild(container);
-        } else {
+        if (!buttonId) {
           injectionArea.innerHTML =
             '<p style="color: #cbd5e1; background-color: #64748b; font-size: 0.95rem; text-align: center; padding: 14px; border-radius: 6px;">Button code not configured for this batch selection yet.</p>';
+          return;
         }
+
+        const container = document.createElement("div");
+
+        const dbForm = document.createElement("form");
+        dbForm.id = "hiddenDataForm";
+        dbForm.action = "YOUR_FORMSPREE_ENDPOINT_OR_SHEETDB_URL";
+        dbForm.method = "POST";
+        dbForm.style.display = "none";
+
+        const today = new Date();
+        const expiry = new Date();
+        expiry.setDate(today.getDate() + 30);
+
+        dbForm.innerHTML = `
+              <input type="text" name="Name" value="${nameInput}">
+              <input type="text" name="Phone" value="${phoneInput}">
+              <input type="email" name="Email" value="${emailInput}">
+              <input type="text" name="Batch" value="${selectedValue}">
+              <input type="text" name="RegistrationDate" value="${today.toDateString()}">
+              <input type="text" name="ExpiryDate" value="${expiry.toDateString()}">
+              <input type="checkbox" name="agreed_to_terms" checked value="true">
+              <input type="text" name="Status" value="Clicked Pay (Check Razorpay Dashboard)">
+          `;
+
+        const rzpForm = document.createElement("form");
+        const rzpScript = document.createElement("script");
+        rzpScript.src = "https://checkout.razorpay.com/v1/payment-button.js";
+        rzpScript.setAttribute("data-payment_button_id", buttonId);
+        rzpScript.async = true;
+        if (bookingId) {
+          rzpScript.setAttribute(
+            "data-callback_url",
+            `${window.location.origin}/payment-success/${selectedValue}/?booking_id=${bookingId}`,
+          );
+          rzpScript.setAttribute("data-reference_id", bookingId);
+        }
+        rzpScript.setAttribute("data-prefill_name", nameInput);
+        rzpScript.setAttribute("data-prefill_email", emailInput);
+        rzpScript.setAttribute("data-prefill_contact", phoneInput);
+
+        rzpForm.appendChild(rzpScript);
+        container.appendChild(dbForm);
+        container.appendChild(rzpForm);
+        injectionArea.appendChild(container);
       }
 
       function resetSelection(promptBox) {

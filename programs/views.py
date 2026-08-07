@@ -42,36 +42,31 @@ def accept_terms_api(request, booking_id):
 
 def payment_success_view(request, batch_name):
     """
-    Razorpay redirects here with the batch name string. We look up the latest
-    unconfirmed 'Pending' booking for this specific batch and confirm it.
+    Razorpay redirects here with the exact booking_id in the callback URL.
+    The request MUST carry a booking_id — otherwise it is not a genuine
+    post-payment redirect and we deny it (no guessing by batch).
     """
-    # 1. Look for the most recent registration matching this batch that hasn't paid yet
-    registration = YogaRegistration.objects.filter(batch=batch_name, status="Pending").last()
-    
-    if registration:
-        # 2. Found it! Update their real details (Name, Email, Phone) to completed status
-        registration.status = "Payment Success / Completed"
-        registration.save()
-        
-        # Clear the session key safely if it exists
-        if 'pending_booking_id' in request.session:
-            request.session['pending_booking_id'] = None
-    else:
-        # 3. Fallback: If no pending row exists, grab the last completed record for this batch
-        # so the landing page displays correctly on a manual page refresh.
-        registration = YogaRegistration.objects.filter(batch=batch_name, status="Payment Success / Completed").last()
-        
-        # Emergency fail-safe if your database is completely wiped
-        if not registration:
-            registration = YogaRegistration.objects.create(
-                name="Valued Student",
-                phone="0000000000",
-                email="student@example.com",
-                batch=batch_name,
-                status="Payment Success / Completed",
-                agreed_to_terms=True
-            )
-        
+    # A valid confirmation must carry the booking_id Razorpay passed back.
+    # The booking_id in the URL also survives a manual page refresh.
+    booking_id = request.GET.get('booking_id')
+
+    if not booking_id:
+        return redirect('/classes/')
+
+    registration = YogaRegistration.objects.filter(booking_id=booking_id).first()
+
+    # The booking must exist AND belong to the batch in the URL
+    if not registration or registration.batch != batch_name:
+        return redirect('/classes/')
+
+    # Found the exact booking — confirm it.
+    registration.status = "Payment Success / Completed"
+    registration.save()
+
+    # Clear the session key safely if it exists
+    if 'pending_booking_id' in request.session:
+        request.session['pending_booking_id'] = None
+
     return render(request, 'payment_success.html', {'user': registration})
 
 def whatsapp_redirect_bridge(request, booking_id):
