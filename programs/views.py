@@ -2,6 +2,7 @@
 
 # Create your views here.
 import json
+from urllib.parse import parse_qs
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
@@ -42,13 +43,48 @@ def accept_terms_api(request, booking_id):
 
 def payment_success_view(request, batch_name):
     """
-    Razorpay redirects here with the exact booking_id in the callback URL.
-    The request MUST carry a booking_id — otherwise it is not a genuine
-    post-payment redirect and we deny it (no guessing by batch).
+    Razorpay Payment Buttons redirect here after payment. The redirect URL is
+    configured per button in the Razorpay Dashboard (one URL per batch), and
+    Razorpay appends a genuine payment id to it. Its presence is our proof that
+    a real payment redirect happened.
+
+    We then confirm the exact booking stored in this browser's session when the
+    user registered — never "the latest pending row for the batch".
     """
-    # A valid confirmation must carry the booking_id Razorpay passed back.
-    # The booking_id in the URL also survives a manual page refresh.
-    booking_id = request.GET.get('booking_id')
+    # A real post-payment redirect from Razorpay always carries a payment id.
+    # Direct visits to this URL (no payment) will not have it and are denied.
+
+    # Collect the query params. Razorpay sometimes appends the extra params with
+    # "?" instead of "&" (e.g. `?booking_id=abc?razorpay_payment_id=pay_...`),
+    # which would otherwise swallow the payment id inside the booking_id value.
+    # Normalise the query string before reading it.
+    params = {
+        k: v[0]
+        for k, v in parse_qs(request.META.get('QUERY_STRING', '').replace('?', '&')).items()
+    }
+
+    # Payment button callbacks may also arrive as a POST body.
+    if request.method == 'POST':
+        for key, value in request.POST.items():
+            params[key] = value
+
+    # A genuine redirect from Razorpay carries at least one of these markers.
+    # (Payment Buttons do not always include razorpay_payment_id.)
+    is_razorpay_redirect = any(
+        params.get(k)
+        for k in (
+            'razorpay_payment_id',
+            'razorpay_payment_link_id',
+            'razorpay_payment_link_reference_id',
+            'razorpay_signature',
+        )
+    )
+
+    booking_id = (
+        params.get('booking_id')
+        or params.get('razorpay_payment_link_reference_id')
+        or request.session.get('pending_booking_id')
+    )
 
     if not booking_id:
         return redirect('/classes/')
@@ -57,6 +93,12 @@ def payment_success_view(request, batch_name):
 
     # The booking must exist AND belong to the batch in the URL
     if not registration or registration.batch != batch_name:
+        return redirect('/classes/')
+
+    # Only accept the redirect if Razorpay sent us a marker, or this browser
+    # actually created the booking (session proof) — not random direct visits.
+    session_matches = request.session.get('pending_booking_id') == booking_id
+    if not (is_razorpay_redirect or session_matches):
         return redirect('/classes/')
 
     # Found the exact booking — confirm it.
