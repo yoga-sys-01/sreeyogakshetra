@@ -10,7 +10,7 @@ class YogaRegistration(models.Model):
         ('morning-600', 'Morning: 6:00 AM – 7:00 AM'),
         ('morning-715', 'Morning: 7:15 AM – 8:15 AM'),
         ('morning-830', 'Morning: 8:30 AM – 9:30 AM'),
-        ('evening-630', 'Evening: 6:30 PM – 7:30 PM'),
+        ('morning-1030', 'Morning: 10:30 AM – 11:30 AM'),
     ]
 
     name = models.CharField(max_length=100)

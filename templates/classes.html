@@ -12,6 +12,7 @@
       href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
+     <link rel="icon" type="image/png" href="{% static 'images/logo_main.png' %}" sizes="48x48">
     <link rel="stylesheet" href="{% static 'css/style.css' %}" />
   </head>
   <body class="yoga-page-bg">
@@ -279,14 +280,10 @@
                         <span>6:00 AM – 7:00 AM</span>
                         <span>7:15 AM – 8:15 AM</span>
                         <span>8:30 AM – 9:30 AM</span>
+                        <span>10:30 AM – 11:30 AM</span>
                       </div>
                     </div>
-                    <div class="schedule-row">
-                      <span class="group-title">Evening Session</span>
-                      <div class="time-chips">
-                        <span class="evening-chip">6:30 PM – 7:30 PM</span>
-                      </div>
-                    </div>
+                  
                   </div>
                 </div>
 
@@ -1115,7 +1112,7 @@
               <option value="morning-600">Morning Batch - 6:00 AM</option>
               <option value="morning-715">Morning Batch - 7:15 AM</option>
               <option value="morning-830">Morning Batch - 8:30 AM</option>
-              <option value="evening-630">Evening Batch - 6:30 PM</option>
+              <option value="morning-1030">Morning Batch - 10:30 AM</option>
             </select>
           </div>
           <div class="razorpay-container">
@@ -1223,7 +1220,7 @@
           "morning-600": "pl_TBqXQNS9mxiVTS",
           "morning-715": "pl_TBqbVql6uiPDHT",
           "morning-830": "pl_TBqclIEJfyspXY",
-          "evening-630": "pl_TBqeVNGcb50rxX",
+          "morning-1030": "pl_Tby8t7NNRQ9w2y",
         };
         const buttonId = buttonIdMap[selectedValue];
 

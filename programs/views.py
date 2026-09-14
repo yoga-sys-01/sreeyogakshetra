@@ -120,7 +120,7 @@ def whatsapp_redirect_bridge(request, booking_id):
         "morning-600": "https://chat.whatsapp.com/Khj3XdeZPcgIOcCDUE10mZ",
         "morning-715": "https://chat.whatsapp.com/Endoazunz3g5QgQ9n4p19q",
         "morning-830": "https://chat.whatsapp.com/BMVPozajlrCF5dj10vInv0",
-        "evening-630": "https://chat.whatsapp.com/Jj3te1vWXwi2qaPo7k6yJC",
+        "morning-1030":"https://chat.whatsapp.com/K9GrQ92hpLTHgIwavbNMUh?s=cl&p=a&mlu=4&ilr=4",
     }
     
     target_url = whatsapp_groups.get(user_record.batch, "https://chat.whatsapp.com/DEFAULT_FALLBACK")
