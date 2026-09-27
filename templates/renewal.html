@@ -16,7 +16,6 @@
         .payment-display { display: none; margin-top: 20px; padding: 15px; background: #f8fafc; border-radius: 8px; border: 1px solid #e2e8f0; text-align: center; }
         .qr-image { max-width: 180px; width: 100%; height: auto; border-radius: 8px; border: 1px solid #ddd; padding: 5px; background: #fff; margin: 10px 0; }
         
-        /* Highlighted Instructions Box */
         .instruction-highlight {
             background-color: #fff3cd;
             color: #856404;
@@ -80,38 +79,40 @@
             <div id="paymentDisplay" style="display: none; text-align: center; margin-top: 20px;">
 
                 <!-- Important Instructions Warning Box -->
-    <div style="background-color: #fff3cd; border: 1px solid #ffeeba; border-left: 5px solid #ffc107; color: #856404; padding: 12px 15px; border-radius: 6px; text-align: left; margin-bottom: 20px; font-size: 0.9rem; line-height: 1.4;">
-        <strong>⚠️ Important Step:</strong> After making the payment in Google Pay / UPI, return to this page and click the <strong>"I Have Completed Payment"</strong> button below to finalize your renewal request.
-    </div>
-    
-    <!-- QR Code for scanning -->
-    <div style="margin-bottom: 15px;">
-        <img src="{% static 'images/gpay_qr.jpeg' %}" alt="UPI QR Code" style="max-width: 220px; border-radius: 8px;">
-        <p style="font-size: 0.85rem; color: #555; margin-top: 5px;">UPI ID: <strong>agastthya2003@oksbi</strong></p>
-    </div>
+                <div style="background-color: #fff3cd; border: 1px solid #ffeeba; border-left: 5px solid #ffc107; color: #856404; padding: 12px 15px; border-radius: 6px; text-align: left; margin-bottom: 20px; font-size: 0.9rem; line-height: 1.4;">
+                    <strong>⚠️ Important Step:</strong> After making the payment in Google Pay / UPI, return to this page and click the <strong>"I Have Completed Payment"</strong> button below to finalize your renewal request.
+                </div>
+                
+                <!-- QR Code for scanning -->
+                <div style="margin-bottom: 15px;">
+                    <img src="{% static 'images/gpay_qr.jpeg' %}" alt="UPI QR Code" class="qr-image">
+                    <p style="font-size: 0.85rem; color: #555; margin-top: 5px;">UPI ID: <strong>agastthya2003@oksbi</strong></p>
+                </div>
 
-    <!-- Option 1: One-Tap Copy UPI ID (Bypasses SBI Link Restriction) -->
-    <button type="button" onclick="copyUpiId()" style="width: 100%; padding: 12px; background-color: #f4f4f4; border: 1px solid #ccc; border-radius: 6px; font-weight: bold; margin-bottom: 10px; cursor: pointer;">
-        📋 Tap to Copy UPI ID (agastthya2003@oksbi)
-    </button>
+                <!-- Option 1: One-Tap Copy UPI ID -->
+                <button type="button" onclick="copyUpiId()" style="width: 100%; padding: 12px; background-color: #f4f4f4; border: 1px solid #ccc; border-radius: 6px; font-weight: bold; margin-bottom: 10px; cursor: pointer;">
+                    📋 Tap to Copy UPI ID (agastthya2003@oksbi)
+                </button>
 
-    <!-- Option 2: Direct App Launcher -->
-    <a id="mobilePayLink" href="#" style="text-decoration: none;">
-        <button type="button" style="width: 100%; padding: 12px; background-color: #0F9D58; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer;">
-            🚀 Open GPay App
-        </button>
-    </a>
+                <!-- Option 2: Direct App Launcher -->
+                <a id="mobilePayLink" href="#" style="text-decoration: none;">
+                    <button type="button" class="gpay-btn">
+                        🚀 Open GPay App
+                    </button>
+                </a>
 
-    <!-- Step 3: Countdown & Verification Submit -->
-    <div style="margin-top: 20px;">
-        <button id="submitBtn" type="button" onclick="submitRenewal()" style="width: 100%; padding: 12px; background-color: #28a745; color: white; border: none; border-radius: 6px; font-weight: bold; display: none;">
-            ✅ I Have Completed Payment
-        </button>
-        <p id="timerText" style="font-size: 0.85rem; color: #777; margin-top: 8px;">
-            Please complete payment in GPay. Verification button unlocks in <span id="countdown">15</span> seconds...
-        </p>
+                <!-- Step 3: Countdown & Verification Submit -->
+                <div style="margin-top: 20px;">
+                    <button id="submitBtn" type="button" onclick="submitRenewal()" style="width: 100%; padding: 12px; background-color: #28a745; color: white; border: none; border-radius: 6px; font-weight: bold; display: none; cursor: pointer;">
+                        ✅ I Have Completed Payment
+                    </button>
+                    <p id="timerText" style="font-size: 0.85rem; color: #777; margin-top: 8px;">
+                        Please complete payment in GPay. Verification button unlocks in <span id="countdown">15</span> seconds...
+                    </p>
+                </div>
+            </div>
+        </form>
     </div>
-</div>
 
 <script>
     const UPI_ID = "agastthya2003@oksbi"; 
@@ -159,6 +160,38 @@
                 submitBtnEl.style.display = 'block';
             }
         }, 1000);
+    }
+
+    function submitRenewal() {
+        const payload = {
+            name: document.getElementById('name').value,
+            phone: document.getElementById('phone').value,
+            batch: document.getElementById('batch').value,
+            joining_month: document.getElementById('joiningMonth').value
+        };
+
+        const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+
+        fetch('/api/submit-renewal/', {
+            method: 'POST',
+            headers: { 
+                'Content-Type': 'application/json',
+                'X-CSRFToken': csrfToken
+            },
+            body: JSON.stringify(payload)
+        })
+        .then(res => res.json())
+        .then(data => {
+            if (data.status === 'success') {
+                alert('Thank you! Your renewal request has been recorded. We will confirm your payment shortly.');
+                window.location.reload();
+            } else {
+                alert('Submission failed: ' + (data.message || 'Error submitting details'));
+            }
+        })
+        .catch(err => {
+            alert('Network error submitting request: ' + err.message);
+        });
     }
 </script>
 </body>
