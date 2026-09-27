@@ -1,0 +1,198 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monthly Class Renewal | Sree Yogakshetra</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <style>
+        .renewal-card { max-width: 480px; margin: 40px auto; padding: 25px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.08); background: #fff; text-align: center; }
+        .form-group { text-align: left; margin-bottom: 15px; }
+        .form-group label { display: block; font-weight: bold; margin-bottom: 5px; color: #333; }
+        .form-group input, .form-group select { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box; }
+        
+        .gpay-btn { background-color: #0F9D58; color: white; border: none; padding: 14px; border-radius: 8px; width: 100%; font-weight: bold; font-size: 16px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; margin-top: 10px; text-decoration: none; }
+        .payment-display { display: none; margin-top: 20px; padding: 15px; background: #f8fafc; border-radius: 8px; border: 1px solid #e2e8f0; text-align: center; }
+        .qr-image { max-width: 180px; width: 100%; height: auto; border-radius: 8px; border: 1px solid #ddd; padding: 5px; background: #fff; margin: 10px 0; }
+        
+        /* Highlighted Instructions Box */
+        .instruction-highlight {
+            background-color: #fff3cd;
+            color: #856404;
+            border: 2px dashed #ffeeba;
+            padding: 12px;
+            border-radius: 8px;
+            margin: 15px 0;
+            font-size: 0.95rem;
+            font-weight: 600;
+            line-height: 1.4;
+        }
+
+        .done-btn { background-color: #25D366; color: white; padding: 14px; border: none; border-radius: 6px; font-size: 16px; font-weight: bold; width: 100%; cursor: pointer; margin-top: 15px; display: none; }
+        .timer-msg { margin-top: 15px; padding: 12px; background-color: #e0f2fe; color: #0369a1; border-radius: 6px; font-size: 14px; font-weight: 600; display: none; }
+    </style>
+</head>
+<body>
+
+    <div class="renewal-card">
+        <h2>Renew Your Yoga Subscription</h2>
+        <p>Fill in your details to proceed with your monthly renewal.</p>
+
+        <form id="renewalForm">
+            {% csrf_token %}
+            <div class="form-group">
+                <label>Full Name</label>
+                <input type="text" id="name" required placeholder="Enter registered name">
+            </div>
+
+            <div class="form-group">
+                <label>Phone Number</label>
+                <input type="tel" id="phone" required placeholder="Enter phone number">
+            </div>
+
+            <div class="form-group">
+                <label>Select Batch</label>
+                <select id="batch" required>
+                    <option value="morning-600">Morning: 6:00 AM – 7:00 AM</option>
+                    <option value="morning-715">Morning: 7:15 AM – 8:15 AM</option>
+                    <option value="morning-830">Morning: 8:30 AM – 9:30 AM</option>
+                    <option value="morning-1030">Morning: 10:30 AM – 11:30 AM</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Which month of joining is this?</label>
+                <select id="joiningMonth" required>
+                    <option value="2nd Month">2nd Month</option>
+                    <option value="3rd Month">3rd Month</option>
+                    <option value="4th Month">4th Month</option>
+                    <option value="5th Month">5th Month</option>
+                    <option value="6th Month or More">6th Month or More</option>
+                </select>
+            </div>
+
+            <button type="button" id="proceedBtn" class="gpay-btn" onclick="showPaymentSection()">
+                🟢 Proceed to Pay ₹1500
+            </button>
+
+            <!-- Payment Display Box -->
+            <div id="paymentDisplay" class="payment-display">
+                <h4 style="margin: 0 0 5px 0;">Pay ₹1500 via Google Pay / UPI</h4>
+                <p style="font-size: 0.85rem; color: #666; margin: 0 0 10px 0;">UPI ID: <strong>agastthya2003@oksbi</strong></p>
+
+                <!-- Highlighted User Instruction -->
+                <div class="instruction-highlight">
+                    ⚠️ <strong>Important Step:</strong><br>
+                    After completing the payment in your UPI app, please return to this screen and tap the <strong>"✅ I Have Completed Payment"</strong> button below to finalize your registration.
+                </div>
+
+                <!-- Desktop QR Code -->
+                <img src="{% static 'images/agas_gpay.jpeg' %}" alt="Google Pay QR Code" class="qr-image">
+
+                <!-- Desktop QR Quick Link -->
+                <div style="margin-bottom: 10px;">
+                    <a href="javascript:void(0)" onclick="enableDoneButtonDirectly()" style="font-size: 0.85rem; color: #007bff; text-decoration: underline;">
+                        Scanned QR Code on Desktop? Click here
+                    </a>
+                </div>
+
+                <!-- Tap to Open UPI API Deep Link -->
+                <a id="mobilePayLink" href="#" class="gpay-btn" onclick="startCountdown()">
+                    🚀 Tap to Open Google Pay / UPI App
+                </a>
+
+                <!-- Countdown Timer -->
+                <div id="timerMsg" class="timer-msg">
+                    ⏳ Opening GPay... Please complete the payment and return here. Verification button will appear in <span id="secondsText">15</span> seconds...
+                </div>
+
+                <!-- Final Action Button -->
+                <button type="button" id="doneBtn" class="done-btn" onclick="submitRenewal()">
+                    ✅ I Have Completed Payment
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        const UPI_ID = "tetiksha2005@okaxis";
+        const AMOUNT = "1500";
+        const PAYEE_NAME = "Sree Yogakshetra";
+
+        function showPaymentSection() {
+            const name = document.getElementById('name').value;
+            const phone = document.getElementById('phone').value;
+
+            if (!name || !phone) {
+                alert('Please enter your Name and Phone Number first.');
+                return;
+            }
+
+            // Generate UPI API Deep Link with pre-filled name note
+            const note = `${name} Renewal`;
+            const upiUrl = `upi://pay?pa=${encodeURIComponent(UPI_ID)}&pn=${encodeURIComponent(PAYEE_NAME)}&am=${AMOUNT}&tn=${encodeURIComponent(note)}&cu=INR`;
+            document.getElementById('mobilePayLink').href = upiUrl;
+
+            document.getElementById('proceedBtn').style.display = 'none';
+            document.getElementById('paymentDisplay').style.display = 'block';
+        }
+
+        function startCountdown() {
+            const timerMsg = document.getElementById('timerMsg');
+            const doneBtn = document.getElementById('doneBtn');
+            const secondsText = document.getElementById('secondsText');
+
+            timerMsg.style.display = 'block';
+            doneBtn.style.display = 'none';
+
+            let timeLeft = 15;
+            secondsText.textContent = timeLeft;
+
+            const countdownInterval = setInterval(() => {
+                timeLeft--;
+                secondsText.textContent = timeLeft;
+
+                if (timeLeft <= 0) {
+                    clearInterval(countdownInterval);
+                    timerMsg.style.display = 'none';
+                    doneBtn.style.display = 'block';
+                }
+            }, 1000);
+        }
+
+        function enableDoneButtonDirectly() {
+            document.getElementById('timerMsg').style.display = 'none';
+            document.getElementById('doneBtn').style.display = 'block';
+        }
+
+        function submitRenewal() {
+            const payload = {
+                name: document.getElementById('name').value,
+                phone: document.getElementById('phone').value,
+                batch: document.getElementById('batch').value,
+                joining_month: document.getElementById('joiningMonth').value,
+                transaction_id: "PENDING_VERIFICATION"
+            };
+
+            fetch('/api/submit-renewal/', {
+                method: 'POST',
+                headers: { 
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': '{{ csrf_token }}'
+                },
+                body: JSON.stringify(payload)
+            })
+            .then(res => res.json())
+            .then(data => {
+                if (data.status === 'success') {
+                    alert('Thank you! Your renewal request has been recorded. We will confirm your payment shortly.');
+                    window.location.reload();
+                } else {
+                    alert('Submission failed: ' + (data.message || 'Error submitting details'));
+                }
+            });
+        }
+    </script>
+</body>
+</html>

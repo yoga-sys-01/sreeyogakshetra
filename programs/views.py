@@ -7,6 +7,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from .models import YogaRegistration
+from .models import MonthlyRenewal
 
 @csrf_exempt
 def save_registration(request):
@@ -125,3 +126,22 @@ def whatsapp_redirect_bridge(request, booking_id):
     
     target_url = whatsapp_groups.get(user_record.batch, "https://chat.whatsapp.com/DEFAULT_FALLBACK")
     return redirect(target_url)
+
+@csrf_exempt
+def submit_renewal_api(request):
+    """Handles GPay payment confirmation submission"""
+    if request.method == 'POST':
+        try:
+            data = json.loads(request.body)
+            renewal = MonthlyRenewal.objects.create(
+                name=data.get('name'),
+                phone=data.get('phone'),
+                batch=data.get('batch'),
+                renewal_month_number=int(data.get('renewal_month_number', 2)),
+                transaction_id=data.get('transaction_id'),
+                status="Pending Verification"
+            )
+            return JsonResponse({'status': 'success', 'message': 'Renewal request submitted successfully!'})
+        except Exception as e:
+            return JsonResponse({'status': 'error', 'message': str(e)}, status=400)
+    return JsonResponse({'status': 'error', 'message': 'Invalid request method'}, status=405)

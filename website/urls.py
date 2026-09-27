@@ -54,6 +54,9 @@ urlpatterns = [
             template_name="sitemap.xml", content_type="application/xml"
         ),
     ),
+    
+    path('renew/',views.renewal_page_view, name='renewal_page'),
+    path('api/submit-renewal/', program_views.submit_renewal_api, name='submit_renewal_api'),
 
 ]
 

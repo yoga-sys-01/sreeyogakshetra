@@ -15,3 +15,7 @@ def gallery(request):
 def contact(request):
     return render(request,'contact.html')
 
+def renewal_page_view(request):
+    """Renders the separate renewal page"""
+    return render(request, 'renewal.html')
+

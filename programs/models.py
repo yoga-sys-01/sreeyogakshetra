@@ -47,3 +47,17 @@ class YogaRegistration(models.Model):
 
     def __str__(self):
         return f"{self.name} - {self.batch}"
+    
+class MonthlyRenewal(models.Model):
+    BATCH_CHOICES = YogaRegistration.BATCH_CHOICES
+
+    name = models.CharField(max_length=100)
+    phone = models.CharField(max_length=15)
+    batch = models.CharField(max_length=20, choices=BATCH_CHOICES)
+    renewal_month_number = models.IntegerField(default=2, help_text="e.g. 2 for 2nd Month, 3 for 3rd Month")
+    
+    submitted_at = models.DateTimeField(auto_now_add=True)
+    status = models.CharField(max_length=50, default="Pending Verification")
+
+    def __str__(self):
+        return f"{self.name} - Month {self.renewal_month_number} Renewal ({self.batch})"
