@@ -7,29 +7,98 @@
     <title>Monthly Class Renewal | Sree Yogakshetra</title>
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <style>
-        .renewal-card { max-width: 480px; margin: 40px auto; padding: 25px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.08); background: #fff; text-align: center; }
+        .renewal-card { 
+            max-width: 480px; 
+            margin: 40px auto; 
+            padding: 25px; 
+            border-radius: 12px; 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08); 
+            background: #fff; 
+            text-align: center; 
+            font-family: Arial, sans-serif;
+        }
         .form-group { text-align: left; margin-bottom: 15px; }
         .form-group label { display: block; font-weight: bold; margin-bottom: 5px; color: #333; }
         .form-group input, .form-group select { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box; }
         
-        .gpay-btn { background-color: #0F9D58; color: white; border: none; padding: 14px; border-radius: 8px; width: 100%; font-weight: bold; font-size: 16px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; margin-top: 10px; text-decoration: none; }
-        .payment-display { display: none; margin-top: 20px; padding: 15px; background: #f8fafc; border-radius: 8px; border: 1px solid #e2e8f0; text-align: center; }
-        .qr-image { max-width: 180px; width: 100%; height: auto; border-radius: 8px; border: 1px solid #ddd; padding: 5px; background: #fff; margin: 10px 0; }
+        .gpay-btn { 
+            background-color: #0F9D58; 
+            color: white; 
+            border: none; 
+            padding: 14px; 
+            border-radius: 8px; 
+            width: 100%; 
+            font-weight: bold; 
+            font-size: 16px; 
+            cursor: pointer; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            gap: 8px; 
+            margin-top: 10px; 
+            text-decoration: none; 
+        }
+        .payment-display { 
+            display: none; 
+            margin-top: 20px; 
+            padding: 15px; 
+            background: #f8fafc; 
+            border-radius: 8px; 
+            border: 1px solid #e2e8f0; 
+            text-align: center; 
+        }
+        .qr-image { 
+            max-width: 180px; 
+            width: 100%; 
+            height: auto; 
+            border-radius: 8px; 
+            border: 1px solid #ddd; 
+            padding: 5px; 
+            background: #fff; 
+            margin: 10px 0; 
+        }
         
         .instruction-highlight {
             background-color: #fff3cd;
             color: #856404;
-            border: 2px dashed #ffeeba;
-            padding: 12px;
-            border-radius: 8px;
-            margin: 15px 0;
-            font-size: 0.95rem;
-            font-weight: 600;
+            border: 1px solid #ffeeba;
+            border-left: 5px solid #ffc107;
+            padding: 12px 15px;
+            border-radius: 6px;
+            text-align: left;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
             line-height: 1.4;
         }
 
-        .done-btn { background-color: #25D366; color: white; padding: 14px; border: none; border-radius: 6px; font-size: 16px; font-weight: bold; width: 100%; cursor: pointer; margin-top: 15px; display: none; }
-        .timer-msg { margin-top: 15px; padding: 12px; background-color: #e0f2fe; color: #0369a1; border-radius: 6px; font-size: 14px; font-weight: 600; display: none; }
+        .done-btn { 
+            background-color: #28a745; 
+            color: white; 
+            padding: 14px; 
+            border: none; 
+            border-radius: 6px; 
+            font-size: 16px; 
+            font-weight: bold; 
+            width: 100%; 
+            cursor: pointer; 
+            margin-top: 15px; 
+            display: none; 
+        }
+        .timer-msg { 
+            margin-top: 12px; 
+            font-size: 0.85rem; 
+            color: #777; 
+        }
+        .copy-btn {
+            width: 100%; 
+            padding: 12px; 
+            background-color: #f4f4f4; 
+            border: 1px solid #ccc; 
+            border-radius: 6px; 
+            font-weight: bold; 
+            margin-bottom: 10px; 
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
@@ -75,38 +144,38 @@
                 🟢 Proceed to Pay ₹1500
             </button>
 
-            <!-- Payment Display Box -->
-            <div id="paymentDisplay" style="display: none; text-align: center; margin-top: 20px;">
+            <!-- Payment Display Container -->
+            <div id="paymentDisplay" class="payment-display">
 
-                <!-- Important Instructions Warning Box -->
-                <div style="background-color: #fff3cd; border: 1px solid #ffeeba; border-left: 5px solid #ffc107; color: #856404; padding: 12px 15px; border-radius: 6px; text-align: left; margin-bottom: 20px; font-size: 0.9rem; line-height: 1.4;">
+                <!-- Highlighted Instructions Warning Box -->
+                <div class="instruction-highlight">
                     <strong>⚠️ Important Step:</strong> After making the payment in Google Pay / UPI, return to this page and click the <strong>"I Have Completed Payment"</strong> button below to finalize your renewal request.
                 </div>
                 
-                <!-- QR Code for scanning -->
-                <div style="margin-bottom: 15px;">
+                <!-- QR Code Display -->
+                <div>
                     <img src="{% static 'images/gpay_qr.jpeg' %}" alt="UPI QR Code" class="qr-image">
                     <p style="font-size: 0.85rem; color: #555; margin-top: 5px;">UPI ID: <strong>agastthya2003@oksbi</strong></p>
                 </div>
 
-                <!-- Option 1: One-Tap Copy UPI ID -->
-                <button type="button" onclick="copyUpiId()" style="width: 100%; padding: 12px; background-color: #f4f4f4; border: 1px solid #ccc; border-radius: 6px; font-weight: bold; margin-bottom: 10px; cursor: pointer;">
+                <!-- Option 1: Copy UPI ID Button -->
+                <button type="button" class="copy-btn" onclick="copyUpiId()">
                     📋 Tap to Copy UPI ID (agastthya2003@oksbi)
                 </button>
 
-                <!-- Option 2: Direct App Launcher -->
+                <!-- Option 2: Direct GPay Launch -->
                 <a id="mobilePayLink" href="#" style="text-decoration: none;">
                     <button type="button" class="gpay-btn">
                         🚀 Open GPay App
                     </button>
                 </a>
 
-                <!-- Step 3: Countdown & Verification Submit -->
+                <!-- Step 3: Timer & Verification Submission -->
                 <div style="margin-top: 20px;">
-                    <button id="submitBtn" type="button" onclick="submitRenewal()" style="width: 100%; padding: 12px; background-color: #28a745; color: white; border: none; border-radius: 6px; font-weight: bold; display: none; cursor: pointer;">
+                    <button id="submitBtn" type="button" class="done-btn" onclick="submitRenewal()">
                         ✅ I Have Completed Payment
                     </button>
-                    <p id="timerText" style="font-size: 0.85rem; color: #777; margin-top: 8px;">
+                    <p id="timerText" class="timer-msg">
                         Please complete payment in GPay. Verification button unlocks in <span id="countdown">15</span> seconds...
                     </p>
                 </div>
@@ -128,15 +197,12 @@
         }
 
         const note = `${name} Renewal`;
-
-        // Direct standard UPI URL
         const upiUrl = `upi://pay?pa=${encodeURIComponent(UPI_ID)}&pn=${encodeURIComponent(PAYEE_NAME)}&tn=${encodeURIComponent(note)}&cu=INR`;
         document.getElementById('mobilePayLink').href = upiUrl;
 
         document.getElementById('proceedBtn').style.display = 'none';
         document.getElementById('paymentDisplay').style.display = 'block';
 
-        // Start 15s Countdown Timer
         startVerificationTimer();
     }
 
