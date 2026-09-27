@@ -137,7 +137,7 @@ def submit_renewal_api(request):
                 name=data.get('name'),
                 phone=data.get('phone'),
                 batch=data.get('batch'),
-                renewal_month_number=int(data.get('renewal_month_number', 2)),
+                renewal_month_number=data.get('joining_month'),
                 status="Pending Verification"
             )
             return JsonResponse({'status': 'success', 'message': 'Renewal request submitted successfully!'})

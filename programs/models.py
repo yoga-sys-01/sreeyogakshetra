@@ -54,7 +54,7 @@ class MonthlyRenewal(models.Model):
     name = models.CharField(max_length=100)
     phone = models.CharField(max_length=15)
     batch = models.CharField(max_length=20, choices=BATCH_CHOICES)
-    renewal_month_number = models.IntegerField(default=2, help_text="e.g. 2 for 2nd Month, 3 for 3rd Month")
+    renewal_month_number = models.CharField(max_length=50, default="2nd Month")
     
     submitted_at = models.DateTimeField(auto_now_add=True)
     status = models.CharField(max_length=50, default="Pending Verification")
