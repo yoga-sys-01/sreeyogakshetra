@@ -77,121 +77,89 @@
             </button>
 
             <!-- Payment Display Box -->
-            <div id="paymentDisplay" class="payment-display">
-                <h4 style="margin: 0 0 5px 0;">Pay ₹1500 via Google Pay / UPI</h4>
-                <p style="font-size: 0.85rem; color: #666; margin: 0 0 10px 0;">UPI ID: <strong>agastthya2003@oksbi</strong></p>
+            <div id="paymentDisplay" style="display: none; text-align: center; margin-top: 20px;">
 
-                <!-- Highlighted User Instruction -->
-                <div class="instruction-highlight">
-                    ⚠️ <strong>Important Step:</strong><br>
-                    After completing the payment in your UPI app, please return to this screen and tap the <strong>"✅ I Have Completed Payment"</strong> button below to finalize your registration.
-                </div>
-
-                <!-- Desktop QR Code -->
-                <img src="{% static 'images/agas_gpay.jpeg' %}" alt="Google Pay QR Code" class="qr-image">
-
-                <!-- Desktop QR Quick Link -->
-                <div style="margin-bottom: 10px;">
-                    <a href="javascript:void(0)" onclick="enableDoneButtonDirectly()" style="font-size: 0.85rem; color: #007bff; text-decoration: underline;">
-                        Scanned QR Code on Desktop? Click here
-                    </a>
-                </div>
-
-                <!-- Tap to Open UPI API Deep Link -->
-                <a id="mobilePayLink" href="#" class="gpay-btn" onclick="startCountdown()">
-                    🚀 Tap to Open Google Pay / UPI App
-                </a>
-
-                <!-- Countdown Timer -->
-                <div id="timerMsg" class="timer-msg">
-                    ⏳ Opening GPay... Please complete the payment and return here. Verification button will appear in <span id="secondsText">15</span> seconds...
-                </div>
-
-                <!-- Final Action Button -->
-                <button type="button" id="doneBtn" class="done-btn" onclick="submitRenewal()">
-                    ✅ I Have Completed Payment
-                </button>
-            </div>
-        </form>
+                <!-- Important Instructions Warning Box -->
+    <div style="background-color: #fff3cd; border: 1px solid #ffeeba; border-left: 5px solid #ffc107; color: #856404; padding: 12px 15px; border-radius: 6px; text-align: left; margin-bottom: 20px; font-size: 0.9rem; line-height: 1.4;">
+        <strong>⚠️ Important Step:</strong> After making the payment in Google Pay / UPI, return to this page and click the <strong>"I Have Completed Payment"</strong> button below to finalize your renewal request.
+    </div>
+    
+    <!-- QR Code for scanning -->
+    <div style="margin-bottom: 15px;">
+        <img src="{% static 'images/gpay_qr.jpeg' %}" alt="UPI QR Code" style="max-width: 220px; border-radius: 8px;">
+        <p style="font-size: 0.85rem; color: #555; margin-top: 5px;">UPI ID: <strong>agastthya2003@oksbi</strong></p>
     </div>
 
-    <script>
-        const UPI_ID = "agastthya2003@oksbi";
-        const PAYEE_NAME = "Sreeyogakshetra";
+    <!-- Option 1: One-Tap Copy UPI ID (Bypasses SBI Link Restriction) -->
+    <button type="button" onclick="copyUpiId()" style="width: 100%; padding: 12px; background-color: #f4f4f4; border: 1px solid #ccc; border-radius: 6px; font-weight: bold; margin-bottom: 10px; cursor: pointer;">
+        📋 Tap to Copy UPI ID (agastthya2003@oksbi)
+    </button>
 
-        function showPaymentSection() {
-            const name = document.getElementById('name').value;
-            const phone = document.getElementById('phone').value;
+    <!-- Option 2: Direct App Launcher -->
+    <a id="mobilePayLink" href="#" style="text-decoration: none;">
+        <button type="button" style="width: 100%; padding: 12px; background-color: #0F9D58; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer;">
+            🚀 Open GPay App
+        </button>
+    </a>
 
-            if (!name || !phone) {
-                alert('Please enter your Name and Phone Number first.');
-                return;
+    <!-- Step 3: Countdown & Verification Submit -->
+    <div style="margin-top: 20px;">
+        <button id="submitBtn" type="button" onclick="submitRenewal()" style="width: 100%; padding: 12px; background-color: #28a745; color: white; border: none; border-radius: 6px; font-weight: bold; display: none;">
+            ✅ I Have Completed Payment
+        </button>
+        <p id="timerText" style="font-size: 0.85rem; color: #777; margin-top: 8px;">
+            Please complete payment in GPay. Verification button unlocks in <span id="countdown">15</span> seconds...
+        </p>
+    </div>
+</div>
+
+<script>
+    const UPI_ID = "agastthya2003@oksbi"; 
+    const PAYEE_NAME = "Sreeyogakshetra";
+
+    function showPaymentSection() {
+        const name = document.getElementById('name').value;
+        const phone = document.getElementById('phone').value;
+
+        if (!name || !phone) {
+            alert('Please enter your Name and Phone Number first.');
+            return;
+        }
+
+        const note = `${name} Renewal`;
+
+        // Direct standard UPI URL
+        const upiUrl = `upi://pay?pa=${encodeURIComponent(UPI_ID)}&pn=${encodeURIComponent(PAYEE_NAME)}&tn=${encodeURIComponent(note)}&cu=INR`;
+        document.getElementById('mobilePayLink').href = upiUrl;
+
+        document.getElementById('proceedBtn').style.display = 'none';
+        document.getElementById('paymentDisplay').style.display = 'block';
+
+        // Start 15s Countdown Timer
+        startVerificationTimer();
+    }
+
+    function copyUpiId() {
+        navigator.clipboard.writeText(UPI_ID);
+        alert("UPI ID (agastthya2003@oksbi) copied! Open GPay or PhonePe and paste it to transfer.");
+    }
+
+    function startVerificationTimer() {
+        let timeLeft = 15;
+        const countdownEl = document.getElementById('countdown');
+        const timerTextEl = document.getElementById('timerText');
+        const submitBtnEl = document.getElementById('submitBtn');
+
+        const interval = setInterval(() => {
+            timeLeft--;
+            countdownEl.textContent = timeLeft;
+            if (timeLeft <= 0) {
+                clearInterval(interval);
+                timerTextEl.style.display = 'none';
+                submitBtnEl.style.display = 'block';
             }
-
-            // Generate UPI API Deep Link with pre-filled name note
-            const note = `${name} Renewal`;
-            const upiUrl = `intent://pay?pa=${encodeURIComponent(UPI_ID)}&pn=${encodeURIComponent(PAYEE_NAME)}&tn=${encodeURIComponent(note)}&cu=INR#Intent;scheme=upi;package=com.google.android.apps.nbu.paisa.user;end`;
-            document.getElementById('mobilePayLink').href = upiUrl;
-
-            document.getElementById('proceedBtn').style.display = 'none';
-            document.getElementById('paymentDisplay').style.display = 'block';
-        }
-
-        function startCountdown() {
-            const timerMsg = document.getElementById('timerMsg');
-            const doneBtn = document.getElementById('doneBtn');
-            const secondsText = document.getElementById('secondsText');
-
-            timerMsg.style.display = 'block';
-            doneBtn.style.display = 'none';
-
-            let timeLeft = 15;
-            secondsText.textContent = timeLeft;
-
-            const countdownInterval = setInterval(() => {
-                timeLeft--;
-                secondsText.textContent = timeLeft;
-
-                if (timeLeft <= 0) {
-                    clearInterval(countdownInterval);
-                    timerMsg.style.display = 'none';
-                    doneBtn.style.display = 'block';
-                }
-            }, 1000);
-        }
-
-        function enableDoneButtonDirectly() {
-            document.getElementById('timerMsg').style.display = 'none';
-            document.getElementById('doneBtn').style.display = 'block';
-        }
-
-        function submitRenewal() {
-            const payload = {
-                name: document.getElementById('name').value,
-                phone: document.getElementById('phone').value,
-                batch: document.getElementById('batch').value,
-                joining_month: document.getElementById('joiningMonth').value,
-                transaction_id: "PENDING_VERIFICATION"
-            };
-
-            fetch('/api/submit-renewal/', {
-                method: 'POST',
-                headers: { 
-                    'Content-Type': 'application/json',
-                    'X-CSRFToken': '{{ csrf_token }}'
-                },
-                body: JSON.stringify(payload)
-            })
-            .then(res => res.json())
-            .then(data => {
-                if (data.status === 'success') {
-                    alert('Thank you! Your renewal request has been recorded. We will confirm your payment shortly.');
-                    window.location.reload();
-                } else {
-                    alert('Submission failed: ' + (data.message || 'Error submitting details'));
-                }
-            });
-        }
-    </script>
+        }, 1000);
+    }
+</script>
 </body>
 </html>
