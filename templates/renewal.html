@@ -130,7 +130,7 @@
 
             // Generate UPI API Deep Link with pre-filled name note
             const note = `${name} Renewal`;
-            const upiUrl = `upi://pay?pa=${encodeURIComponent(UPI_ID)}&pn=${encodeURIComponent(PAYEE_NAME)}&tn=${encodeURIComponent(note)}&cu=INR`;
+            const upiUrl = `intent://pay?pa=${encodeURIComponent(UPI_ID)}&pn=${encodeURIComponent(PAYEE_NAME)}&tn=${encodeURIComponent(note)}&cu=INR#Intent;scheme=upi;package=com.google.android.apps.nbu.paisa.user;end`;
             document.getElementById('mobilePayLink').href = upiUrl;
 
             document.getElementById('proceedBtn').style.display = 'none';
